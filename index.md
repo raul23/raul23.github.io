@@ -8,10 +8,16 @@ technologies and industries. You can find more info about this project at
 [https://raul23.github.io/dev_jobs_insights]().
 
 Here are the active projects I am working right now:
-- [dev_jobs_insights](https://raul23.github.io/dev_jobs_insights): data mining program for job posts
-- [pen_testing](https://github.com/raul23/pen_testing): documentation and small scripts (**not yet!**) for penetration testing
+1. [dev_jobs_insights](https://raul23.github.io/dev_jobs_insights): data mining
+program for job posts
+2. [pen_testing](https://github.com/raul23/pen_testing): documentation and small
+scripts (**not yet!**) for penetration testing
 
 In the near future, these are the projects I will be working on:
 - data analysis of crytptocurrencies market
 - automatic trading system
 - networks monitoring tools
+
+<!--Also, you can also check out my blog at TODO: add URL where I talk about 
+anything programming related (though I focus more on machine 
+learning/data mining in python) TODO: add as a note in the bottom-->
