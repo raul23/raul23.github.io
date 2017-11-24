@@ -1,6 +1,7 @@
 # Welcome!
 
-Here you will find the active projects I am working right now.
+Here you will find some of the projects I am working right now and also past
+projects.
 
 For the moment, I am working on a **data mining program** to generate important
 insights about developer job posts (e.g. StackOverfow) such as the most popular
@@ -10,11 +11,9 @@ technologies and industries. You can find more info about this project at
 Here are the active projects I am working right now:
 1. [dev_jobs_insights](https://raul23.github.io/dev_jobs_insights): data mining
 program for job posts
-2. [pen_testing](https://github.com/raul23/pen_testing): documentation and small
-scripts (**not yet!**) for penetration testing
+2. data analysis of crytptocurrencies market: no link yet
 
 In the near future, these are the projects I will be working on:
-- data analysis of crytptocurrencies market
 - automatic trading system
 - networks monitoring tools
 
