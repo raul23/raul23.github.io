@@ -15,8 +15,7 @@ program for job posts
 
 These are some projects I am interested to work on eventually if time permits:
 - build an automatic trading system: maybe to trade cryptocurrencies
-- text mining of Wikipedia articles: challenging task because of vast
-amount of data
+- text mining of Wikipedia articles
 
 <!--Also, you can also check out my blog at TODO: add URL where I talk about 
 anything programming related (though I focus more on machine 
