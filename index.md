@@ -1,7 +1,7 @@
 # Welcome!
 
-Here you will find some of the projects I am working right now and also past
-projects.
+Here you will find links to some of the projects I am working right now and
+also past projects.
 
 For the moment, I am working on a personal **data mining project** to generate
 important insights about developer job posts (e.g. StackOverfow) such as what are
