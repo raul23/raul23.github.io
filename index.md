@@ -11,7 +11,7 @@ project at  [https://raul23.github.io/dev_jobs_insights](https://raul23.github.i
 Here are the **active** projects I am working right now:
 1. [dev_jobs_insights](https://raul23.github.io/dev_jobs_insights): data mining
 program for job posts
-2. data analysis of cryptocurrencies market: no link yet
+2. data analysis of cryptocurrencies market: **no link yet**
 
 These are some projects I am interested to work on eventually if time permits:
 - build an automatic trading system: maybe to trade cryptocurrencies
