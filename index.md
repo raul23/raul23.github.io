@@ -13,7 +13,7 @@ Here are the **active** projects I am working right now:
 program for job posts
 2. **data analysis of cryptocurrencies market:** *no link yet*
 
-These are some projects I am interested to work on eventually if time permits:
+These are some projects I am interested to work on eventually:
 - build an automatic trading system: maybe to trade cryptocurrencies
 - text mining of Wikipedia articles
 
