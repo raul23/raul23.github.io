@@ -15,7 +15,8 @@ program for job posts
 
 These are some projects I am interested to work on eventually if time permits:
 - build an automatic trading system: maybe to trade cryptocurrencies
-- build networks monitoring tools: implement them in Python and bash
+- build network monitoring tools: implement them in Python and bash; analyze 
+network traffic and report suspicious activity
 - text mining of Wikipedia articles: challenging task because of vast
 amount of data
 - build a search engine with ElasticSearch: to be deployed on the Wikipedia
