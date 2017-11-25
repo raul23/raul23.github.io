@@ -8,12 +8,12 @@ important insights about developer job posts (e.g. StackOverfow) such as what ar
 the most popular technologies and industries. You can find more info about this
 project at  [https://raul23.github.io/dev_jobs_insights]().
 
-Here are the active projects I am working right now:
+Here are the **active** projects I am working right now:
 1. [dev_jobs_insights](https://raul23.github.io/dev_jobs_insights): data mining
 program for job posts
 2. data analysis of crytptocurrencies market: no link yet
 
-In the near future, these are the projects I will be working on:
+In the **near future**, these are the projects I will be working on:
 - automatic trading system
 - networks monitoring tools
 
