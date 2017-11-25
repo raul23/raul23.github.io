@@ -3,10 +3,10 @@
 Here you will find some of the projects I am working right now and also past
 projects.
 
-For the moment, I am working on a **data mining program** to generate important
-insights about developer job posts (e.g. StackOverfow) such as the most popular
-technologies and industries. You can find more info about this project at 
-[https://raul23.github.io/dev_jobs_insights]().
+For the moment, I am working on a personal **data mining project** to generate
+important insights about developer job posts (e.g. StackOverfow) such as the
+most popular technologies and industries. You can find more info about this
+project at  [https://raul23.github.io/dev_jobs_insights]().
 
 Here are the active projects I am working right now:
 1. [dev_jobs_insights](https://raul23.github.io/dev_jobs_insights): data mining
