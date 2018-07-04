@@ -60,9 +60,9 @@
     </ul>
 
     <!--<form class="form-inline">-->
-        <!--<input class="form-control mb-3 mb-md-0 ml-md-3" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success mb-3 mb-md-0 ml-md-2" type="submit">Search</button>
-        -->
+    <!--<input class="form-control mb-3 mb-md-0 ml-md-3" type="text" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success mb-3 mb-md-0 ml-md-2" type="submit">Search</button>
+    -->
     <div style="width:30%" class="mb-3 mb-md-0 ml-md-3">
         <!--Custom Search configuration @ https://cse.google.com/
             Border and icon color: 239E52
@@ -86,9 +86,23 @@
 
 <main role="main" class="container">
 
-    <div class="starter-template">
-        <h1>raul23</h1>
-        <p class="lead">Welcome to my personal website!</p>
+    <div>
+        <!--Custom Search configuration @ https://cse.google.com/
+            Border and icon color: 239E52
+            Background color:
+        -->
+        <script>
+            (function() {
+                var cx = '006870383000897450398:jgjeb1eczvq';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+            })();
+        </script>
+        <gcse:searchresults-only></gcse:searchresults-only>
     </div>
 
 </main><!-- /.container -->
