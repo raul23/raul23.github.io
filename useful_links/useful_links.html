@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Personal website">
     <meta name="author" content="Raul C.">
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon3.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon3.ico">
 
     <title>Useful links</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../starter-template.css" rel="stylesheet">
+    <link href="/starter-template.css" rel="stylesheet">
 
     <!-- Prevents outline of search button when modal is closed -->
     <!-- ref.: https://bit.ly/2ncpMmN -->
@@ -22,6 +22,27 @@
         {
             outline: none !important;
         }
+        @media (max-width: 575.98px)
+        {
+            a{
+                font-size: 1.5em;
+            }
+            img{
+                width: 30px;
+                height: 30px;
+            }
+            svg {
+                width: 25px;
+                height: 25px;
+            }
+            ul.icons {
+                flex-direction:row !important;
+                -webkit-flex-direction:row !important;
+            }
+            ul.icons > li > a{
+                margin-right: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -29,7 +50,7 @@
 <header class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top">
 
     <a class="navbar-brand" href="/index.html">
-        <img src="../favicon2.png" alt="brand" width="40" height="40">
+        <img src="/favicon2.png" alt="brand" width="40" height="40">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,31 +60,31 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/index.html">Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="../projects/projects.html" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a>
+                    <a class="nav-link dropdown-toggle" href="/projects/projects.html" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="../projects/automated_visual_surveillance_system.html">Automated visual surveillance system</a>
-                        <a class="dropdown-item" href="../projects/python-ebook-tools.html">ebook-tools</a>
-                        <a class="dropdown-item" href="../projects/dev-jobs-insights.html">dev-jobs-insights</a>
+                        <a class="dropdown-item" href="/projects/automated_visual_surveillance_system.html">Automated visual surveillance system</a>
+                        <a class="dropdown-item" href="/projects/python-ebook-tools.html">ebook-tools</a>
+                        <a class="dropdown-item" href="/projects/dev-jobs-insights.html">dev-jobs-insights</a>
                     </div>
                 </li>
                 <li>
-                    <a class="nav-link" href="../book_notes/book_notes.html">Book notes</a>
+                    <a class="nav-link" href="/book_notes/book_notes.html">Book notes</a>
                 </li>
                 <li>
-                    <a class="nav-link active" href="useful_links.html">Useful links</a>
+                    <a class="nav-link active" href="/useful_links/useful_links.html">Useful links</a>
                 </li>
             </ul>
 
-        <ul class="navbar-nav">
+        <ul class="navbar-nav icons">
             <li class="nav-item">
                 <!-- Credit author @ https://bit.ly/2z7z9N9 (flaticon.com)
                 <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
                 -->
                 <a class="nav-link" href="mailto:rchfe23@gmail.com" title="Contact me via email">
-                    <img src="../assets/images/message-closed-envelope.png" alt="email" width="32" height="32">
+                    <img src="/assets/images/message-closed-envelope.png" alt="email" width="32" height="32">
                 </a>
             </li>
             <li class="nav-item">
@@ -73,13 +94,20 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link mr-5" href="https://progsharing.blogspot.com" title="Follow me on blogpost">
-                    <img src="../assets/images/blogger_favicon.ico" alt="blogger" width="32" height="32">
+                    <img src="/assets/images/blogger_favicon.ico" alt="blogger" width="32" height="32">
                 </a>
             </li>
+        </ul>
+        <ul class="navbar-nav">
             <li class="nav-item">
                 <!-- ref.: https://bit.ly/2vEM5oO -->
-                <a class="nav-link" href="#" title="Search raul23.github.io" data-target="#modalSearch" data-toggle="modal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
+                <a class="nav-link" href="#modalSearch" title="Search raul23.github.io" data-target="#modalSearch" data-toggle="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                         stroke="rgb(0, 0, 0)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="mr-md-3"><circle cx="10.5" cy="10.5" r="7.5"></circle>
+                        <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
+                    </svg>
+                    <div class="d-inline d-sm-none">Search</div>
                 </a>
             </li>
         </ul>
@@ -89,7 +117,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="modalSearchLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalSearchLabel">Search raul23.github.io</h5>
@@ -120,9 +148,9 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script src="../assets/js/vendor/popper.min.js"></script>
-<script src="../dist/js/bootstrap.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="/assets/js/vendor/popper.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
 <script>
     (function() {
         var cx = '006870383000897450398:jgjeb1eczvq';
