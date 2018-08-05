@@ -15,14 +15,29 @@
     <!-- Custom styles for this template -->
     <link href="/starter-template.css" rel="stylesheet">
 
-    <!-- Prevents outline of search button when modal is closed -->
-    <!-- ref.: https://bit.ly/2ncpMmN -->
+    <!-- Prevents outline of search button when modal is closed
+         ref.: https://bit.ly/2ncpMmN
+    -->
+    <!-- media queries
+         max-width: given screen size or smaller
+         ref.: https://getbootstrap.com/docs/4.0/layout/overview/#responsive-breakpoints
+    -->
+    <!-- flex-direction
+         Keep navbar ul elements horizontally on small screens when navbar toggled
+         ref.: https://stackoverflow.com/a/48711757
+    -->
+    <!-- Enable scroll bar when navbar collapses: overflow-y
+         ref.: https://stackoverflow.com/a/37880633
+    -->
+    <!-- Change style of scroll bar
+         ref.: https://stackoverflow.com/a/44212775
+    -->
     <style>
         a:focus
         {
             outline: none !important;
         }
-        @media (max-width: 575.98px)
+        @media (max-width: 576px)
         {
             a{
                 font-size: 1.5em;
@@ -43,11 +58,39 @@
                 margin-right: 15px;
             }
         }
+
+        @media (max-height: 400px) and (max-width: 585px)
+        {
+            #navbarsExampleDefault{
+                overflow-y: scroll !important;
+                max-height: 250px !important;
+            }
+
+            div::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+                background-color: #F5F5F5;
+            }
+
+            div::-webkit-scrollbar {
+                width: 12px;
+                background-color: #F5F5F5;
+            }
+
+            div::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                background-color: #555;
+            }
+        }
     </style>
 </head>
 <body>
 
-<header class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top">
+<!-- navbar-expand-sm: navbar collapses into mobile < 576px
+ref.: https://stackoverflow.com/a/41953505
+ -->
+<header class="navbar navbar-expand-sm navbar-dark bg-secondary fixed-top">
 
     <a class="navbar-brand" href="/index.html">
         <img src="/favicon2.png" alt="brand" width="40" height="40">
@@ -100,13 +143,17 @@
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <!-- ref.: https://bit.ly/2vEM5oO -->
+                <!-- svg search icon from
+                ref.: https://bit.ly/2vEM5oO -->
                 <a class="nav-link" href="#modalSearch" title="Search raul23.github.io" data-target="#modalSearch" data-toggle="modal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                          stroke="rgb(0, 0, 0)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                          class="mr-md-3"><circle cx="10.5" cy="10.5" r="7.5"></circle>
                         <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
                     </svg>
+                    <!--  Hide the Search string for all screen sizes, except for extra small screen size (xs)
+                         ref.: https://getbootstrap.com/docs/4.0/utilities/display/#hiding-elements
+                    -->
                     <div class="d-inline d-sm-none">Search</div>
                 </a>
             </li>
@@ -115,7 +162,14 @@
 
 </header>
 
-<!-- Modal -->
+<!-- Large modal
+     ref.: https://getbootstrap.com/docs/4.0/components/modal/#optional-sizes
+-->
+<!-- Add a Google Custom Search Popup in a Bootstrap Navbar
+     ref.: https://bit.ly/2AIKaFL
+     ref.: https://www.bobbystuff.com/
+     ref.: https://developers.google.com/custom-search/docs/element [OFFICIAL documentation]
+-->
 <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="modalSearchLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
