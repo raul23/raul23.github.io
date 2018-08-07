@@ -66,6 +66,9 @@ $(document).ready(function(){
             // TODO/NOTE: replaced $(this) with this unlike in the answer
             $(this)[0].classList.add('active');
         }
+        // If URL=https://raul23.github.io/ [root]
+        if (location.pathname=="/")
+            $('#home_link')[0].classList.add('active');
     });
 });
 includeHTML();
