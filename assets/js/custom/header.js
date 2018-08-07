@@ -36,6 +36,7 @@ function includeHTML() {
         }
     }
 }
+
 /*
 // TODO/NOTE: $(document).ready important
 // ref.: https://stackoverflow.com/a/27155910
@@ -52,23 +53,35 @@ $(document).ready(function(){
     };
 });
 */
+
 // TODO/NOTE: with jQuery, ref.: https://stackoverflow.com/a/27155910
-$(document).ready(function(){
-    $('.menu li a').each(function() {
-        if ($(this).attr('href')==location.pathname) {
-            // TODO: why [0] on $(this)[0]?
-            if ($(this)[0].className.search("dropdown-item") == 0) {
-                // TODO: if URL=http://localhost/p/projects/projects.html, make sure this if is note executed
-                // TODO/NOTE: old code using parentNode twice
-                //this.parentNode.parentNode.classList.add('active');
-                $('#li_dropdown')[0].classList.add('active');
+//$(document).ready(function(){
+/*
+    $('.menu li a').on('click', function(event) {
+        event.preventDefault();
+        $('.menu li a').each(function() {
+            if ($(this).attr('href')==location.pathname) {
+                // TODO: why [0] on $(this)[0]?
+                if ($(this)[0].className.search("dropdown-item") == 0) {
+                    // TODO: if URL=http://localhost/p/projects/projects.html, make sure this if is note executed
+                    // TODO/NOTE: old code using parentNode twice
+                    //this.parentNode.parentNode.classList.add('active');
+                    $('#li_dropdown')[0].classList.add('active');
+                }
+                // TODO/NOTE: replaced $(this) with this unlike in the answer
+                $(this)[0].classList.add('active');
             }
-            // TODO/NOTE: replaced $(this) with this unlike in the answer
-            $(this)[0].classList.add('active');
-        }
-        // If URL=https://raul23.github.io/ [root]
-        if (location.pathname=="/")
-            $('#home_link')[0].classList.add('active');
+            // If URL=https://raul23.github.io/ [root]
+            if (location.pathname=="/")
+                $('#home_link')[0].classList.add('active');
+        });
     });
+*/
+//});
+
+$(window).on("load", function() {
+    $('li.active').removeClass('active');
+    $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
 });
+
 includeHTML();
