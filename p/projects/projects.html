@@ -1,116 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Personal website">
     <meta name="author" content="Raul C.">
-    <link rel="shortcut icon" type="image/x-icon" href="../../assets/images/site_favicons/favicon_16x16.ico">
+    <!-- site ownership proof-->
+    <meta name="google-site-verification" content="mgTD1Lf_RYZm_waL6kwhGu_9DsTR-ksvTBSYub1L1pQ" />
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/site_favicons/favicon_16x16.ico" type="image/x-icon">
 
     <title>Projects</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template -->
-    <link href="../../assets/css/starter-template.css" rel="stylesheet">
+    <link href="/assets/css/starter-template.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <!-- This is where we will place our navigation bar code -->
+    <!--old test code <div id="includedContent"></div>-->
+    <div w3-include-html="/p/header.html"></div>
 
-<header class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top">
+    <main role="main" class="container">
 
-    <a class="navbar-brand" href="../../index.html">
-        <img src="../../assets/images/site_favicons/favicon_40x40.png" alt="brand" width="40" height="40">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="../../index.html">Home<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" href="projects.html" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="automated_visual_surveillance_system.html">Automated visual surveillance system</a>
-                    <a class="dropdown-item" href="python-ebook-tools.html">ebook-tools</a>
-                    <a class="dropdown-item" href="dev-jobs-insights.html">dev-jobs-insights</a>
-                </div>
-            </li>
-            <li>
-                <a class="nav-link" href="../book_notes.html">Book notes</a>
-            </li>
+        <div class="starter-template">
+            <h1>Programming Projects</h1>
+        </div>
+        <p>These are the programming projects I'm working on:</p>
+        <ul>
+            <li><b><a href="automated_visual_surveillance_system.html">Automated visual surveillance system</a></b>: motion detection and tracking system</li>
+            <li><b><a href="python-ebook-tools.html">Ebook tools</a></b>: a Python port of <a href="https://github.com/na--/ebook-tools">ebook-tools' shell scripts</a> which organize and manage ebook collections</li>
+            <li><b><a href="dev-jobs-insights.html">Data analysis of developer job posts</a></b>: from stackoverflow but eventually other sources of job data will be integrated</li>
         </ul>
-    </div>
 
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <!-- Credit author @ https://bit.ly/2z7z9N9 (flaticon.com)
-            <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-            -->
-            <a class="nav-link" href="mailto:rchfe23@gmail.com">
-                <img src="../../assets/images/message-closed-envelope.png" alt="email" width="30" height="30">
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="https://github.com/raul23">
-                <img src="https://assets-cdn.github.com/pinned-octocat.svg" alt="octocat" width="30" height="30">
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="https://progsharing.blogspot.com/">
-                <img src="../../assets/images/blogger_favicon.ico" alt="blogger" width="30" height="30">
-            </a>
-        </li>
-    </ul>
+    </main><!-- /.container -->
 
-    <!--<form class="form-inline">-->
-    <!--<input class="form-control mb-3 mb-md-0 ml-md-3" type="text" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success mb-3 mb-md-0 ml-md-2" type="submit">Search</button>
-    -->
-    <div style="width:30%" class="mb-3 mb-md-0 ml-md-3">
-        <!--Custom Search configuration @ https://cse.google.com/
-            Border and icon color: 239E52
-            Background color: 6b757c
-        -->
-        <script>
-            (function() {
-                var cx = '006870383000897450398:jgjeb1eczvq';
-                var gcse = document.createElement('script');
-                gcse.type = 'text/javascript';
-                gcse.async = true;
-                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(gcse, s);
-            })();
-        </script>
-        <gcse:searchbox-only resultsUrl="search_results.html"></gcse:searchbox-only>
-    </div>
-    <!--</form>-->
-</header>
-
-<main role="main" class="container">
-
-    <div class="starter-template">
-        <h1>Programming Projects</h1>
-    </div>
-    <p>These are the programming projects I'm working on:</p>
-    <ul>
-        <li><b><a href="automated_visual_surveillance_system.html">Automated visual surveillance system</a></b>: motion detection and tracking system</li>
-        <li><b><a href="python-ebook-tools.html">Ebook tools</a></b>: a Python port of <a href="https://github.com/na--/ebook-tools">ebook-tools' shell scripts</a> which organize and manage ebook collections</li>
-        <li><b><a href="dev-jobs-insights.html">Data analysis of developer job posts</a></b>: from stackoverflow but eventually other sources of job data will be integrated</li>
-    </ul>
-
-</main><!-- /.container -->
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the p load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script src="../../assets/js/vendor/popper.min.js"></script>
-<script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script
+            src="/assets/js/vendor/jquery-3.3.1.min.js"
+            type="text/javascript">
+    </script>
+    <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-3.3.1.min.js" type="text/javascript"><\/script>')</script>
+    <script src="/assets/js/vendor/popper.min.js" type="text/javascript"></script>
+    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/assets/js/custom/header.js" type="text/javascript"></script>
 </body>
 </html>

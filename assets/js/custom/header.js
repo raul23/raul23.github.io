@@ -58,6 +58,7 @@ $(document).ready(function(){
         if ($(this).attr('href')==location.pathname) {
             // TODO: why [0] on $(this)[0]?
             if ($(this)[0].className.search("dropdown-item") == 0) {
+                // TODO: if URL=http://localhost/p/projects/projects.html, make sure this if is note executed
                 // TODO/NOTE: old code using parentNode twice
                 //this.parentNode.parentNode.classList.add('active');
                 $('#li_dropdown')[0].classList.add('active');
