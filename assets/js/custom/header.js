@@ -39,6 +39,8 @@ function includeHTML() {
 /*
 // TODO/NOTE: $(document).ready important
 // ref.: https://stackoverflow.com/a/27155910
+// TODO/NOTE: Not pure JavaScript, since it is using JQuery with $(document)
+// You could remove the $(document).ready function and make sure the JavaScript is loaded at then end of <body>
 $(document).ready(function(){
     var menu = document.querySelectorAll('.menu li a');
     for (var i = menu.length - 1; i >= 0; i--) {
@@ -53,9 +55,15 @@ $(document).ready(function(){
 // TODO/NOTE: with jQuery, ref.: https://stackoverflow.com/a/27155910
 $(document).ready(function(){
     $('.menu li a').each(function() {
-        if ($(this).attr('href')==location.pathname){
+        if ($(this).attr('href')==location.pathname) {
+            // TODO: why [0] on $(this)[0]?
+            if ($(this)[0].className.search("dropdown-item") == 0) {
+                // TODO/NOTE: old code using parentNode twice
+                //this.parentNode.parentNode.classList.add('active');
+                $('#li_dropdown')[0].classList.add('active');
+            }
             // TODO/NOTE: replaced $(this) with this unlike in the answer
-            this.classList.add('active');
+            $(this)[0].classList.add('active');
         }
     });
 });

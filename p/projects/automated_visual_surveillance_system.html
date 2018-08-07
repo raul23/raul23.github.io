@@ -5,144 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Personal website">
     <meta name="author" content="Raul C.">
-    <link rel="shortcut icon" type="image/x-icon" href="../../assets/images/site_favicons/favicon_16x16.ico">
+    <link rel="shortcut icon" href="/assets/images/site_favicons/favicon_16x16.ico" type="image/x-icon">
 
     <title>Automated visual surveillance system</title>
     <!--https://github.com/raul23/automated_visual_surveillance_system-->
 
     <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template -->
-    <link href="../../assets/css/starter-template.css" rel="stylesheet">
+    <link href="/assets/css/starter-template.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <!-- This is where we will place our navigation bar code -->
+    <!--old test code <div id="includedContent"></div>-->
+    <div w3-include-html="/p/header.html"></div>
 
-<header class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top">
+    <main role="main" class="container">
 
-    <a class="navbar-brand" href="../../index.html">
-        <img src="../../assets/images/site_favicons/favicon_40x40.png" alt="brand" width="40" height="40">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="../../index.html">Home<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" href="projects.html" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="automated_visual_surveillance_system.html">Automated visual surveillance system</a>
-                    <a class="dropdown-item" href="python-ebook-tools.html">ebook-tools</a>
-                    <a class="dropdown-item" href="dev-jobs-insights.html">dev-jobs-insights</a>
-                </div>
-            </li>
-            <li>
-                <a class="nav-link" href="../book_notes.html">Book notes</a>
-            </li>
+        <div class="starter-template">
+            <h1>Project: Automated visual surveillance system</h1>
+            <b>Github repo</b> @ <a href="https://github.com/raul23/automated_visual_surveillance_system">automated_visual_surveillance_system</a>
+        </div>
+        <p class="lead">The <b>main goal</b> of this project is to develop an automated visual
+            surveillance system (AVSS) consisting of a motion detection and tracking
+            system among the various components.</p>
+        <!--<p>The other pursued goals are to:
+        <ul>
+            <li>develop code that is easy to maintain and modify</li>
+            <li></li>
         </ul>
-    </div>
-
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <!-- Credit author @ https://bit.ly/2z7z9N9 (flaticon.com)
-            <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-            -->
-            <a class="nav-link" href="mailto:rchfe23@gmail.com">
-                <img src="../../assets/images/message-closed-envelope.png" alt="email" width="30" height="30">
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="https://github.com/raul23">
-                <img src="https://assets-cdn.github.com/pinned-octocat.svg" alt="octocat" width="30" height="30">
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="https://progsharing.blogspot.com/">
-                <img src="../../assets/images/blogger_favicon.ico" alt="blogger" width="30" height="30">
-            </a>
-        </li>
-    </ul>
-
-    <!--<form class="form-inline">-->
-    <!--<input class="form-control mb-3 mb-md-0 ml-md-3" type="text" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success mb-3 mb-md-0 ml-md-2" type="submit">Search</button>
-    -->
-    <div style="width:30%" class="mb-3 mb-md-0 ml-md-3">
-        <!--Custom Search configuration @ https://cse.google.com/
-            Border and icon color: 239E52
-            Background color: 6b757c
+        </p>
         -->
-        <script>
-            (function() {
-                var cx = '006870383000897450398:jgjeb1eczvq';
-                var gcse = document.createElement('script');
-                gcse.type = 'text/javascript';
-                gcse.async = true;
-                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(gcse, s);
-            })();
-        </script>
-        <gcse:searchbox-only resultsUrl="../search_results.html"></gcse:searchbox-only>
-    </div>
-    <!--</form>-->
-</header>
+        <p>The AVSS must eventually satisfy the following characteristics:
+            <ul>
+                <li>
+                    work in real-time
+                </li>
+                <li>
+                    work with moving cameras: it should be able to work e.g. with
+                    PTZ cameras
+                </li>
+                <li>
+                    work indoor and outdoor: system must be robust to changing
+                    lighting conditions
+                </li>
+            </ul>
+        </p>
 
-<main role="main" class="container">
+        <p>Right now, only a simple Python-based motion detection and tracking system has been implemented using two
+            <b>basic</b> background substitution models:
+            <ul>
+                <li>First background model: <b>first frame</b> taken to model the background</li>
+                <li>Second background model: <b>weighted average</b> of frames</li>
+            </ul>
 
-    <div class="starter-template">
-        <h1>Project: Automated visual surveillance system</h1>
-        <b>Github repo</b> @ <a href="https://github.com/raul23/automated_visual_surveillance_system">automated_visual_surveillance_system</a>
-    </div>
-    <p class="lead">The <b>main goal</b> of this project is to develop an automated visual
-        surveillance system (AVSS) consisting of a motion detection and tracking
-        system among the various components.</p>
-    <!--<p>The other pursued goals are to:
-    <ul>
-        <li>develop code that is easy to maintain and modify</li>
-        <li></li>
-    </ul>
-    </p>
-    -->
-    <p>The AVSS must eventually satisfy the following characteristics:
-        <ul>
-            <li>
-                work in real-time
-            </li>
-            <li>
-                work with moving cameras: it should be able to work e.g. with
-                PTZ cameras
-            </li>
-            <li>
-                work indoor and outdoor: system must be robust to changing
-                lighting conditions
-            </li>
-        </ul>
-    </p>
+            You can find more information about this simple motion detection system @ <a href="https://github.com/raul23/automated_visual_surveillance_system/blob/master/basic_motion_detection_and_tracking_system/README.md#basic-motion-detection-and-tracking-system">README.md</a>
+            There you will find instructions on how to install and use the system.
+        </p>
 
-    <p>Right now, only a simple Python-based motion detection and tracking system has been implemented using two
-        <b>basic</b> background substitution models:
-        <ul>
-            <li>First background model: <b>first frame</b> taken to model the background</li>
-            <li>Second background model: <b>weighted average</b> of frames</li>
-        </ul>
+    </main><!-- /.container -->
 
-        You can find more information about this simple motion detection system @ <a href="https://github.com/raul23/automated_visual_surveillance_system/blob/master/basic_motion_detection_and_tracking_system/README.md#basic-motion-detection-and-tracking-system">README.md</a>
-        There you will find instructions on how to install and use the system.
-    </p>
-
-</main><!-- /.container -->
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the p load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script src="../../assets/js/vendor/popper.min.js"></script>
-<script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the p load faster -->
+    <script
+            src="/assets/js/vendor/jquery-3.3.1.min.js"
+            type="text/javascript">
+    </script>
+    <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-3.3.1.min.js" type="text/javascript"><\/script>')</script>
+    <script src="/assets/js/vendor/popper.min.js" type="text/javascript"></script>
+    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/assets/js/custom/header.js" type="text/javascript"></script>
 </body>
 </html>
