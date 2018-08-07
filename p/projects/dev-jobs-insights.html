@@ -5,23 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Personal website">
     <meta name="author" content="Raul C.">
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon3.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../../assets/images/site_favicons/favicon_16x16.ico">
 
-    <title>Automated visual surveillance system</title>
-    <!--https://github.com/raul23/automated_visual_surveillance_system-->
+    <title>Insights on developer jobs</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../starter-template.css" rel="stylesheet">
+    <link href="../../assets/css/starter-template.css" rel="stylesheet">
 </head>
 <body>
 
 <header class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top">
 
-    <a class="navbar-brand" href="../index.html">
-        <img src="../favicon2.png" alt="brand" width="40" height="40">
+    <a class="navbar-brand" href="../../index.html">
+        <img src="../../assets/images/site_favicons/favicon_40x40.png" alt="brand" width="40" height="40">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,7 +29,7 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="../../index.html">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="projects.html" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a>
@@ -41,7 +40,7 @@
                 </div>
             </li>
             <li>
-                <a class="nav-link" href="../book_notes/book_notes.html">Book notes</a>
+                <a class="nav-link" href="../book_notes.html">Book notes</a>
             </li>
         </ul>
     </div>
@@ -52,7 +51,7 @@
             <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
             -->
             <a class="nav-link" href="mailto:rchfe23@gmail.com">
-                <img src="../assets/images/message-closed-envelope.png" alt="email" width="30" height="30">
+                <img src="../../assets/images/message-closed-envelope.png" alt="email" width="30" height="30">
             </a>
         </li>
         <li class="nav-item">
@@ -62,7 +61,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="https://progsharing.blogspot.com/">
-                <img src="../assets/images/blogger_favicon.ico" alt="blogger" width="30" height="30">
+                <img src="../../assets/images/blogger_favicon.ico" alt="blogger" width="30" height="30">
             </a>
         </li>
     </ul>
@@ -94,55 +93,49 @@
 
 <main role="main" class="container">
 
-    <div class="starter-template">
-        <h1>Project: Automated visual surveillance system</h1>
-        <b>Github repo</b> @ <a href="https://github.com/raul23/automated_visual_surveillance_system">automated_visual_surveillance_system</a>
-    </div>
-    <p class="lead">The <b>main goal</b> of this project is to develop an automated visual
-        surveillance system (AVSS) consisting of a motion detection and tracking
-        system among the various components.</p>
-    <!--<p>The other pursued goals are to:
-    <ul>
-        <li>develop code that is easy to maintain and modify</li>
-        <li></li>
-    </ul>
+        <div class="starter-template">
+            <h1>Project: Data analysis of developer job posts</h1>
+            <b>Github repo</b> @ <a href="https://github.com/raul23/dev-jobs-insights">dev-jobs-insights</a>
+        </div>
+
+    <p class="lead">The <b>main goal</b> of this project is to extract interesting insights from developer
+        job posts.</p>
+
+    <p><a href="https://github.com/raul23/dev-jobs-insights">dev-jobs-insights</a> is a data mining project written in
+        Python with the main objective of extracting meaningful insights from developer job posts. These insights can
+        help us in getting a more accurate picture of what the developer job market looks like so we can make better
+        decisions (e.g. what technologies to focus on to increase our chance of finding a job).
     </p>
+
+    <p>
+        Data visualization is an important tool in interpreting data. Thus graphs and maps are an important aspect of
+        this project <!-- as you can see from the multiple graphs generated --> so we can see the developer job market
+        across different dimensions (e.g. salary, industries, locations).
+    </p>
+
+    <p>Currently, the raw job data comes from stackoverflow, but eventually other job sites will be integrated.
+        The job posts data are mined from StackOverflow developer jobs
+        <a href="https://stackoverflow.com/jobs/feed" >RSS feed</a> and <a href="https://stackoverflow.com/jobs">
+            website</a>.
+    </p>
+    <!--
+    These are the steps taken in order to extract job insights from job sites:
+    <ol>
+        <li>Run a RSS reader: parses the RSS feed about job posts</li>
+        <li>Run a web scraper: scrapes the job ... </li>
+        <li>test</li>
+        <li>test</li>
+        <li>test</li>
+    </ol>
     -->
-    <p>The AVSS must eventually satisfy the following characteristics:
-        <ul>
-            <li>
-                work in real-time
-            </li>
-            <li>
-                work with moving cameras: it should be able to work e.g. with
-                PTZ cameras
-            </li>
-            <li>
-                work indoor and outdoor: system must be robust to changing
-                lighting conditions
-            </li>
-        </ul>
-    </p>
-
-    <p>Right now, only a simple Python-based motion detection and tracking system has been implemented using two
-        <b>basic</b> background substitution models:
-        <ul>
-            <li>First background model: <b>first frame</b> taken to model the background</li>
-            <li>Second background model: <b>weighted average</b> of frames</li>
-        </ul>
-
-        You can find more information about this simple motion detection system @ <a href="https://github.com/raul23/automated_visual_surveillance_system/blob/master/basic_motion_detection_and_tracking_system/README.md#basic-motion-detection-and-tracking-system">README.md</a>
-        There you will find instructions on how to install and use the system.
-    </p>
-
 </main><!-- /.container -->
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+<!-- Placed at the end of the document so the p load faster -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script src="../assets/js/vendor/popper.min.js"></script>
-<script src="../dist/js/bootstrap.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../assets/js/vendor/popper.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
 </body>
 </html>
