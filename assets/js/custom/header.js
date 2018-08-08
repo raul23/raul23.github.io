@@ -63,7 +63,7 @@ $(document).ready(function(){
             if ($(this).attr('href')==location.pathname) {
                 // TODO: why [0] on $(this)[0]?
                 if ($(this)[0].className.search("dropdown-item") == 0) {
-                    // TODO: if URL=http://localhost/p/projects/projects.html, make sure this if is note executed
+                    // TODO: if URL=http://localhost/p/projects/projects.html, make sure this if is not executed
                     // TODO/NOTE: old code using parentNode twice
                     //this.parentNode.parentNode.classList.add('active');
                     $('#li_dropdown')[0].classList.add('active');
@@ -99,8 +99,19 @@ $(document).ready(function() {
 */
 
 setInterval(function(){
-    //$('.active').removeClass('active');//remove class active
-    $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+    //$('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+
+    if (this.location.pathname=="/")
+        $('#home_link').addClass('active');
+    else {
+        var elem = $('a[href="' + this.location.pathname + '"]');
+        if (elem[0].className.search("dropdown-item") == 0) {
+            $('#li_dropdown').addClass('active');
+            elem.addClass('active');
+        }
+        else
+            elem.parent().addClass('active');
+    }
 });
 
 includeHTML();
