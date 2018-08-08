@@ -98,7 +98,7 @@ $(document).ready(function() {
 });
 */
 
-setInterval(function(){
+setTimeout(function(){
     //$('a[href="' + this.location.pathname + '"]').parent().addClass('active');
 
     if (this.location.pathname=="/")
@@ -112,6 +112,6 @@ setInterval(function(){
         else
             elem.parent().addClass('active');
     }
-});
+}, 25);
 
 includeHTML();
