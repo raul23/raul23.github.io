@@ -79,6 +79,7 @@ $(document).ready(function(){
 */
 //});
 
+/*
 $(window).on("load", function() {
     // If URL=https://raul23.github.io/ [root]
     if (location.pathname=="/") {
@@ -88,6 +89,18 @@ $(window).on("load", function() {
         $('li.active').removeClass('active');
         $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
     }
+});
+*/
+
+/*
+$(document).ready(function() {
+    $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+});
+*/
+
+setInterval(function(){
+    //$('.active').removeClass('active');//remove class active
+    $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
 });
 
 includeHTML();
