@@ -80,8 +80,14 @@ $(document).ready(function(){
 //});
 
 $(window).on("load", function() {
-    $('li.active').removeClass('active');
-    $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+    // If URL=https://raul23.github.io/ [root]
+    if (location.pathname=="/") {
+        $('#home_link')[0].classList.add('active');
+    }
+    else {
+        $('li.active').removeClass('active');
+        $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+    }
 });
 
 includeHTML();
