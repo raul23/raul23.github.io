@@ -112,6 +112,6 @@ setTimeout(function(){
         else
             elem.parent().addClass('active');
     }
-}, 25);
+}, 100);
 
 includeHTML();
