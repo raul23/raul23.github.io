@@ -1,3 +1,4 @@
+// DEPRECATED. TODO: Archive function code
 /* *************************************************************
  *  Loading js files.
  *  ref.: https://stackoverflow.com/a/24641920
