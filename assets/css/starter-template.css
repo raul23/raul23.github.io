@@ -145,3 +145,17 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background-color: #ffffff;
 }
+
+/* Back to top arrow */
+.back-to-top {
+    position: fixed;
+    bottom: 2em;
+    right: 0px;
+    text-decoration: none;
+    font-size: 12px;
+    padding: 1em;
+    display: none;
+}
+.back-to-top:hover {
+    text-decoration: none;
+}
