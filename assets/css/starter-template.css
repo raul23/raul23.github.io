@@ -168,6 +168,9 @@ tr:nth-child(odd) {
     text-decoration: none;
 }
 
+/* Footer
+ ref.: https://stackoverflow.com/a/51832877
+*/
 main {
     flex-grow: 1;
 }
