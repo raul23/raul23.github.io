@@ -4,12 +4,33 @@
     <meta charset="UTF-8">
     <title>Homepage</title>
     <link href="style.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+    <script>
+        window.addEventListener("load", function(){
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#000"
+                    },
+                    "button": {
+                        "background": "#f1d600"
+                    }
+                },
+                location: true,
+            })});
+    </script>
 </head>
 <body>
 <!--HEADER-->
 <div id="nav-container"></div>
 <!--HEADER-->
-
+<a class="github-button" href="https://github.com/raul23/python_reverse_dict"
+   data-icon="octicon-star" data-size="large" aria-label="Star raul23/python_reverse_dict on GitHub">Star
+</a>
 <p>This is the homepage</p>
 </body>
 <script src="/assets/js/vendor/jquery-3.3.1.min.js"></script>
