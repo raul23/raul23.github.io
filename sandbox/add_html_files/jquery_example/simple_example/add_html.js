@@ -3,5 +3,5 @@ $(document).ready(function() {
     setTimeout(function(){
         var elem = $('a[href="' + this.location.pathname + '"]');
         elem.addClass('active');
-    }, 10);
+    }, 100);
 });
