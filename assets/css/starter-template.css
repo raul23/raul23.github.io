@@ -49,6 +49,14 @@ ol.toc > li:before {
     counter-increment: item
 }
 
+/* Dotted underline
+ref.: https://stackoverflow.com/a/15252732
+*/
+u.dotted{
+    border-bottom: 1px dashed #999;
+    text-decoration: none;
+}
+
 /* CSS for Mobile: navbar icons */
 @media (max-width: 576px)
 {
@@ -81,7 +89,6 @@ ol.toc > li:before {
 }
 
 /* CSS for Mobile: Collapsed menu scrolling
-
 @media queries
 max-width: given screen size or smaller
 ref.: https://getbootstrap.com/docs/4.0/layout/overview/#responsive-breakpoints
@@ -175,7 +182,7 @@ main {
     flex-grow: 1;
 }
 
-footer {
+footer.footer {
     flex-grow: 0;
     padding: 15px 0;
     display: block;
