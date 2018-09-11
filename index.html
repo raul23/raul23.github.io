@@ -40,7 +40,7 @@
         <div id="nav-container"></div>
     </main><!-- /.container -->
     <!-- List of quotes (all invisible) -->
-    <div id="quotes" style="display: none;">
+    <div class="quotes" style="display: none;">
         <!-- Kurt Godel quotes -->
         <div id="quote1">
             <blockquote class="blockquote text-center">
@@ -108,10 +108,24 @@
                     ...if a machine is expected to be infallible, it cannot also be intelligent.
                 </p>
                 <footer class="blockquote-footer">Alan Turing in <u class="dotted">
-                    <cite href="#" data-toggle="tooltip" data-placement="right" title=" A. M. Turing, Lecture to The
+                    <cite href="#" data-toggle="tooltip" data-placement="right" title="A. M. Turing, Lecture to The
                     London Mathematical Society on 20 February 1947, in B. E. Carpenter, R.N. Doran, eds. A.M. Turing's
                     ACE Report and Other Papers, MIT Press, Cambridge, MA, 1986.">Lecture to The London Mathematical
                         Society
+                    </cite></u>
+                </footer>
+            </blockquote>
+        </div>
+
+        <!-- Marvin Minsky quotes -->
+        <div id="quote6">
+            <blockquote class="blockquote text-center">
+                <p class="mb-0">
+                    ...we'll show that you can build a mind from many little parts, each mindless by itself.
+                </p>
+                <footer class="blockquote-footer">Marvin Minsky in <u class="dotted">
+                    <cite href="#" data-toggle="tooltip" data-placement="right" title="Marvin Minsky, 1988. The Society
+                    of Mind. Simon & Schuster. Prologue"> The Society of Mind
                     </cite></u>
                 </footer>
             </blockquote>
@@ -131,8 +145,10 @@
     <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/assets/js/custom/header.js" type="text/javascript"></script>
     <script>
+        // Random quotes generator
         $(document).ready(function() {
-            var x = Math.floor((Math.random() * 5) + 1);
+            var numQuotes = $('div[id^=quote]').length;
+            var x = Math.floor((Math.random() * numQuotes) + 1);
             var data = $('#quote' + x).html();
             $('#nav-container').html(data)
             $('[data-toggle="tooltip"]').tooltip()
