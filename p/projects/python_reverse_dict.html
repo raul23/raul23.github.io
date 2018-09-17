@@ -112,17 +112,21 @@
     <!-- Major updates -->
     <h3>Major updates</h3>
     <b>2018-09-16:</b>
+    <!-- ATTENTION: id of Table 1 defined here !! -->
+    <div id="table_01" style="color:transparent">test</div>
+    <!-- ATTENTION: id of Table 1 defined here !! -->
     <ul>
         <li>I updated the code base and re-ran the <a href="https://github.com/raul23/python_reverse_dict/blob/master/commands.md#commands">
-            python commands</a> to re-populate the following <a href="#table_01">two tables</a> with new results. I
-            factorized <a href="https://github.com/raul23/python_reverse_dict/blob/master/reverse_dict/methods.py">methods.py</a>
+            python commands</a> to re-populate the following <a href="#table_01">two tables</a> with new results. The
+            changes consisted in implementing the important missing option <code>--use_setdefault</code> which I thought
+            was already implemented when I generated the
+            <a href="https://github.com/raul23/python_reverse_dict/blob/master/old_results.md">results the first time</a>.
+            Big mistake on my part! Thus the old results for the row <b>Method 2: <code>setdefault</code>,
+                <code>iteritems()</code></b> were generated actually with <code>dict.get()</code> instead
+            of <code>dict.setdefault()</code> :(</li>
+        <li>Also, I factorized <a href="https://github.com/raul23/python_reverse_dict/blob/master/reverse_dict/methods.py">methods.py</a>
             where the different <code>dict</code>-reversing methods are defined by putting all the common code from
             Python 2 & 3 methods into base classes.</li>
-        <li>I also implemented the important missing option <code>--use_setdefault</code> which I thought was already
-            implemented when I generated the <a href="https://github.com/raul23/python_reverse_dict/blob/master/old_results.md">first results</a>.
-            Big mistake on my part! Thus the old results for the row <b>Method 2: <code>setdefault</code>,
-                <code id="table_01">iteritems()</code></b> were generated actually with <code>dict.get()</code> instead of
-            <code>dict.setdefault()</code> :(</li>
     </ul>
 
     <br/>
@@ -134,7 +138,9 @@
             <code>dict</code> in <b>Python 2.7</b>
             <br/>
             <b><i style="font-size: 12px;">Click on the method name to know more about its implementation</i></b>
+            <!-- ATTENTION: id of Table 2 defined here !! -->
             <div id="table_02" style="color:transparent">test</div>
+            <!-- ATTENTION: id of Table 2 defined here !! -->
         </caption>
         <tbody class="results">
         <!-- Table headers -->
