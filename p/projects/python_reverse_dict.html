@@ -53,8 +53,8 @@
     </p>
     <p>
         I ran some tests, and <b>method 1 is the one that provides the best average run time</b> for reversing the keys and
-        values of a dictionary. See <a href="#table_01">Table 1 (Python 3)</a> and <a href="#table_02">Table 2
-        (Python 2)</a> for the average run times of the different methods based on the number of items.
+        values of a dictionary. See <a href="#table_01">Table 1 (Python 2)</a> and <a href="#table_02">Table 2
+        (Python 3)</a> for the average run times of the different methods based on the number of items.
     </p>
     <p>Check the project's <a href="https://github.com/raul23/python_reverse_dict#python_reverse_dict">README</a> for
         details on how to <a href="https://github.com/raul23/python_reverse_dict#installation">install</a> and
@@ -69,35 +69,37 @@
         <b>Note</b>: I tested the code with <b>Python 2.7.15 and 3.6.5</b>
     </p>
 
-    <!-- Section: Table of contents -->
     <br/>
+
+    <!-- Section: Table of contents -->
     <h2>Contents</h2>
     <ol class="toc">
         <li class="toc"><a href="#results">Results</a>
             <ol class="toc">
-                <li><a href="#results">Table 1: Avg run times of different methods (Python 3)</a></li>
-                <li><a href="#table_02">Table 2: Avg run times of different methods (Python 2)</a></li>
+                <li><a href="#major_updates">Major updates</a></li>
+                <li><a href="#table_01">Table 1: Avg run times of different methods (Python 2)</a></li>
+                <li><a href="#table_02">Table 2: Avg run times of different methods (Python 3)</a></li>
             </ol>
         </li>
-        <li><a href="#method_01_py3">Method 1: unique values, solution based on <code>dict</code> comprehension</a>
+        <li><a href="#method_01">Method 1: unique values, solution based on <code>dict</code> comprehension</a>
             <ol class="toc">
-                <li><a href="#method_01_py3">Python 3</a></li>
                 <li><a href="#method_01_iteritems_py2">Python 2.7 with <code>dict.iteritems()</code></a></li>
                 <li><a href="#method_01_items_py2">Python 2.7 with <code>dict.items()</code></a></li>
+                <li><a href="#method_01_py3">Python 3</a></li>
             </ol>
         </li>
-        <li><a href="#method_02_py3">Method 2: non-unique values</a>
+        <li><a href="#method_02_py2">Method 2: non-unique values</a>
             <ol class="toc">
-                <li><a href="#method_02_py3">Python 3 with <code>dict.get()</code></a></li>
                 <li><a href="#method_02_py2">Python 2.7 with <code>dict.get()</code></a></li>
-                <li><a href="#method_02_setdefault_py3">Python 3 with <code>dict.setdefault()</code></a></li>
+                <li><a href="#method_02_py3">Python 3 with <code>dict.get()</code></a></li>
                 <li><a href="#method_02_setdefault_py2">Python 2.7 with <code>dict.setdefault()</code></a></li>
+                <li><a href="#method_02_setdefault_py3">Python 3 with <code>dict.setdefault()</code></a></li>
             </ol>
         </li>
-        <li><a href="#method_03_py3">Method 3: type and order preserved</a>
+        <li><a href="#method_03_py2">Method 3: type and order preserved</a>
             <ol class="toc">
-                <li><a href="#method_03_py3">Python 3</a></li>
                 <li><a href="#method_03_py2">Python 2.7</a></li>
+                <li><a href="#method_03_py3">Python 3</a></li>
             </ol>
         </li>
         <li><a href="#references">References</a> </li>
@@ -105,17 +107,78 @@
 
     <!-- Section: Results (tables) -->
     <div id="results" style="color:transparent">test</div>
-    <h2 id="table_01">Results</h2>
-    <!-- Table 1 (Python 3) -->
+    <h2 id="major_updates">Results</h2>
+
+    <!-- Major updates -->
+    <h3>Major updates</h3>
+    <b>2018-09-16:</b>
+    <ul>
+        <li>I updated the code base (commit HASH: ) and re-ran the <a href="https://github.com/raul23/python_reverse_dict/blob/master/commands.md#commands">
+            python commands</a> to re-populate the following <a href="#table_01">two tables</a> with new results. I
+            factorized <a href="https://github.com/raul23/python_reverse_dict/blob/master/reverse_dict/methods.py">methods.py</a>
+            where the different <code>dict</code>-reversing methods are defined by putting all the common code from
+            Python 2 & 3 methods into base classes.</li>
+        <li>I also implemented the important missing option <code>--use_setdefault</code> which I thought was already
+            implemented when I generated the <a href="https://github.com/raul23/python_reverse_dict/blob/master/old_results.md">first results</a>.
+            Big mistake on my part! Thus the old results for the row <b>Method 2: <code>setdefault</code>,
+                <code id="table_01">iteritems()</code></b> were generated actually with <code>dict.get()</code> instead of
+            <code>dict.setdefault()</code> :(</li>
+    </ul>
+
+    <!-- Table 1 (Python 2) -->
     <table class="results">
-        <!-- Table caption -->
-        <caption><b>Table 1</b> Average running times (µsec) of different methods <br /> of reversing a
+        <!-- Table 1 caption -->
+        <caption><b>Table 1</b> Average running times (µsec) of different methods <br />of reversing a
+            <code>dict</code> in <b>Python 2.7</b>
+            <br/>
+            <b><i style="font-size: 12px;">Click on the method name to know more about its implementation</i></b>
+            <div id="table_02" style="color:transparent">test</div>
+        </caption>
+        <tbody class="results">
+        <!-- Table headers -->
+        <tr>
+            <th>Py2 Method</th>
+            <th>Avg time (µsec), 1k items, 100k times</th>
+            <th>Avg time (µsec), 10k items, 1k times</th>
+            <th>Avg time (µsec), 100k items, 1k times</th>
+        </tr>
+        <!-- Table rows -->
+        <tr>
+            <td><a href="#method_01_iteritems_py2">Method 1:</a> <b>dict compre.</b>,<code>iteritems</code></td>
+            <td><span style="color: green;"><b>218</b></span></td>
+            <td><span style="color: green;"><b>2666</b></span></td>
+            <td><span style="color: green;"><b>45301</b></span></td>
+        </tr>
+        <tr>
+            <td><a href="#method_01_items_py2">Method 1: </a><code>dict</code> compre.,<code style="background-color: red;">items</code></td>
+            <td>257</td><td>4126</td><td>70901</td></tr>
+        <tr>
+            <td><a href="#method_02_py2">Method 2: </a><code>dict.get</code>,<code>iteritems</code></td>
+            <td>838</td><td>10410</td><td>127703</td></tr>
+        <tr>
+            <td><a href="#method_02_setdefault_py2">Method 2:</a> <code>setdefault</code>,<code>iteritems</code></td>
+            <td>656</td><td>8539</td><td>108348</td>
+        </tr>
+        <tr>
+            <td><a href="#method_03_py2">Method 3:</a> <code>map</code>,<code>iteritems</code></td>
+            <td>896</td><td>10789</td><td>146115</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br/>
+    <br/>
+
+    <!-- Table 2 (Python 3) -->
+    <table class="results">
+        <!-- Table 2 caption -->
+        <caption><b>Table 2</b> Average running times (µsec) of different methods <br /> of reversing a
             <code>dict</code> in <b>Python 3</b>
             <br/>
             <b><i style="font-size: 12px;">Click on the method name to know more about its implementation</i></b>
         </caption>
         <tbody class="results">
-            <!--  Table Headers -->
+            <!--  Table headers -->
             <tr><th>Py3 Method</th>
                 <th>Avg time (µsec), 1k items, 100k times</th>
                 <th>Avg time (µsec), 10k items, 1k times</th>
@@ -125,94 +188,47 @@
             <tr>
                 <td><a href="#method_01_py3">Method 1:</a> <span style="font-family: monospace;
                         text-align: -webkit-center;">dict</span> <b>compre.</b></td>
-                <td><b style="color: green;">97</b></td>
-                <td><b style="color: green;">946</b></td>
-                <td><span style="color: green;"><b>20405</b></span></td>
+                <td><b style="color: green;">90</b></td>
+                <td><b style="color: green;">905</b></td>
+                <td><span style="color: green;"><b>18488</b></span></td>
             </tr>
             <tr>
                 <td><a href="#method_02_py3">Method 2:</a> <code>dict.get</code></td>
-                <td>374</td><td>4288</td><td>63151</td>
+                <td>417</td><td>4949</td><td>66599</td>
             </tr>
             <tr>
                 <td><a href="#method_02_setdefault_py3">Method 2:</a> <code>setdefault</code></td>
-                <td>373</td><td>4322</td><td>63433</td></tr>
+                <td>333</td><td>4171</td><td>58629</td></tr>
             <tr>
                 <td><a href="#method_03_py3">Method 3:</a> <code>map</code></td>
-                <td>312</td><td>3190</td><td>45777</td>
-            </tr>
-        </tbody>
-    </table>
-    <div id="table_02" style="color:transparent">test</div>
-    <br/>
-    <!-- Table 2 (Python 2) -->
-    <table class="results">
-        <!-- Table 2 Caption -->
-        <caption><b>Table 2</b> Average running times (µsec) of different methods <br />of reversing a
-            <code>dict</code> in <b>Python 2.7</b>
-            <br/>
-            <b><i style="font-size: 12px;">Click on the method name to know more about its implementation</i></b>
-        </caption>
-        <tbody class="results">
-            <!-- Table Headers -->
-            <tr>
-                <th>Py2 Method</th>
-                <th>Avg time (µsec), 1k items, 100k times</th>
-                <th>Avg time (µsec), 10k items, 1k times</th>
-                <th>Avg time (µsec), 100k items, 1k times</th>
-            </tr>
-            <!-- Table rows -->
-            <tr>
-                <td><a href="#method_01_iteritems_py2">Method 1:</a> <b>dict compre.</b>,<code>iteritems</code></td>
-                <td><span style="color: green;"><b>233</b></span></td>
-                <td><span style="color: green;"><b>3009</b></span></td>
-                <td><span style="color: green;"><b>45816</b></span></td>
-            </tr>
-            <tr>
-                <td><a href="#method_01_items_py2">Method 1: </a><code>dict</code> compre.,<code style="background-color: red;">items</code></td>
-                <td>273</td><td>4484</td><td>73328</td></tr>
-            <tr>
-                <td><a href="#method_02_py2">Method 2: </a><code>dict.get</code>,<code>iteritems</code></td>
-                <td>772</td><td>10036</td><td>125040</td></tr>
-            <tr>
-                <td><a href="#method_02_setdefault_py2">Method 2:</a> <code>setdefault</code>,<code>iteritems</code></td>
-                <td>911</td><td>11370</td><td>131220</td>
-            </tr>
-            <tr>
-                <td><a href="#method_03_py2">Method 3:</a> <code>map</code>,<code>iteritems</code></td>
-                <td>857</td><td>10713</td><td>121905</td>
+                <td>312</td><td>3366</td><td>46961</td>
             </tr>
         </tbody>
     </table>
 
-    <!-- Section: Methods Python code -->
     <br/>
-    <div id="method_01_py3" style="color:transparent">test</div>
-    <h2>Method 1: unique-values, solution based on <code>dict</code></h2>
-    <h3>Python 3</h3>
-    <!-- Method 1 Python 3 code -->
-    <!-- HTML generated using hilite.me -->
-    <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">my_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">:</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;b&#39;</span><span style="color: #d0d0d0">:</span><span style="color: #3677a9">2</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">:</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;d&#39;</span><span style="color: #d0d0d0">:</span><span style="color: #3677a9">4</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;e&#39;</span><span style="color: #d0d0d0">:</span><span style="color: #3677a9">5</span><span style="color: #d0d0d0">}</span>
-<span style="color: #d0d0d0">inv_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{v:</span> <span style="color: #d0d0d0">k</span> <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">k,</span> <span style="color: #d0d0d0">v</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #d0d0d0">my_dict.items()}</span></pre></div>
-    <!-- Method 1 caption Python 3 code -->
-    <div id="method_01_iteritems_py2" style="text-align: center;">
-        <b>Method 1 of reversing a <code>dict </code></b><b>with unique values</b><br />
-        <b>code @ <a href="http://jdoodle.com/a/CNU">jdoodle.com</a> (</b><b style="text-align: center;">Python 3.6.5)</b>
-    </div>
-    <br/><br/>
-    <h3>Python 2.7 with <code>dict.iteritems()</code></h3>
+
+    <!-- Section: Methods Python code -->
+    <div id="method_01" style="color:transparent">test</div>
+    <h2 id="method_01_iteritems_py2">Method 1: unique-values, solution based on <code>dict</code></h2>
+
     <!-- Method 1 Python 2 code with iteritems-->
+    <h3>Python 2.7 with <code>dict.iteritems()</code></h3>
     <!-- HTML generated using hilite.me -->
     <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">my_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">:</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;b&#39;</span><span style="color: #d0d0d0">:</span><span style="color: #3677a9">2</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">:</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;d&#39;</span><span style="color: #d0d0d0">:</span><span style="color: #3677a9">4</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;e&#39;</span><span style="color: #d0d0d0">:</span><span style="color: #3677a9">5</span><span style="color: #d0d0d0">}</span>
 <span style="color: #d0d0d0">inv_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{v:</span> <span style="color: #d0d0d0">k</span> <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">k,</span> <span style="color: #d0d0d0">v</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #d0d0d0">my_dict.iteritems()}</span>
 </pre></div>
     <!-- Method 1 caption Python 2 code with iteritems -->
-    <div id="method_01_items_py2" style="text-align: center;">
+    <div style="text-align: center;">
         <b>Method 1 of reversing a <code>dict </code></b><b>with unique values and using <code>dict.iteritems()</code></b><br />
         <b>code @&nbsp;<a href="http://jdoodle.com/a/CNT">jdoodle.com</a>&nbsp;(</b><b style="text-align: center;">Python 2.7.15)</b>
     </div>
-    <br/><br/>
-    <h3>Python 2.7 with <code>dict.items()</code></h3>
+
+    <div id="method_01_items_py2" style="color:transparent">test</div>
+    <br/>
+
     <!-- Method 1 Python 2 code with items-->
+    <h3>Python 2.7 with <code>dict.items()</code></h3>
     <!-- HTML generated using hilite.me -->
     <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">my_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">:</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;b&#39;</span><span style="color: #d0d0d0">:</span><span style="color: #3677a9">2</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">:</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;d&#39;</span><span style="color: #d0d0d0">:</span><span style="color: #3677a9">4</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;e&#39;</span><span style="color: #d0d0d0">:</span><span style="color: #3677a9">5</span><span style="color: #d0d0d0">}</span>
 <span style="color: #d0d0d0">inv_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{v:</span> <span style="color: #d0d0d0">k</span> <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">k,</span> <span style="color: #d0d0d0">v</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #d0d0d0">my_dict.items()}</span>
@@ -221,11 +237,46 @@
     <div style="text-align: center;">
         <b>Method 1 of reversing a <code>dict</code> with unique values and using <code>dict.items()</code></b><br />
     </div>
-    <div id="method_02_py3" style="color:transparent">test</div>
+
+    <div id="method_01_py3" style="color:transparent">test</div>
+    <br/>
+
+    <!-- Method 1 Python 3 code -->
+    <h3>Python 3</h3>
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">my_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">:</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;b&#39;</span><span style="color: #d0d0d0">:</span><span style="color: #3677a9">2</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">:</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;d&#39;</span><span style="color: #d0d0d0">:</span><span style="color: #3677a9">4</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;e&#39;</span><span style="color: #d0d0d0">:</span><span style="color: #3677a9">5</span><span style="color: #d0d0d0">}</span>
+<span style="color: #d0d0d0">inv_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{v:</span> <span style="color: #d0d0d0">k</span> <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">k,</span> <span style="color: #d0d0d0">v</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #d0d0d0">my_dict.items()}</span></pre></div>
+    <!-- Method 1 caption Python 3 code -->
+    <div style="text-align: center;">
+        <b>Method 1 of reversing a <code>dict </code></b><b>with unique values</b><br />
+        <b>code @ <a href="http://jdoodle.com/a/CNU">jdoodle.com</a> (</b><b style="text-align: center;">Python 3.6.5)</b>
+    </div>
+
+    <div id="method_02_py2" style="color:transparent">test</div>
     <br/>
     <h2>Method 2: non-unique values</h2>
-    <h3>Python 3 with <code>dict.get()</code></h3>
+
+    <!-- Method 2 Python 2 code with get-->
+    <h3>Python 2.7 with <code>dict.get()</code></h3>
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">my_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">2</span><span style="color: #d0d0d0">:</span><span style="color: #ed9d13">&#39;b&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">4</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">5</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">}</span>
+<span style="color: #d0d0d0">inv_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{}</span>
+<span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">k,</span> <span style="color: #d0d0d0">v</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #d0d0d0">my_dict.iteritems():</span>
+    <span style="color: #d0d0d0">inv_dict[v]</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">inv_dict.get(v,</span> <span style="color: #d0d0d0">[])</span>
+    <span style="color: #d0d0d0">inv_dict[v].append(k)</span>
+</pre></div>
+    <!-- Method 2 caption Python 2 code -->
+    <div style="text-align: center;">
+        <b style="text-align: center;">Method 2 of reversing a&nbsp;<code>dict</code>&nbsp;with non-unique values</b></div>
+    <div style="text-align: center;">
+        <b style="text-align: center;">code @&nbsp;<a href="https://jdoodle.com/a/CNW">jdoodle.com</a>&nbsp;(Python 2.7.15)</b>
+    </div>
+
+    <div id="method_02_py3" style="color:transparent">test</div>
+    <br/>
+
     <!-- Method 2 Python 3 code -->
+    <h3>Python 3 with <code>dict.get()</code></h3>
     <!-- HTML generated using hilite.me -->
     <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">from</span> <span style="color: #447fcf; text-decoration: underline">collections</span> <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #d0d0d0">OrderedDict</span>
 
@@ -238,47 +289,19 @@
 <span style="color: #d0d0d0">my_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">OrderedDict({</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">2</span><span style="color: #d0d0d0">:</span><span style="color: #ed9d13">&#39;b&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">4</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">5</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">})</span>
 <span style="color: #d0d0d0">reverse_dict(my_dict)</span>
 </pre></div>
+
     <!-- Method 2 caption Python 3 code -->
-    <div id="method_02_py2" style="text-align: center;">
+    <div style="text-align: center;">
         <b style="text-align: center;">Method 2 of reversing a&nbsp;<code>dict</code>&nbsp;with non-unique values</b></div>
     <div style="text-align: center;">
         <b style="text-align: center;">code @&nbsp;<a href="https://jdoodle.com/a/CAQ">jdoodle.com</a>&nbsp;(Python 3.6.5)</b></div>
     </div>
+
+    <div id="method_02_setdefault_py2" style="color:transparent">test</div>
     <br/>
-    <div style="color:transparent">test</div>
-    <h3>Python 2.7 with <code>dict.get()</code></h3>
-    <!-- Method 2 Python 2 code with get-->
-    <!-- HTML generated using hilite.me -->
-    <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">my_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">2</span><span style="color: #d0d0d0">:</span><span style="color: #ed9d13">&#39;b&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">4</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">5</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">}</span>
-<span style="color: #d0d0d0">inv_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{}</span>
-<span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">k,</span> <span style="color: #d0d0d0">v</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #d0d0d0">my_dict.iteritems():</span>
-    <span style="color: #d0d0d0">inv_dict[v]</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">inv_dict.get(v,</span> <span style="color: #d0d0d0">[])</span>
-    <span style="color: #d0d0d0">inv_dict[v].append(k)</span>
-</pre></div>
-    <!-- Method 2 caption Python 2 code -->
-    <div id="method_02_setdefault_py3" style="text-align: center;">
-        <b style="text-align: center;">Method 2 of reversing a&nbsp;<code>dict</code>&nbsp;with non-unique values</b></div>
-    <div style="text-align: center;">
-        <b style="text-align: center;">code @&nbsp;<a href="https://jdoodle.com/a/CNW">jdoodle.com</a>&nbsp;(Python 2.7.15)</b>
-    </div>
-    <br/><br/>
-    <h3>Python 3 with <code>dict.setdefault()</code></h3>
-    <!-- Method 2 Python 3 code with setdefault -->
-    <!-- HTML generated using hilite.me -->
-    <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">my_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">2</span><span style="color: #d0d0d0">:</span><span style="color: #ed9d13">&#39;b&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">4</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">5</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">}</span>
-<span style="color: #d0d0d0">inv_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{}</span>
-<span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">key,</span> <span style="color: #d0d0d0">value</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #d0d0d0">my_dict.items():</span>
-    <span style="color: #d0d0d0">inv_dict.setdefault(value,</span> <span style="color: #d0d0d0">[]).append(key)</span>
-</pre></div>
-    <!-- Method 2 caption Python 3 code with setdefault -->
-    <div id="method_02_setdefault_py2" style="text-align: center;">
-        <b>Method 2 of reversing a <code>dict</code> with non-unique values using <code>dict.setdefault</code></b></div>
-    <div style="text-align: center;">
-        <b style="text-align: center;">code @&nbsp;<a href="https://jdoodle.com/a/CAV">jdoodle.com</a>&nbsp;(Python 3.6.5)</b>
-    </div>
-    <br/><br/>
-    <h3>Python 2.7 with <code>dict.setdefault()</code></h3>
+
     <!-- Method 2 Python 2 code with setdefault -->
+    <h3>Python 2.7 with <code>dict.setdefault()</code></h3>
     <!-- HTML generated using hilite.me -->
     <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">my_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">2</span><span style="color: #d0d0d0">:</span><span style="color: #ed9d13">&#39;b&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">4</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">5</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">}</span>
 <span style="color: #d0d0d0">inv_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{}</span>
@@ -286,28 +309,34 @@
     <span style="color: #d0d0d0">inv_dict.setdefault(value,</span> <span style="color: #d0d0d0">[]).append(key)</span>
 </pre></div>
     <!-- Method 2 caption Python 2 code with setdefault -->
-    <div id="method_03_py3" style="text-align: center;">
+    <div style="text-align: center;">
         <b>Method 2 of reversing a <code>dict</code> with non-unique values using <code>dict.setdefault</code></b></div>
     <div style="text-align: center;">
         <b style="text-align: center;">code @&nbsp;<a href="https://jdoodle.com/a/CNX">jdoodle.com</a>&nbsp;(Python 2.7.15)</b>
     </div>
-    <br/><br/>
-    <h2>Method 3: type and order preserved</h2>
-    <h3>Python 3</h3>
-    <!-- Method 3 Python 3 code-->
-    <!-- HTML generated using hilite.me -->
-    <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">def</span> <span style="color: #447fcf">reverse_mapping</span><span style="color: #d0d0d0">(f):</span>
-    <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #d0d0d0">f.__class__(</span><span style="color: #24909d">map</span><span style="color: #d0d0d0">(</span><span style="color: #24909d">reversed</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">f.items()))</span>
 
-<span style="color: #d0d0d0">my_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">2</span><span style="color: #d0d0d0">:</span><span style="color: #ed9d13">&#39;b&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">4</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;d&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">5</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;e&#39;</span><span style="color: #d0d0d0">}</span>
-<span style="color: #d0d0d0">inv_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">reverse_mapping(my_dict)</span>
+    <div id="method_02_setdefault_py3" style="color:transparent">test</div>
+    <br/>
+
+    <!-- Method 2 Python 3 code with setdefault -->
+    <h3>Python 3 with <code>dict.setdefault()</code></h3>
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">my_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">2</span><span style="color: #d0d0d0">:</span><span style="color: #ed9d13">&#39;b&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">4</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">5</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">}</span>
+<span style="color: #d0d0d0">inv_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{}</span>
+<span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">key,</span> <span style="color: #d0d0d0">value</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #d0d0d0">my_dict.items():</span>
+    <span style="color: #d0d0d0">inv_dict.setdefault(value,</span> <span style="color: #d0d0d0">[]).append(key)</span>
 </pre></div>
-    <!-- Method 3 caption Python 3 code -->
-    <div id="method_03_py2" style="text-align: center;">
-        <b>Method 3 of reversing a <code>dict</code> </b><b>with unique values using <code>map(reversed, iter)</code></b><br />
-        <b>code @ <a href="http://jdoodle.com/a/CAY">jdoodle.com</a>&nbsp;(</b><b style="text-align: center;">Python 3.6.5)</b>
+    <!-- Method 2 caption Python 3 code with setdefault -->
+    <div style="text-align: center;">
+        <b>Method 2 of reversing a <code>dict</code> with non-unique values using <code>dict.setdefault</code></b></div>
+    <div style="text-align: center;">
+        <b style="text-align: center;">code @&nbsp;<a href="https://jdoodle.com/a/CAV">jdoodle.com</a>&nbsp;(Python 3.6.5)</b>
     </div>
+
     <br/><br/>
+
+    <h2 id="method_03_py2">Method 3: type and order preserved</h2>
+
     <h3>Python 2.7</h3>
     <!-- Method 3 Python 2 code -->
     <!-- HTML generated using hilite.me -->
@@ -323,8 +352,27 @@
         <b>code @ <a href="http://jdoodle.com/a/CNY">jdoodle.com</a>&nbsp;(</b><b style="text-align: center;">Python 2.7.15)</b>
     </div>
 
-    <!-- Section: References -->
+    <div id="method_03_py3" style="color:transparent">test</div>
+    <br/>
+
+    <!-- Method 3 Python 3 code-->
+    <h3>Python 3</h3>
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">def</span> <span style="color: #447fcf">reverse_mapping</span><span style="color: #d0d0d0">(f):</span>
+    <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #d0d0d0">f.__class__(</span><span style="color: #24909d">map</span><span style="color: #d0d0d0">(</span><span style="color: #24909d">reversed</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">f.items()))</span>
+
+<span style="color: #d0d0d0">my_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;a&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">2</span><span style="color: #d0d0d0">:</span><span style="color: #ed9d13">&#39;b&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;c&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">4</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;d&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #3677a9">5</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;e&#39;</span><span style="color: #d0d0d0">}</span>
+<span style="color: #d0d0d0">inv_dict</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">reverse_mapping(my_dict)</span>
+</pre></div>
+    <!-- Method 3 caption Python 3 code -->
+    <div style="text-align: center;">
+        <b>Method 3 of reversing a <code>dict</code> </b><b>with unique values using <code>map(reversed, iter)</code></b><br />
+        <b>code @ <a href="http://jdoodle.com/a/CAY">jdoodle.com</a>&nbsp;(</b><b style="text-align: center;">Python 3.6.5)</b>
+    </div>
+
     <br/><br/>
+
+    <!-- Section: References -->
     <h2 id="references">References</h2>
     <ul>
         <li><a href="https://stackoverflow.com/a/483833">Method 1 code</a></li>
