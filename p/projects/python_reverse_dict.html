@@ -121,9 +121,8 @@
             changes consisted in implementing the important missing option <code>--use_setdefault</code> which I thought
             was already implemented when I generated the
             <a href="https://github.com/raul23/python_reverse_dict/blob/master/old_results.md">results the first time</a>.
-            Big mistake on my part! Thus the old results for the row <b>Method 2: <code>setdefault</code>,
-                <code>iteritems()</code></b> were generated actually with <code>dict.get()</code> instead
-            of <code>dict.setdefault()</code> :(</li>
+            Big mistake on my part! Thus the old results for the rows <b>Method 2: <code>setdefault</code></b> were
+            generated actually with <code>dict.get()</code> instead of <code>dict.setdefault()</code> :(</li>
         <li>Also, I factorized <a href="https://github.com/raul23/python_reverse_dict/blob/master/reverse_dict/methods.py">methods.py</a>
             where the different <code>dict</code>-reversing methods are defined by putting all the common code from
             Python 2 & 3 methods into base classes.</li>
