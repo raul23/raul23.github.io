@@ -65,7 +65,7 @@ u.dotted{
   }
 
   div.plotly-graph-div {
-      height: auto;
+      height: 15%;
       width: 100%;
   }
 
