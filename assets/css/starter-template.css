@@ -60,46 +60,50 @@ u.dotted{
 /* CSS for Mobile: navbar icons */
 @media (max-width: 576px)
 {
-  a {
-    font-size: 1em;
-  }
+    html {
+        max-width: 576px;
+    }
+
+    a {
+        font-size: 1em;
+    }
     /*
   div.plotly-graph-div {
       height: 15%;
       width: 100%;
   }
 */
-  .hide {
-    display: none;
-  }
+    .hide {
+        display: none;
+    }
 
-  img {
-    width: 30px;
-    height: 30px;
-  }
+    img {
+        width: 30px;
+        height: 30px;
+    }
 
-  img.rwd_img {
-      width: 100%;
-      height: auto;
-  }
+    img.rwd_img {
+        width: 100%;
+        height: auto;
+    }
 
-  svg {
-    width: 25px;
-    height: 25px;
-  }
+    svg {
+        width: 25px;
+        height: 25px;
+    }
 
-  /* flex-direction
-  Keep navbar ul elements horizontally on small screens when navbar toggled
-  ref.: https://stackoverflow.com/a/48711757
-  */
-  ul.icons {
-    flex-direction:row !important;
-    -webkit-flex-direction:row !important;
-  }
+    /* flex-direction
+    Keep navbar ul elements horizontally on small screens when navbar toggled
+    ref.: https://stackoverflow.com/a/48711757
+    */
+    ul.icons {
+        flex-direction:row !important;
+        -webkit-flex-direction:row !important;
+    }
 
-  ul.icons > li > a {
-    margin-right: 15px;
-  }
+    ul.icons > li > a {
+        margin-right: 15px;
+    }
 }
 
 /* CSS for Mobile: Collapsed menu scrolling

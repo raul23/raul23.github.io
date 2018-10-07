@@ -81,7 +81,7 @@
                     <li><a href="#top20_world">Around the World</a></li>
                 </ol>
             </li>
-            <li class="hide"><a href="#interactive_graphs">Interactive graphs</a>
+            <li id="hide_li_toc"><a href="#interactive_graphs">Interactive graphs</a>
                 <ol class="toc">
                     <li><a href="#scatter_europe">Scatter plot of salaries in Europe</a></li>
                     <li><a href="#scatter_usa">Scatter plot of salaries in the USA</a></li>
@@ -366,5 +366,10 @@
     <script src="/assets/js/custom/header.js" type="text/javascript"></script>
     <script src="/assets/js/custom/back_to_top.js" type="text/javascript"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+        maxwidth = $('html').css('max-width');
+        if (maxwidth == '576px')
+            document.getElementById("hide_li_toc").style.display = "none";
+    </script>
 </body>
 </html>
