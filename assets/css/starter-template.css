@@ -13,7 +13,8 @@ a:focus
 }
 
 body {
-    padding-top: 5rem;
+    /*padding-top: 5rem;*/
+    padding-top: 4.4rem;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -249,4 +250,22 @@ footer.footer {
     padding: 15px 0;
     display: block;
     background-color: #f5f5f5;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu a::after {
+    transform: rotate(-90deg);
+    position: absolute;
+    right: 6px;
+    top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-left: .1rem;
+    margin-right: .1rem;
 }
