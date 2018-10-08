@@ -50,6 +50,6 @@ setTimeout(function(){
         else
             elem.parent().addClass('active');
     }
-}, 100);
+}, 200);
 
 includeHTML();
