@@ -6,372 +6,529 @@
     <meta name="description" content="Project: Extract insights from developer job posts">
     <meta name="author" content="Raul C.">
     <link rel="shortcut icon" href="/assets/images/site_favicons/favicon_16x16.ico" type="image/x-icon">
-
-    <title>Insights on developer jobs</title>
-
+    <title>Data analysis of dev job posts</title>
     <!-- Bootstrap core CSS -->
     <link href="/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-
     <!-- Custom styles for this template -->
     <link href="/assets/css/starter-template.css" rel="stylesheet" type="text/css">
     <!-- Plotly -->
     <script src="/assets/js/vendor/plotly-latest.min.js"></script>
 </head>
 <body>
-    <!-- This is where we will place our navigation bar code -->
-    <!--old test code <div id="includedContent"></div>-->
-    <div w3-include-html="/p/header.html"></div>
+<!-- This is where we will place our navigation bar code -->
+<!--old test code <div id="includedContent"></div>-->
+<div w3-include-html="/p/header.html"></div>
 
-    <main role="main" class="container">
+<main role="main" class="container">
+    <div class="starter-template">
+        <h1>Project: Data analysis of developer job posts from Stack Overflow</h1>
+        <a class="btn btn-primary" target="_blank" href="https://github.com/raul23/dev-jobs-insights" role="button">View on GitHub</a>
+    </div>
 
-            <div class="starter-template">
-                <h1>Project: Data analysis of developer job posts from Stack Overflow</h1>
-                <!--
-                <iframe src="https://ghbtns.com/github-btn.html?user=raul23&repo=dev-jobs-insights&type=star&count=false&size=large" frameborder="0" scrolling="0" width="75px" height="30px"></iframe>
-                <iframe src="https://ghbtns.com/github-btn.html?user=raul23&repo=dev-jobs-insights&type=watch&count=false&size=large&v=2" frameborder="0" scrolling="0" width="90px" height="30px"></iframe>
-                <iframe src="https://ghbtns.com/github-btn.html?user=raul23&repo=dev-jobs-insights&type=fork&count=false&size=large" frameborder="0" scrolling="0" width="90px" height="30px"></iframe>
-                -->
-                <!--
-                <a class="github-button" href="https://github.com/raul23/dev-jobs-insights" data-icon="octicon-star" data-size="large" aria-label="Star raul23/dev-jobs-insights on GitHub">Star</a>
-                <a class="github-button" href="https://github.com/raul23/dev-jobs-insights/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork raul23/dev-jobs-insights on GitHub">Fork</a>
-                <a class="github-button" href="https://github.com/raul23/dev-jobs-insights/archive/master.zip" data-icon="octicon-cloud-download" data-size="large" aria-label="Download raul23/dev-jobs-insights on GitHub">Download</a>
-                <br/>
-                -->
-                <a class="btn btn-primary" target="_blank" href="https://github.com/raul23/dev_jobs_insights" role="button">View on GitHub</a>
-            </div>
+    <p class="lead">The <b>main goal</b> of this project is to extract interesting insights from developer
+        job posts <b>@ Stack Overflow</b>.</p>
 
-        <p class="lead">The <b>main goal</b> of this project is to extract interesting insights from developer
-            job posts.</p>
+    <p><a href="https://github.com/raul23/dev-jobs-insights">dev-jobs-insights</a> is a data mining project written in
+        <b>Python3</b> with the main objective of extracting meaningful insights from developer job posts. These insights
+        can help us in getting a more accurate picture of what the developer job market looks like so we can make better
+        decisions (e.g. what technologies to focus on to increase our chance of finding a job).
+    </p>
 
-        <p><a href="https://github.com/raul23/dev_jobs_insights">dev_jobs_insights</a> is a data mining project written in
-            <b>Python3</b> with the main objective of extracting meaningful insights from developer job posts. These insights can
-            help us in getting a more accurate picture of what the developer job market looks like so we can make better
-            decisions (e.g. what technologies to focus on to increase our chance of finding a job).
-        </p>
+    <p>
+        Data visualization is an important tool in interpreting data. Thus graphs and maps are an important aspect of
+        this project <!-- as you can see from the multiple graphs generated --> so we can see the developer job market
+        across different dimensions (e.g. salary, industries, locations).
+    </p>
 
-        <p>
-            Data visualization is an important tool in interpreting data. Thus graphs and maps are an important aspect of
-            this project <!-- as you can see from the multiple graphs generated --> so we can see the developer job market
-            across different dimensions (e.g. salary, industries, locations).
-        </p>
+    <p>Currently, the raw jobs data comes from <b>Stack Overflow</b>, but eventually other jobs sites will be integrated.
+        The job posts data are mined from Stack Overflow's developer jobs
+        <a href="https://stackoverflow.com/jobs/feed" >RSS feed</a> and <a href="https://stackoverflow.com/jobs">
+            website</a>.
+    </p>
+    <p>The maps and graphs are shown @ <a href="/p/projects/dev-jobs-insights/maps_and_graphs.html">Insights: Maps and
+        graphs</a></p>
 
-        <p>Currently, the raw job data comes from <b>Stack Overflow</b>, but eventually other job sites will be integrated.
-            The job posts data are mined from Stack Overflow developer jobs
-            <a href="https://stackoverflow.com/jobs/feed" >RSS feed</a> and <a href="https://stackoverflow.com/jobs">
-                website</a>.
-        </p>
-        <p>In the next sections, the most important graphs are shown. <!--More graphs can be found @ and more in-depth
-        explanations about the whole pipeline of generating the graphs and maps can be found @ .--></p>
+    <h2>Contents</h2>
+    <ol class="toc">
+        <li class="toc"><a href="#sources_of_jobs_data">Sources of jobs data</a>
+            <ol class="toc">
+                <li><a href="#rss_jobs_feed">Stack Overflow's RSS jobs feed</a></li>
+                <li><a href="#developer_jobs_website">Stack Overflow's developer jobs website</a></li>
+            </ol>
+        </li>
+        <li><a href="#pipeline_for_maps_and_graphs">Pipeline for generating the maps and graphs</a>
+            <ol class="toc">
+                <li><a href="#rss_jobs_reader">RSS jobs reader</a></li>
+                <li><a href="#web_scraper">Web scraper</a></li>
+                <li><a href="#data_cleaner_and_loader">Data cleaner and loader</a>
+                    <ol class="toc">
+                        <li><a href="#remove_non_informative_job_locations">Removing non-informative job locations</a></li>
+                        <li><a href="#renaming_industries">Renaming industries</a></li>
+                    </ol>
+                </li>
+                <li><a href="#data_analyzers">Data analyzers</a></li>
+            </ol>
+        </li>
+        <li><a href="#mid_range_salaries">Mid-range salaries</a>
+            <ol class="toc">
+                <li><a href="#average_mid_range_salaries">Average mid-range salaries</a></li>
+            </ol>
+        </li>
+        <li><a href="#todos">TODOs</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+    </ol>
 
-        <h2>Contents</h2>
-        <ol class="toc">
-            <li class="toc"><a href="#maps">Maps</a>
-                <ol class="toc">
-                    <li><a href="#map_world">Map of the distribution of job posts around the world</a></li>
-                    <li><a href="#map_usa">Map of the distribution of job posts in the USA</a></li>
-                </ol>
-            </li>
-            <li><a href="#top20_job_locations">Top 20 most popular job locations</a>
-                <ol class="toc">
-                    <li><a href="#top20_europe">In Europe</a></li>
-                    <li><a href="#top20_usa">In the USA</a></li>
-                    <li><a href="#top20_world">Around the World</a></li>
-                </ol>
-            </li>
-            <li><a href="#top20_industries">Top 20 most popular industries</a>
-            </li>
-            <li><a href="#top20_technologies">Top 20 most popular technologies</a>
-            </li>
-            <li id="hide_li_toc"><a href="#interactive_graphs">Interactive graphs</a>
-                <ol class="toc">
-                    <li><a href="#scatter_europe">Scatter plot of salaries in Europe</a></li>
-                    <li><a href="#scatter_usa">Scatter plot of salaries in the USA</a></li>
-                    <li><a href="#scatter_industries">Scatter plot of salaries among industries</a></li>
-                    <li><a href="#scatter_technologies">Scatter plot of salaries among technologies</a></li>
-                </ol>
-            </li>
-        </ol>
+    <br/>
 
-        <h2 id="maps">Maps</h2>
-        <h3 id="map_world">Map of the distribution of job posts around the world</h3>
-        <img src="https://bit.ly/2OvqmLG" class="center rwd_img" />
+    <h2><span id="sources_of_jobs_data"></span>Sources of jobs data</h2>
+    <h3><span id="rss_jobs_feed"></span>Stack Overflow's RSS jobs feed</h3>
+    <p>The first source of jobs data is the <a href="https://stackoverflow.com/jobs/feed">Stack Overflow's RSS jobs
+    feed</a> which provides a total of 1000 entries (i.e. job posts). Almost every day, the feed gets updated with new
+    job posts. The Python <a href="https://github.com/kurtmckee/feedparser"><code>feedparser</code></a> module is used
+        for parsing the RSS feed which can also parse Atom feeds.</p>
 
-        <br/>
+    <p>The most relevant attributes from each feed's entry are extracted such as the <code>id</code>, <code>title</code>,
+        <code>published_parsed</code>, <code>tags</code>, <code>link</code>, and <code>location</code>. The
+        <b><code>id</code></b> is actually the job post's id, and extra processing is performed on
+        <b><code>published_parsed</code> </b> (of type <code>time.struct_time</code>) to convert the UTC
+        <code>datetime</code> to local time. The <b><code>tags</code></b> attribute is a list of names designating
+        skills (a.k.a. technologies) required for the given job post such as java, python, .net and agile.</p>
 
-        <p>The next table shows stats about the data used for generating the world map:</p>
-        <table class="style_table">
-            <tbody class="style_table">
-                <tr>
-                    <td><b>Number of job posts</b></td>
-                    <td>999</td>
-                </tr>
-                <tr>
-                    <td><b>Number of countries</b></td>
-                    <td>41</td>
-                </tr>
-                <tr>
-                    <td><b>Published dates</b></td>
-                    <td>2018-09-18 to 2018-09-28</td>
-                </tr>
-                <tr>
-                    <td><b>Top 5 countries <br/> (based on number of job posts)</b></td>
-                    <td>
-                        United States <b>(377)</b> <br/>
-                        Germany <b>(241)</b> <br/>
-                        United Kingdom <b>(84)</b> <br/>
-                        Netherlands <b>(43)</b> <br/>
-                        Switzerland <b>(34)</b></td>
-                </tr>
-                <tr>
-                    <td><b>Top 5 job locations <br/> (based on number of job posts)</b></td>
-                    <td>
-                        Berlin, 10117, Deutschland <b>(58)</b> <br/>
-                        London, Greater London, England, SW1A 2DU, UK <b>(46)</b> <br/>
-                        NYC, New York, USA <b>(33)</b> <br/>
-                        Hamburg, 20095, Deutschland <b>(31)</b> <br/>
-                        SF, California, USA <b>(26)</td>
-                </tr>
-            </tbody>
-        </table>
+    <p><span id="table01"></span>These are the relevant attributes extracted from the feed into an SQLite database:</p>
+    <table class="style_table">
+        <caption><b>Table 1</b> Relevant attributes extracted from the RSS jobs feed
+        </caption>
+        <tbody class="style_table">
+        <!--  Table headers -->
+        <tr>
+            <th>Table</th>
+            <th>Attribute</th>
+            <th>Note</th>
+        </tr>
+        <tr>
+            <td rowspan=7>entries</td>
+            <td>job_post_id</td>
+            <td>this is the feed entry's id</td>
+        </tr>
+        <tr>
+            <td>title</td>
+            <td>job post's title</td>
+        </tr>
+        <tr>
+            <td>author</td>
+            <td>company name</td>
+        </tr>
+        <tr>
+            <td>url</td>
+            <td>link to the job post's webpage and <br/>useful for accessing the second source of jobs data</td>
+        </tr>
+        <tr>
+            <td>location</td>
+            <td>usually the city, region, and country are given</td>
+        </tr>
+        <tr>
+            <td>summary</td>
+            <td>job post's summary</td>
+        </tr>
+        <tr>
+            <td>published</td>
+            <td>datetime with format YYYY-MM-DDThh:mm:ssTZD <br/>where TZD is the time zone designator (+hh:mm or -hh:mm)</td>
+        </tr>
+        <tr>
+            <td>tags</td>
+            <td>name</td>
+            <td>name of the skills (a.k.a. technologies), e.g. python, .net</td>
+        </tr>
+        </tbody>
+    </table>
 
+    <br/>
+    <br/>
 
-        <br/><br/><br/>
+    <h3><span id="developer_jobs_website"></span>Stack Overflow's developer jobs website</h3>
+    <p>The second source of jobs data comes from <a href="https://stackoverflow.com/jobs">Stack Overflow's developer jobs</a>.
+    The entry's <code>link</code> from the RSS feed is used to get the corresponding job post's webpage. From the
+    webpage, we can get a lot more data about the job post that we couldn't get <b>directly</b> from the RSS feed such
+        as the job post salary, its industries, and the company size.</p>
 
-        <h3 id="map_usa">Map of the distribution of job posts in the USA</h3>
-        <img src="https://bit.ly/2OEA7Y2" class="center rwd_img" />
+    <p>The Python module <a href="https://www.crummy.com/software/BeautifulSoup/"><code>BeautifulSoup4</code></a> was
+        used for parsing the webpage HMTL and extracting the relevant data. The webpage is parsed in order by extracting
+        first the title, company name, job location, salary, roles, industries, and technologies. However, if some data
+        (e.g. author, location) was already present in the RSS feed's entry, the extraction is skipped for that
+        particular data.</p>
 
-        <br/>
+    <p>All the extracted data from the RSS feed and webpages are stored in an SQLite database ready to be used for
+        performing data analysis as explained in the section <a href="#data_analyzers">Data analyzers</a>.</p>
 
-        <p>The next table shows stats about the data used for generating the USA map:</p>
+    <p><span id="table02"></span>These are some of the relevant attributes extracted from each job post's webpage into
+        an SQLite database:</p>
+    <table class="style_table"></span>
+        <caption><b>Table 2</b> Relevant attributes extracted from each job post's webpage
+        </caption>
+        <tbody class="style_table">
+        <!--  Table headers -->
+        <tr>
+            <th>Table</th>
+            <th>Attribute</th>
+            <th>Note</th>
+        </tr>
+        <tr>
+            <td class="rowspan_grey" rowspan=5>companies</td>
+            <td>name</td>
+            <td>company name</td>
+        </tr>
+        <tr>
+            <td>url</td>
+            <td>company's URL</td>
+        </tr>
+        <tr>
+            <td>description</td>
+            <td>company description containing HTML tags</td>
+        </tr>
+        <tr>
+            <td>company_type</td>
+            <td>Private, Public, or VC Funded</td>
+        </tr>
+        <tr>
+            <td>high_response_rate</td>
+            <td>whether the company responds quickly to job applications</td>
+        </tr>
+        <tr>
+            <td class="rowspan_white" rowspan=6>job_posts</td>
+            <td>job_post_id</td>
+            <td>this is the same as the entry's id from the RSS jobs feed</td>
+        </tr>
+        <tr>
+            <td>title</td>
+            <td>job post's title</td>
+        </tr>
+        <tr>
+            <td>url</td>
+            <td>job post's URL</td>
+        </tr>
+        <tr>
+            <td>job_post_description</td>
+            <td>job post's description</td>
+        </tr>
+        <tr>
+            <td>date_posted</td>
+            <td>date the job post was posted</td>
+        </tr>
+        <tr>
+            <td>valid_through</td>
+            <td>last day the job post is valid</td>
+        </tr>
+        <tr>
+            <td class="rowspan_grey" rowspan=5>job_salaries</td>
+            <td>job_post_id</td>
+            <td>foreign key to link this salary to a job post</td>
+        </tr>
+        <tr>
+            <td>min_salary</td>
+            <td>maximum salary</td>
+        </tr>
+        <tr>
+            <td>max_salary</td>
+            <td>maximum salary</td>
+        </tr>
+        <tr>
+            <td>currency</td>
+            <td>salary's currency, e.g. USD, EUR</td>
+        </tr>
+        <tr>
+            <td>conversion_time</td>
+            <td>datetime the min and max salaries were converted <br/> to the given <code>currency</code></td>
+        </tr>
+        <tr>
+            <td class="rowspan_white" rowspan=4>job_locations</td>
+            <td>job_post_id</td>
+            <td>foreign key to link this job location to a job post</td>
+        </tr>
+        <tr>
+            <td>city</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>region</td>
+            <td>a.k.a. state or province</td>
+        </tr>
+        <tr>
+            <td>country</td>
+            <td>converted to the alpha2 code format</td>
+        </tr>
+        </tbody>
+    </table>
 
-        <table class="style_table">
-            <tbody class="style_table">
-                <tr>
-                    <td><b>Number of job posts</b></td>
-                    <td>377</td>
-                </tr>
-                <tr>
-                    <td><b>Number of US states</b></td>
-                    <td>31</td>
-                </tr>
-                <tr>
-                    <td><b>Published dates</b></td>
-                    <td>2018-09-18 to 2018-09-28</td>
-                </tr>
-                <tr>
-                    <td><b>Top 5 US states <br/> (based on number of job posts)</b></td>
-                    <td>
-                        California <b>(73)</b> <br/>
-                        New York <b>(40)</b> <br/>
-                        Pennsylvania <b>(32)</b> <br/>
-                        Massachusetts <b>(25)</b> <br/>
-                        New Jersey <b>(23)</b></td>
-                </tr>
-                <tr>
-                    <td><b>Top 5 US job locations <br/> (based on number of job posts)</b></td>
-                    <td>
-                        NYC, New York, USA <b>(33)</b> <br/>
-                        SF, California, USA <b>(26)</b> <br/>
-                        Philadelphia, Philadelphia County, Pennsylvania, USA <b>(22)</b> <br>
-                        Jersey City, Hudson County, New Jersey, USA <b>(13)</b> <br/>
-                        Columbus, Franklin County, Ohio, USA <b>(12)</b></td>
-                </tr>
-            </tbody>
-        </table>
+    <br/>
 
-        <br/><br/><br/>
+    <h2><span id="pipeline_for_maps_and_graphs"></span>Pipeline for generating the maps and graphs</h2>
+    The pipeline for ultimately generating the maps and graphs consists in a series of components that are run in this
+    order:
+    <ol>
+        <li><a href="#rss_jobs_reader">RSS jobs reader</a>
+            <ul>
+                <li><b>input:</b> RSS jobs feed</li>
+                <li><b>output:</b> SQLite database with all the relevant extracted data from the RSS feed</li>
+            </ul>
+        </li>
+        <li><a href="#web_scraper">Web scraper</a></li>
+            <ul>
+                <li><b>inputs:</b>
+                    <ul>
+                        <li><b>input1:</b> SQLite database from the RSS jobs reader</li>
+                        <li><b>input2:</b> job posts' webpages</li>
+                    </ul>
+                </li>
+                <li><b>output:</b> Scraped data from the job posts' webpages</li>
+            </ul>
+        <li><a href="#data_cleaner_and_loader">Data cleaner and loader</a></li>
+        <ul>
+            <li><b>input:</b> Scraped data from the job posts' webpages</li>
+            <li><b>output:</b> SQLite database with all the job posts' scraped data</li>
+        </ul>
+        <li><a href="#data_analyzers">Data analyzers</a></li>
+            <ul>
+                <li><b>input:</b> SQLite database with the web scraped data</li>
+                </li>
+                <li><b>output:</b> maps, graphs, and reports</li>
+            </ul>
+    </ol>
 
-        <h2 id="top20_job_locations">Top 20 most popular job locations</h2>
-        <h3 id="top20_europe">In Europe</h3>
-        <img src="https://bit.ly/2y6kC1v" class="center rwd_img"/>
+    <h3><span id="rss_jobs_reader"></span>RSS jobs reader</h3>
+    <p>The first stage in the pipeline is the RSS jobs reader which takes as input the Stack Overflow's RSS jobs feed. It is
+    built based on the Python module <code>feedparser</code> which does the parsing of the feed. The entries (one entry
+        = one job post) in the feed are extracted and loaded into an SQLite database, see <a href="#table01">Table 1</a>
+        for a list of some of the attributes extracted.</p>
+    <p>Multiple Stack Overflow's RSS jobs feeds can be read but any entry that was already parsed will be skipped.
+        <!-- TODO: new feature -->An interesting feature to implement in the future would be to use the <code>updated</code>
+        attribute to check if the entry was recently updated and if it is the case, update the entry's attributes in the
+        database.</p>
 
-        <br/>
+    <br/>
 
-        <p>The next table shows stats about the data used for generating the previous bar
-            chart <b>"Top 20 most popular european countries"</b>:</p>
-        <table class="style_table">
-            <tbody class="style_table">
-            <tr>
-                <td><b>Total number of european countries</b></td>
-                <td>----</td>
-            </tr>
-            <tr>
-                <td><b>Number of jobs posts</b></td>
-                <td>----</td>
-            </tr>
-            <tr>
-                <td><b>Published dates</b></td>
-                <td>2018-09-18 to 2018-09-28</td>
-            </tr>
-            </tbody>
-        </table>
+    <h3><span id="web_scraper"></span>Web scraper</h3>
+    <p>The second stage in the pipeline is the <b>web scraper</b> which takes initially as input the SQLite database with
+        the parsed RSS feed from the previous stage. Each entry's <code>url</code> is used for getting the job post's
+        webpage which is parsed by the python module <a href="https://www.crummy.com/software/BeautifulSoup/">
+            <code>BeautifulSoup4</code></a>. The webpage is parsed in order by extracting relevant attributes from the
+        top to the bottom. Along the way, relevant attributes are extracted only if they were not already extracted from
+        the RSS feed. See <a href="#table02">Table 2</a> for a list of some of the attributes extracted from each job
+        post's webpage.
+    </p>
 
-        <br/><br/><br/>
+    <br/>
 
-        <h3 id="top20_usa">In the USA</h3>
-        <img src="https://bit.ly/2Pje2ez" class="center rwd_img" />
+    <h3><span id="data_cleaner_and_loader"></span>Data cleaner and loader</h3>
+    <p>The third stage in the pipeline is the <b>data cleaner and loader</b> which takes as input the scraped data from
+        the web scraper in the previous step. Before the scraped data is loaded into the database, the data is cleaned
+        up by <a href="#remove_non_informative_job_locations">removing any non-informative job locations</a> and
+        <a href="#renaming_industries">renaming industries to standardized names.</a></p>
 
-        <br/>
-
-        <p>The next table shows stats about the data used for generating the previous bar
-            chart <b>"Top 20 most popular US states"</b>:</p>
-        <table class="style_table">
-            <tbody class="style_table">
-            <tr>
-                <td><b>Total number of US states</b></td>
-                <td>----</td>
-            </tr>
-            <tr>
-                <td><b>Number of jobs posts</b></td>
-                <td>----</td>
-            </tr>
-            <tr>
-                <td><b>Published dates</b></td>
-                <td>2018-09-18 to 2018-09-28</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <br/><br/><br/>
-
-        <h3 id="top20_world">Around the World</h3>
-        <img src="https://bit.ly/2OLBzHW" class="center rwd_img"/>
-
-        <br/>
-
-        <p>The next table shows stats about the data used for generating the previous bar
-            chart <b>"Top 20 most popular countries"</b>:</p>
-        <table class="style_table">
-            <tbody class="style_table">
-            <tr>
-                <td><b>Total number of countries</b></td>
-                <td>----</td>
-            </tr>
-            <tr>
-                <td><b>Number of jobs posts</b></td>
-                <td>----</td>
-            </tr>
-            <tr>
-                <td><b>Published dates</b></td>
-                <td>2018-09-18 to 2018-09-28</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <br/><br/><br/>
-
-        <h2 id="top20_industries">Top 20 most popular industries</h2>
-        <img src="https://bit.ly/2P87UG2" class="center rwd_img" />
-
-        <br/>
-
-        <p>The next table shows stats about the data used for generating the previous bar
-            chart <b>"Top 20 most popular industries"</b>:</p>
-        <table class="style_table">
-            <tbody class="style_table">
-            <tr>
-                <td><b>Total number of different industries</b></td>
-                <td>248</td>
-            </tr>
-            <tr>
-                <td><b>Number of jobs posts <br/> with at least one industry tag</b></td>
-                <td>820</td>
-            </tr>
-            <tr>
-                <td><b>Published dates</b></td>
-                <td>2018-09-18 to 2018-09-28</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <br/><br/><br/>
-
-        <h2 id="top20_technologies">Top 20 most popular technologies</h2>
-        <img src="https://bit.ly/2QsCMRL" class="center rwd_img"/>
-
-        <br/>
-
-        <p>The next table shows stats about the data used for generating the previous bar
-            chart <b>"Top 20 most popular technologies"</b>:</p>
-        <table class="style_table">
-            <tbody class="style_table">
-            <tr>
-                <td><b>Total number of different technologies</b></td>
-                <td>568</td>
-            </tr>
-            <tr>
-                <td><b>Number of jobs posts <br/> with at least one technology tag</b></td>
-                <td>999</td>
-            </tr>
-            <tr>
-                <td><b>Published dates</b></td>
-                <td>2018-09-18 to 2018-09-28</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <br/><br/><br/>
-
-        <div class="hide">
-        <h2 id="interactive_graphs">Interactive graphs</h2>
-        <h3 id="scatter_europe">Scatter plot of salaries in Europe</h3>
-        <div id="f8eb6e6a-c821-4561-a88d-d6215ac09508" class="plotly-graph-div"></div>
-        <script type="text/javascript">window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("f8eb6e6a-c821-4561-a88d-d6215ac09508", [{"mode": "markers", "text": ["Switzerland", "Norway", "Malta", "Sweden", "Germany", "Netherlands", "United Kingdom", "Finland", "Austria", "Italy", "France", "Spain", "Poland", "Ireland"], "x": [101680.0, 87045.0, 87045.0, 80085.0, 70301.64705882352, 68189.9, 67684.63888888889, 62890.0625, 59567.75, 58030.0, 56869.4375, 48358.333333333336, 38646.25, 37719.5], "y": [2, 1, 1, 4, 34, 10, 18, 8, 8, 3, 8, 3, 2, 1], "type": "scatter", "uid": "36066564-c9eb-11e8-b7e9-685b35bf8740"}], {"hovermode": "closest", "title": "Average mid-range salaries in Europe @ stackoverflow.com/jobs", "xaxis": {"showline": false, "tickformat": "$0.0f", "title": "Mid-range salaries (USD)", "titlefont": {"color": "#7f7f7f", "family": "Courier New, monospace", "size": 18}}, "yaxis": {"showline": true, "title": "Number of job posts", "titlefont": {"color": "#7f7f7f", "family": "Courier New, monospace", "size": 18}}}, {"showLink": true, "linkText": "Export to plot.ly"})</script>
-
-        <br/><br/><br/>
-
-        <h3 id="scatter_usa">Scatter plot of salaries in the USA</h3>
-        <div id="a6e16a6f-6e2e-4e15-ba16-df2189e530b6" class="plotly-graph-div"></div>
-        <script type="text/javascript">window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("a6e16a6f-6e2e-4e15-ba16-df2189e530b6", [{"mode": "markers", "text": ["Virginia", "Washington", "California", "New York", "Maryland", "Massachusetts", "Oklahoma", "Utah", "Arizona", "North Carolina", "Colorado", "Texas", "Illinois", "Idaho", "District of Columbia", "Florida", "Georgia", "Michigan", "Ohio", "New Jersey"], "x": [138750.0, 130000.0, 127799.25, 121250.0, 112500.0, 110312.5, 110000.0, 105000.0, 105000.0, 103333.33333333333, 101875.0, 101000.0, 95000.0, 95000.0, 93750.0, 91250.0, 82500.0, 81250.0, 74166.66666666667, 67500.0], "y": [4, 1, 8, 12, 4, 8, 1, 1, 1, 3, 4, 5, 1, 1, 2, 2, 1, 2, 3, 1], "type": "scatter", "uid": "3657e89e-c9eb-11e8-9bc8-685b35bf8740"}], {"hovermode": "closest", "title": "Average mid-range salaries in the USA @ stackoverflow.com/jobs", "xaxis": {"showline": false, "tickformat": "$0.0f", "title": "Mid-range salaries (USD)", "titlefont": {"color": "#7f7f7f", "family": "Courier New, monospace", "size": 18}}, "yaxis": {"showline": true, "title": "Number of job posts", "titlefont": {"color": "#7f7f7f", "family": "Courier New, monospace", "size": 18}}}, {"showLink": true, "linkText": "Export to plot.ly"})</script>
-
-        <br/><br/><br/>
-
-        <h3 id="scatter_world">Scatter plot of salaries around the World</h3>
-        <div id="7b729cfd-19f0-4bba-b79b-31fd2c61ee00" class="plotly-graph-div"></div>
-        <script type="text/javascript">window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("7b729cfd-19f0-4bba-b79b-31fd2c61ee00", [{"mode": "markers", "text": ["Japan", "United States", "Switzerland", "Norway", "Malta", "Australia", "Sweden", "Hong Kong", "Germany", "Kuwait", "Netherlands", "United Kingdom", "Korea, Republic of", "Finland", "Canada", "Austria", "Italy", "France", "Spain", "India", "Poland", "Ireland", "China", "Mexico"], "x": [125600.0, 109729.13846153846, 101680.0, 87045.0, 87045.0, 83474.29166666667, 80085.0, 73000.0, 70301.64705882352, 70000.0, 68189.9, 67684.63888888889, 67500.0, 62890.0625, 62065.6, 59567.75, 58030.0, 56869.4375, 48358.333333333336, 44525.0, 38646.25, 37719.5, 37500.0, 26000.0], "y": [2, 65, 2, 1, 1, 12, 4, 3, 34, 1, 10, 18, 1, 8, 5, 8, 3, 8, 3, 1, 2, 1, 1, 1], "type": "scatter", "uid": "3668328a-c9eb-11e8-a1b4-685b35bf8740"}], {"hovermode": "closest", "title": "Average mid-range salaries in the World @ stackoverflow.com/jobs", "xaxis": {"showline": false, "tickformat": "$0.0f", "title": "Mid-range salaries (USD)", "titlefont": {"color": "#7f7f7f", "family": "Courier New, monospace", "size": 18}}, "yaxis": {"showline": true, "title": "Number of job posts", "titlefont": {"color": "#7f7f7f", "family": "Courier New, monospace", "size": 18}}}, {"showLink": true, "linkText": "Export to plot.ly"})</script>
-
-        <br/><br/><br/>
-
-        <h3 id="scatter_industries">Scatter plot of salaries across industries</h3>
-        <div id="23f5841f-7436-445f-9378-d917227dbad8" class="plotly-graph-div"></div>
-        <script type="text/javascript">window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("23f5841f-7436-445f-9378-d917227dbad8", [{"mode": "markers", "text": ["Ad Tech", "Digital Agency", "Publishing", "Federal Agencies", "Customer Communication Managem", "Banking", "Digital Media", "Data Analysis", "CRM", "Artificial Intelligence", "Design", "Machine Learning", "Public Safety", "Cryptocurrency", "Technology Staffing", "Oil & Gas", "Information Services", "Custom IT Solutions", "Construction", "Financial Services", "Big Data", "Point of Sale", "Payment Facilitator Software", "Medical", "Golf", "Real Estate", "Financial Technology", "Water", "Medical Imaging", "Investment Banking", "Computer Graphics", "Life Sciences", "Biotechnology", "Finance", "Internet of Things", "Enterprise Software", "Food & Beverage", "Telecommunications", "IT Consulting", "SaaS", "Computer Software", "E-Commerce", "Web Design", "Hospitality", "Manufacturing", "Data & Analytics", "Management Consultancy", "Entertainment", "Telematics", "GPS Tracking", "Enterprise Web Solutions", "Digital Marketing", "Proprietary Trading/ Market Ma", "Medical Software", "Legal Technology", "Cybersecurity", "Cloud Computing", "Cloud Services", "HR Services", "Digital Health", "Web Development", "Data Science", "B2B", "Gaming", "Fashion", "Medical Devices", "Healthcare", "Web Technology", "Software Development", "Insurance", "Mobile Application", "Information Technology", "Business Process Optmization", "Mobile Payments", "Security Software", "JavaScript", "Android", "Consulting", "PaaS", "Automation", "Transportation", "Messaging", "Agriculture", "Software Consulting", "Sports Technology", "Research Pharmacy", "Fundraising", "Charity", "Agile Software Development", "Logistics & Distribution", "Robotics", "Autonomous Driving", "Venture Funding", "Venture Capital & Private Equi", "Politics", "Electronic equipment", "Online Travel", "Hardware Development", "Media", "Mobile Development", "Accounting Software", "IT Security", "Cloud-Based Solutions", "iOS", "Video Streaming", "Language Learning Software", "Integrated Marketing Solutions", "Government", "B2C", "Professional Services", "Signals Analysis", "Defense", "Music", "Events", "Web Hosting", "Broadcast", "Technology Consulting", "Creative Services", "Education Technology", "Internet Infrastructure", "Non-Profit", "Sports", "Retail", "Mobile", "Product Development", "Education", "PC Games", "Mobile Game", "Computer Games", "Industrial Automation", "Professional Service Automatio", "Business Software", "Virtual Reality", "Augmented Reality", "Platforms", "Embedded", "Travel Planning", "Travel & Tourism", "Electronics", "Search", "DevOps", "and Compliance", "Risk", "Legal Compliance", "Governance", "social audit", "quality control", "product inspection", "lab testing", "factory audit"], "x": [180000.0, 155000.0, 153750.0, 150000.0, 140000.0, 139166.66666666666, 135833.33333333334, 131250.0, 130000.0, 119375.0, 119026.5, 115000.0, 111250.0, 111000.0, 110000.0, 110000.0, 110000.0, 110000.0, 110000.0, 109861.4, 106666.66666666667, 105000.0, 105000.0, 105000.0, 105000.0, 102203.5625, 101848.44444444444, 101250.0, 100000.0, 100000.0, 100000.0, 98651.0, 98651.0, 98212.0, 98020.625, 97764.33333333333, 97500.0, 97497.0, 97094.5, 96856.9375, 96756.375, 95964.5, 93750.0, 93750.0, 89909.0, 88802.0, 87500.0, 87458.5, 87045.0, 87045.0, 87045.0, 85536.0, 85110.66666666667, 85000.0, 84858.5, 84366.25, 83653.0, 83444.0, 83100.25, 82500.0, 81717.28571428571, 81511.8, 81371.0, 79352.5, 78174.0, 77318.0, 77289.75, 77262.5, 77226.66666666667, 77012.875, 77005.16666666667, 75703.59523809524, 75439.0, 75370.66666666667, 75243.21428571429, 75000.0, 75000.0, 74924.0, 74917.0, 73988.25, 73500.0, 73343.5, 72746.5, 72537.5, 71660.0, 71659.5, 71659.5, 71659.5, 71465.3125, 70277.66666666667, 70263.0, 70263.0, 70000.0, 70000.0, 70000.0, 69636.0, 69379.5, 69055.75, 67442.91666666667, 66651.25, 65511.8, 65283.75, 65138.75, 64854.583333333336, 63833.0, 63833.0, 63833.0, 63833.0, 63833.0, 63253.0, 62500.0, 62500.0, 62456.0, 62456.0, 62382.25, 60696.0, 60206.125, 60206.125, 59844.0, 58997.166666666664, 58552.5, 58030.0, 58030.0, 58030.0, 57670.5, 57193.5, 56600.5, 56600.5, 56600.5, 56247.333333333336, 55709.0, 55709.0, 54258.0, 54258.0, 52227.0, 51124.25, 50813.5, 50813.5, 45872.625, 44525.0, 38646.25, 37719.5, 37719.5, 37719.5, 37719.5, 37500.0, 37500.0, 37500.0, 37500.0, 37500.0], "y": [1, 1, 2, 1, 1, 3, 3, 2, 1, 8, 2, 1, 2, 2, 1, 1, 1, 2, 1, 10, 3, 1, 1, 1, 1, 8, 9, 2, 1, 1, 1, 1, 1, 2, 4, 3, 1, 1, 4, 8, 16, 7, 2, 2, 4, 9, 1, 2, 1, 1, 1, 4, 3, 1, 2, 10, 3, 3, 4, 1, 7, 5, 6, 2, 1, 2, 6, 2, 36, 4, 9, 21, 2, 3, 7, 1, 1, 5, 1, 2, 2, 2, 3, 2, 1, 1, 1, 1, 8, 3, 1, 1, 1, 1, 1, 1, 2, 2, 6, 2, 5, 6, 4, 6, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 4, 4, 3, 3, 1, 2, 2, 3, 5, 2, 1, 1, 1, 3, 2, 2, 2, 2, 1, 2, 1, 1, 4, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1], "type": "scatter", "uid": "361ce92e-c9eb-11e8-a514-685b35bf8740"}], {"hovermode": "closest", "title": "Average mid-range salaries across Industries @ stackoverflow.com/jobs", "xaxis": {"showline": false, "tickformat": "$0.0f", "title": "Mid-range salaries (USD)", "titlefont": {"color": "#7f7f7f", "family": "Courier New, monospace", "size": 18}}, "yaxis": {"showline": true, "title": "Number of job posts", "titlefont": {"color": "#7f7f7f", "family": "Courier New, monospace", "size": 18}}}, {"showLink": true, "linkText": "Export to plot.ly"})</script>
-
-        <br/><br/><br/>
-
-        <h3 id="scatter_technologies">Scatter plot of salaries across technologies</h3>
-        <div id="d0a5c5bb-51e2-4731-93b2-68a89dc6610d" class="plotly-graph-div"></div>
-        <script type="text/javascript">window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("d0a5c5bb-51e2-4731-93b2-68a89dc6610d", [{"mode": "markers", "text": ["nlp", "java-io", "artificial-intelligence", "rust", "c++11", "amazon-s3", "machine-learning", "database", "sdk", "powershell", "asp.net-core", "asp.net-mvc", "model-view-controller", "react", "unix", "virtualization", "video-processing", "scripting", "image-processing", "google-cloud", "gke", "cordova", "conv-neural-network", "atlassian", "angular-fullstack", "bare-metal", "design", "computer-science", "varnish", "magento2", "magento", "less", "knockout.js", "adobe", "azure-cosmosdb", "visualforce", "salesforce", "performance-testing", "jmeter", "apex", "scala", "json.net", "jenkins", "unity3d", "opengl", "entity-framework", "3d", "spring-mvc", "sass", "es6", "apis", "platform", "deep-learning", "cryptocurrency", "wireframe", "visualization", "react.js", "product-management", "front-end", "maven", "xamarin", "vsto", "opencv", "office-js", "manual-testing", "google-closure-compiler", "excel", "dsl", "dbms-output", "mongodb", "kotlin", "react-native", "devops", "go", "saas", "ruby-on-rails", "aws", "rx-swift", "coredata", "alamofire", "html5", "architecture", "cloud", "azure", "hadoop", "django", "automated-tests", "vmware", "c++", "api-design", "objective-c", "networking", "user-experience", "asp.net", "mocha", "ember.js", "chef", "angularjs", "frontend", "erlang", "debian", "cpu", "c++14", "akka", "jquery", "nservicebus", "cqrs", "project-management", "content-management-system", "iphone", "swift", "sysadmin", "node.js", "entity", "weblogic", "unit-testing", "nginx", "infrastructure", ".net", "javascript", "symfony2", ".net-core", "amazon-web-services", "user-interface", "android", "ruby", "automation", "vhdl", "web-services", "kubernetes", "oop", "c#", "mysql", "python", "ios", "openfaas", "d3.js", "lead", "ansible", "docker", "selenium", "json", "cassandra", "linux", "css", "reactjs", "testing", "spring", "shopware", "r", "php", "android-studio", "android-gradle", "api", "algorithm", "microservices", "html", "mobile", "hardware", "windows", "sentry", "selenium-webdriver", "grape", "crashlytics", "tdd", "scrum", "embedded", "rest", "sql", "c", "angular", "elixir", "bash", "java", "terraform", "redis", "nosql", "backbone.js", "agile", "symfony", "postgresql", "rabbitmq", "asp.net-web-api", "css3", "sensor", "simulink", "primeng", "matlab", "express", "ecmascript-6", "aws-lambda", "react-redux", "iso", "audit", "continuous-integration", "spring-boot", "informatica", "etl", "end-to-end", "typescript", "wcf", "specflow", "http", "db2", "xml", "continuous-delivery", "sql-server", "qa", "apache-spark", "shell", "macos", "xcode", "cocoa-touch", "sap", "puppet", "git", "vue.js", "oracle", "kvm", "google-bigquery", "backend", "amazon-redshift", "amazon-kinesis", "hibernate", "centos", "flexbox", "redux", "security", "wpf", "java-ee", "video-streaming", "android-tv", "scjp", "uikit", "sapui5", "sap-fiori", "odata", "migration", "ipad", "hana", "flutter", "cucumber", "bdd", "airflow", "apache-kafka", "qt", "unreal-engine4", "unity", "xss", "iis", "csrf", "jira", "soap", "plsql", "oracle-apex", "messagebroker", "ibm-mq", "ibm-datapower", "server-side-scripting", "graphite", "vb.net", "f#", "c#-4.0", "dita", "plugins", "data-structures", "hosting", "nodejs", "web-applications", "asp.net-core-webapi", "jsp", "xslt"], "x": [162500.0, 155000.0, 155000.0, 150000.0, 150000.0, 150000.0, 145833.33333333334, 142500.0, 140000.0, 137500.0, 135000.0, 127500.0, 125000.0, 124590.0, 123121.0, 120000.0, 120000.0, 120000.0, 120000.0, 120000.0, 120000.0, 120000.0, 120000.0, 120000.0, 120000.0, 117500.0, 117037.33333333333, 115000.0, 112500.0, 112500.0, 112500.0, 112500.0, 112500.0, 112500.0, 110747.0, 110000.0, 110000.0, 110000.0, 110000.0, 110000.0, 108328.0, 107500.0, 105675.3, 105000.0, 105000.0, 105000.0, 105000.0, 104015.0, 101680.0, 101680.0, 101680.0, 101200.0, 101200.0, 101200.0, 101108.0, 101108.0, 101108.0, 101108.0, 101108.0, 100265.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 99894.0, 99894.0, 97833.25, 97549.0, 97489.0, 96274.71428571429, 96133.0, 95691.5, 94985.33333333333, 94844.25, 94460.0, 94460.0, 94460.0, 94452.8, 94122.5, 92840.25, 92621.5, 91989.66666666667, 90833.33333333333, 90625.0, 90323.0, 90311.57142857143, 90275.0, 89218.21428571429, 88750.0, 88611.66666666667, 87699.1, 87500.0, 87500.0, 87500.0, 87048.68181818182, 87045.0, 87045.0, 87045.0, 87045.0, 87045.0, 87045.0, 86666.66666666667, 86664.0, 86664.0, 86548.0, 86548.0, 86515.0, 85928.40909090909, 85875.25, 85556.5, 85219.5, 85000.0, 85000.0, 85000.0, 84688.5, 84654.63888888889, 84254.54761904762, 84143.5, 83518.0, 83432.14705882352, 83417.75, 83363.07142857143, 83319.875, 83057.35714285714, 82983.0, 82951.0, 82141.0, 81916.5, 81915.53846153847, 81804.75, 81452.87037037036, 81260.84375, 81242.0, 81242.0, 81241.5, 81218.08333333333, 81208.10714285714, 81193.8, 81139.0, 80355.5, 79707.72727272728, 79662.5, 79566.125, 79112.25, 78504.9, 78340.5, 78340.5, 78306.54545454546, 78174.0, 78174.0, 77927.75, 77590.0, 77487.6, 77479.59090909091, 76960.5, 76623.0, 76313.4, 75439.0, 75439.0, 75439.0, 75439.0, 75000.0, 75000.0, 74294.0, 73700.5, 73464.08333333333, 73117.83333333333, 72870.13636363637, 72798.75, 72776.5, 72619.81428571428, 72537.5, 72537.5, 72537.5, 72537.5, 72135.85714285714, 72098.5, 71731.8, 71660.0, 71660.0, 71040.5, 70263.0, 69636.0, 69636.0, 69636.0, 69636.0, 69636.0, 69636.0, 68859.75, 68402.0, 68402.0, 68272.25, 68205.66666666667, 67500.0, 67500.0, 67500.0, 67163.11111111111, 66750.0, 66734.5, 66734.5, 66734.5, 66328.875, 66154.25, 66062.14285714286, 65856.25, 65501.833333333336, 65283.75, 65283.75, 65145.0, 65145.0, 64993.75, 64261.25, 63943.11111111111, 63938.125, 63833.0, 63833.0, 63833.0, 63833.0, 63833.0, 63833.0, 63686.666666666664, 62500.0, 62456.0, 62410.0, 62055.5, 61441.333333333336, 61148.0, 60696.0, 60696.0, 58463.0, 58030.0, 58030.0, 58030.0, 58030.0, 58030.0, 58030.0, 58030.0, 58030.0, 58030.0, 58030.0, 58030.0, 57449.75, 57054.0, 56600.5, 56289.0, 55709.0, 55709.0, 55709.0, 55284.0, 55128.5, 55128.5, 55128.5, 51527.0, 51527.0, 51527.0, 51066.5, 51066.5, 50000.0, 50000.0, 49673.5, 47004.5, 46375.5, 44525.0, 43522.5, 40621.0, 37719.5, 37719.5, 37500.0, 30917.0], "y": [1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 2, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 5, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 7, 7, 2, 3, 2, 1, 1, 1, 5, 2, 8, 9, 3, 3, 4, 3, 14, 1, 7, 2, 3, 5, 1, 1, 2, 11, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 2, 2, 11, 18, 22, 1, 1, 1, 1, 1, 18, 42, 1, 2, 17, 4, 14, 4, 7, 1, 2, 7, 2, 26, 8, 27, 16, 1, 1, 2, 6, 14, 5, 3, 3, 22, 7, 24, 6, 5, 2, 2, 11, 1, 1, 4, 3, 5, 11, 5, 2, 5, 1, 1, 1, 1, 1, 1, 3, 4, 24, 3, 11, 2, 2, 35, 2, 1, 1, 1, 7, 2, 5, 1, 1, 3, 1, 1, 1, 1, 1, 3, 1, 2, 1, 1, 4, 3, 1, 1, 1, 9, 2, 2, 1, 1, 4, 2, 7, 4, 3, 2, 2, 1, 1, 2, 2, 9, 4, 3, 1, 1, 1, 1, 1, 3, 1, 1, 4, 2, 3, 4, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "type": "scatter", "uid": "3649521e-c9eb-11e8-8841-685b35bf8740"}], {"hovermode": "closest", "title": "Average mid-range salaries across Technologies @ stackoverflow.com/jobs", "xaxis": {"showline": false, "tickformat": "$0.0f", "title": "Mid-range salaries (USD)", "titlefont": {"color": "#7f7f7f", "family": "Courier New, monospace", "size": 18}}, "yaxis": {"showline": true, "title": "Number of job posts", "titlefont": {"color": "#7f7f7f", "family": "Courier New, monospace", "size": 18}}}, {"showLink": true, "linkText": "Export to plot.ly"})</script>
-        </div>
-
-        <!--
-        These are the steps taken in order to extract job insights from job sites:
+    <h4><span id="remove_non_informative_job_locations"></span>Removing non-informative job locations</h4>
+    <p>
+        Some job posts have job locations that don't provide more information
+        compared to their other job locations that they are already associated with.
+        Thus, these non-informative locations are ignored to avoid artificially
+        increasing the count of a particular job location. Here are the cases that are
+        treated to perform these clean up on the job locations of each job post:
         <ol>
-            <li>Run a RSS reader: parses the RSS feed about job posts</li>
-            <li>Run a web scraper: scrapes the job ... </li>
-            <li>test</li>
-            <li>test</li>
-            <li>test</li>
+        <li>
+        A job post has two locations with the same country but one location only
+        has the country as the component. The location with only the country is ignored.
+            Example, if a job post has the locations "<b>Germany</b>" and "<b>Fulda, Germany</b>", only
+        the latter location is kept in order to avoid inflating the job location
+        "Germany".
+        </li>
+        <li>
+        A job post has two locations with very similar names except one has the
+        correct spelling and is the one that is kept. For example, if a job post has the
+            locations "<b>Hlavní <u>msto</u> Praha, CZ</b>" and "<b>Hlavní <u>město</u> Praha, CZ</b>",
+            only the latter location is kept.
+        </li>
+        <li>
+        A job post has two locations with the same city and country except one has
+        also a region. The location that provides all components (city, region, country)
+            is kept. For example, if a job post has the locations "<b>Toronto, CA</b>" and
+        "<b>Toronto, ON, CA"</b>, only the latter location is kept.
+        </li>
         </ol>
-        -->
-    </main><!-- /.container -->
+    </p>
+    <h4><span id="renaming_industries"></span>Renaming industries</h4>
+    <p>Some names of industries were almost identical that they were renamed to a standardized name:
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script
-            src="/assets/js/vendor/jquery-3.3.1.min.js"
-            type="text/javascript">
-    </script>
-    <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-3.3.1.min.js" type="text/javascript"><\/script>')</script>
-    <script src="/assets/js/vendor/popper.min.js" type="text/javascript"></script>
-    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="/assets/js/custom/header.js" type="text/javascript"></script>
-    <script src="/assets/js/custom/back_to_top.js" type="text/javascript"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script>
-        maxwidth = $('html').css('max-width');
-        if (maxwidth == '576px')
-            document.getElementById("hide_li_toc").style.display = "none";
-    </script>
+    <table class="style_table">
+        <caption><b>Table 3</b> Standard names used for industries
+        </caption>
+        <tbody class="style_table" style="text-align: left">
+        <!--  Table headers -->
+        <tr>
+            <th>Similar names</th>
+            <th>Standard name chosen </th>
+        </tr>
+        <tr>
+            <td>1. "Software Development / Engineering" <br/>2. "Software Development"</td>
+            <td>"Software Development"</td>
+        </tr>
+        <tr>
+            <td>1. "eCommerce" <br/> 2. "Retail - eCommerce" <br/> 3."E-Commerce"</td>
+            <td>"E-Commerce"</td>
+        </tr>
+        <tr>
+            <td>4. "Fashion" <br/> 5. "Fasion" [<b>NOTE:</b> typo from the job post]</td>
+            <td>"Fashion"</td>
+        </tr>
+        <tr>
+            <td>1. "Health Care" <br/> 2. "Healthcare"</td>
+            <td>"Healthcare"</td>
+        </tr>
+        </tbody>
+    </table>
+    </p>
+
+    <h3><span id="data_analyzers"></span>Data analyzers</h3>
+    <p>The fourth and last stage of the pipeline is the production of the different maps, graphs, and reports based on
+    the cleaned scraped jobs data. This is the list of the maps and graphs generated along with a sample figure (low-res) for
+    each type of plot (see <a href="/p/projects/dev-jobs-insights/maps_and_graphs.html">Insights: Maps and graphs</a> if
+        you want to see the full set of plots with higher resolution):</p>
+
+    <ul>
+        <li><b>Maps:</b> distribution of job posts around the world where each dot on the map represents
+            a particular job location (or address) from a job post and the size of the dot gives the relative importance
+            of the job location compared to other job locations. Thus, a bigger dot for a particular location means that
+            more job posts are associated with this location compared to other locations having smaller dots.
+            <ul>
+                <li><b>USA:</b> distribution of job posts in the USA</li>
+                <li><b>World:</b> distribution of job posts around the World</li>
+            </ul>
+            <figure class="center">
+                <img class="sample rwd_img" src="https://raw.githubusercontent.com/raul23/images/master/dev-jobs-insights/map_world_500x375.png"/>
+                <figcaption>
+                    Sample map
+                </figcaption>
+            </figure>
+        </li>
+        <li><b>Bar charts:</b> top 20 most popular items (e.g. countries, industries or skills) based on the number of
+            occurrences mentioning the item in job posts
+            <ul>
+                <li><b>Europe:</b> top 20 most popular European countries</li>
+                <li><b>USA:</b> top 20 most popular US states</li>
+                <li><b>World:</b> top 20 most popular countries</li>
+                <li><b>Industries:</b> top 20 most popular industries</li>
+                <li><b>Job benefits:</b> top 20 most popular job benefits</li>
+                <li><b>Roles:</b> top 20 most popular roles</li>
+                <li><b>Skills:</b> top 20 most popular skills (a.k.a. technologies)</li>
+            </ul>
+            <figure class="center">
+                <img class="sample rwd_img" src="https://raw.githubusercontent.com/raul23/images/master/dev-jobs-insights/barh_industries_500x375.png"/>
+                <figcaption>
+                    Sample bar chart
+                </figcaption>
+            </figure>
+        </li>
+        <li><b>Histogram chart:</b> <a href="#mid_range_salaries">mid-range salaries</a> among Stack Overflow job posts.
+            Not all job posts mention a salary range (min and max salaries).
+            <figure class="center">
+                <img class="sample rwd_img" src="https://raw.githubusercontent.com/raul23/images/master/dev-jobs-insights/hist_salaries_500x375.png"/>
+                <figcaption>
+                    Sample histogram
+                </figcaption>
+            </figure>
+        </li>
+        <li><b>Scatter plots:</b> interactive graphs built with the open-source graphing library
+            <a href="https://plot.ly/">plot.ly</a>. Each dot when clicked gives you the item's label (e.g. name of
+            industry or skill), the average mid-range salary and the number of job posts used for computing the average
+            mid-range salary of the given item.
+            <ul>
+                <li><b>Europe:</b> Average mid-range salaries vs number of job
+                    posts in Europe</li>
+                <li><b>USA:</b> Average mid-range salaries vs number of job posts in the USA</li>
+                <li><b>World:</b> Average mid-range salaries vs number of job posts around the World</li>
+                <li><b>Industries:</b> Average mid-range salaries vs number of job posts among industries</li>
+                <li><b>Roles:</b> Average mid-range salaries vs number of job posts among roles</li>
+                <li><b>Skills:</b> Average mid-range salaries vs number of job posts among skills (a.k.a technologies)</li>
+            </ul>
+            <div class="alert alert-info" role="alert">
+                <a href="#mid_range_salaries">What is meant by mid-range salaries?</a>
+                <br/>
+                <a href="#average_mid_range_salaries">How the average mid-range salaries are computed?</a>
+            </div>
+            <div class="hide">
+            <div id="d0a5c5bb-51e2-4731-93b2-68a89dc6610d" class="plotly-graph-div"></div>
+            <script type="text/javascript">window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("d0a5c5bb-51e2-4731-93b2-68a89dc6610d", [{"mode": "markers", "text": ["nlp", "java-io", "artificial-intelligence", "rust", "c++11", "amazon-s3", "machine-learning", "database", "sdk", "powershell", "asp.net-core", "asp.net-mvc", "model-view-controller", "react", "unix", "virtualization", "video-processing", "scripting", "image-processing", "google-cloud", "gke", "cordova", "conv-neural-network", "atlassian", "angular-fullstack", "bare-metal", "design", "computer-science", "varnish", "magento2", "magento", "less", "knockout.js", "adobe", "azure-cosmosdb", "visualforce", "salesforce", "performance-testing", "jmeter", "apex", "scala", "json.net", "jenkins", "unity3d", "opengl", "entity-framework", "3d", "spring-mvc", "sass", "es6", "apis", "platform", "deep-learning", "cryptocurrency", "wireframe", "visualization", "react.js", "product-management", "front-end", "maven", "xamarin", "vsto", "opencv", "office-js", "manual-testing", "google-closure-compiler", "excel", "dsl", "dbms-output", "mongodb", "kotlin", "react-native", "devops", "go", "saas", "ruby-on-rails", "aws", "rx-swift", "coredata", "alamofire", "html5", "architecture", "cloud", "azure", "hadoop", "django", "automated-tests", "vmware", "c++", "api-design", "objective-c", "networking", "user-experience", "asp.net", "mocha", "ember.js", "chef", "angularjs", "frontend", "erlang", "debian", "cpu", "c++14", "akka", "jquery", "nservicebus", "cqrs", "project-management", "content-management-system", "iphone", "swift", "sysadmin", "node.js", "entity", "weblogic", "unit-testing", "nginx", "infrastructure", ".net", "javascript", "symfony2", ".net-core", "amazon-web-services", "user-interface", "android", "ruby", "automation", "vhdl", "web-services", "kubernetes", "oop", "c#", "mysql", "python", "ios", "openfaas", "d3.js", "lead", "ansible", "docker", "selenium", "json", "cassandra", "linux", "css", "reactjs", "testing", "spring", "shopware", "r", "php", "android-studio", "android-gradle", "api", "algorithm", "microservices", "html", "mobile", "hardware", "windows", "sentry", "selenium-webdriver", "grape", "crashlytics", "tdd", "scrum", "embedded", "rest", "sql", "c", "angular", "elixir", "bash", "java", "terraform", "redis", "nosql", "backbone.js", "agile", "symfony", "postgresql", "rabbitmq", "asp.net-web-api", "css3", "sensor", "simulink", "primeng", "matlab", "express", "ecmascript-6", "aws-lambda", "react-redux", "iso", "audit", "continuous-integration", "spring-boot", "informatica", "etl", "end-to-end", "typescript", "wcf", "specflow", "http", "db2", "xml", "continuous-delivery", "sql-server", "qa", "apache-spark", "shell", "macos", "xcode", "cocoa-touch", "sap", "puppet", "git", "vue.js", "oracle", "kvm", "google-bigquery", "backend", "amazon-redshift", "amazon-kinesis", "hibernate", "centos", "flexbox", "redux", "security", "wpf", "java-ee", "video-streaming", "android-tv", "scjp", "uikit", "sapui5", "sap-fiori", "odata", "migration", "ipad", "hana", "flutter", "cucumber", "bdd", "airflow", "apache-kafka", "qt", "unreal-engine4", "unity", "xss", "iis", "csrf", "jira", "soap", "plsql", "oracle-apex", "messagebroker", "ibm-mq", "ibm-datapower", "server-side-scripting", "graphite", "vb.net", "f#", "c#-4.0", "dita", "plugins", "data-structures", "hosting", "nodejs", "web-applications", "asp.net-core-webapi", "jsp", "xslt"], "x": [162500.0, 155000.0, 155000.0, 150000.0, 150000.0, 150000.0, 145833.33333333334, 142500.0, 140000.0, 137500.0, 135000.0, 127500.0, 125000.0, 124590.0, 123121.0, 120000.0, 120000.0, 120000.0, 120000.0, 120000.0, 120000.0, 120000.0, 120000.0, 120000.0, 120000.0, 117500.0, 117037.33333333333, 115000.0, 112500.0, 112500.0, 112500.0, 112500.0, 112500.0, 112500.0, 110747.0, 110000.0, 110000.0, 110000.0, 110000.0, 110000.0, 108328.0, 107500.0, 105675.3, 105000.0, 105000.0, 105000.0, 105000.0, 104015.0, 101680.0, 101680.0, 101680.0, 101200.0, 101200.0, 101200.0, 101108.0, 101108.0, 101108.0, 101108.0, 101108.0, 100265.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 99894.0, 99894.0, 97833.25, 97549.0, 97489.0, 96274.71428571429, 96133.0, 95691.5, 94985.33333333333, 94844.25, 94460.0, 94460.0, 94460.0, 94452.8, 94122.5, 92840.25, 92621.5, 91989.66666666667, 90833.33333333333, 90625.0, 90323.0, 90311.57142857143, 90275.0, 89218.21428571429, 88750.0, 88611.66666666667, 87699.1, 87500.0, 87500.0, 87500.0, 87048.68181818182, 87045.0, 87045.0, 87045.0, 87045.0, 87045.0, 87045.0, 86666.66666666667, 86664.0, 86664.0, 86548.0, 86548.0, 86515.0, 85928.40909090909, 85875.25, 85556.5, 85219.5, 85000.0, 85000.0, 85000.0, 84688.5, 84654.63888888889, 84254.54761904762, 84143.5, 83518.0, 83432.14705882352, 83417.75, 83363.07142857143, 83319.875, 83057.35714285714, 82983.0, 82951.0, 82141.0, 81916.5, 81915.53846153847, 81804.75, 81452.87037037036, 81260.84375, 81242.0, 81242.0, 81241.5, 81218.08333333333, 81208.10714285714, 81193.8, 81139.0, 80355.5, 79707.72727272728, 79662.5, 79566.125, 79112.25, 78504.9, 78340.5, 78340.5, 78306.54545454546, 78174.0, 78174.0, 77927.75, 77590.0, 77487.6, 77479.59090909091, 76960.5, 76623.0, 76313.4, 75439.0, 75439.0, 75439.0, 75439.0, 75000.0, 75000.0, 74294.0, 73700.5, 73464.08333333333, 73117.83333333333, 72870.13636363637, 72798.75, 72776.5, 72619.81428571428, 72537.5, 72537.5, 72537.5, 72537.5, 72135.85714285714, 72098.5, 71731.8, 71660.0, 71660.0, 71040.5, 70263.0, 69636.0, 69636.0, 69636.0, 69636.0, 69636.0, 69636.0, 68859.75, 68402.0, 68402.0, 68272.25, 68205.66666666667, 67500.0, 67500.0, 67500.0, 67163.11111111111, 66750.0, 66734.5, 66734.5, 66734.5, 66328.875, 66154.25, 66062.14285714286, 65856.25, 65501.833333333336, 65283.75, 65283.75, 65145.0, 65145.0, 64993.75, 64261.25, 63943.11111111111, 63938.125, 63833.0, 63833.0, 63833.0, 63833.0, 63833.0, 63833.0, 63686.666666666664, 62500.0, 62456.0, 62410.0, 62055.5, 61441.333333333336, 61148.0, 60696.0, 60696.0, 58463.0, 58030.0, 58030.0, 58030.0, 58030.0, 58030.0, 58030.0, 58030.0, 58030.0, 58030.0, 58030.0, 58030.0, 57449.75, 57054.0, 56600.5, 56289.0, 55709.0, 55709.0, 55709.0, 55284.0, 55128.5, 55128.5, 55128.5, 51527.0, 51527.0, 51527.0, 51066.5, 51066.5, 50000.0, 50000.0, 49673.5, 47004.5, 46375.5, 44525.0, 43522.5, 40621.0, 37719.5, 37719.5, 37500.0, 30917.0], "y": [1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 2, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 5, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 7, 7, 2, 3, 2, 1, 1, 1, 5, 2, 8, 9, 3, 3, 4, 3, 14, 1, 7, 2, 3, 5, 1, 1, 2, 11, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 2, 2, 11, 18, 22, 1, 1, 1, 1, 1, 18, 42, 1, 2, 17, 4, 14, 4, 7, 1, 2, 7, 2, 26, 8, 27, 16, 1, 1, 2, 6, 14, 5, 3, 3, 22, 7, 24, 6, 5, 2, 2, 11, 1, 1, 4, 3, 5, 11, 5, 2, 5, 1, 1, 1, 1, 1, 1, 3, 4, 24, 3, 11, 2, 2, 35, 2, 1, 1, 1, 7, 2, 5, 1, 1, 3, 1, 1, 1, 1, 1, 3, 1, 2, 1, 1, 4, 3, 1, 1, 1, 9, 2, 2, 1, 1, 4, 2, 7, 4, 3, 2, 2, 1, 1, 2, 2, 9, 4, 3, 1, 1, 1, 1, 1, 3, 1, 1, 4, 2, 3, 4, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "type": "scatter", "uid": "3649521e-c9eb-11e8-8841-685b35bf8740"}], {"hovermode": "closest", "title": "Average mid-range salaries across Technologies @ stackoverflow.com/jobs", "xaxis": {"showline": false, "tickformat": "$0.0f", "title": "Average mid-range salaries (USD)", "titlefont": {"color": "#7f7f7f", "family": "Courier New, monospace", "size": 18}}, "yaxis": {"showline": true, "title": "Number of job posts", "titlefont": {"color": "#7f7f7f", "family": "Courier New, monospace", "size": 18}}}, {"showLink": true, "linkText": "Export to plot.ly"})</script>
+                <p class="custom-caption">Sample scatter plot</p>
+            </div>
+        </li>
+    </ul>
+
+    <br/>
+
+    <h2><span id="mid_range_salaries"></span>Mid-range salaries</h2>
+    <p>
+        The job salaries provided by the companies consist in a minimum and maximum values, e.g. €50k - 65k. Thus, in
+        order to have one salary number per job post, I converted the range of salaries into a <b>mid-range salary</b>,
+        e.g. €50k - 65k --> €57.5
+    </p>
+    <p>
+        Also, all salaries were converted to USD for better comparisons among salaries
+        but you must be careful when doing these kinds of comparisons since some places
+        (e.g. San Francisco or New York City) have high living costs than others so you
+        will expect that these places will offer higher paying wages.
+    </p>
+    <p>
+        I used thresholds for ignoring suspicious values: everything outside the range
+        [8000, 400000] (USD) was ignored. Some reasons might explain why these
+        anomalous salaries appear such as forgetting putting 3 extra 0's (e.g. 10
+        instead of 10000), using originally the wrong currency, or simply the pay is not
+        that good. I haven't implemented yet an automated method to decide which case
+        each suspicious salary range falls into but I will do it eventually. For the
+        moment there are very few ranges that get thrown away.
+    </p>
+    <h3><span id="average_mid_range_salaries"></span>Average mid-range salaries</h3>
+    <p>The <b>average mid-range salary</b> of an item (e.g. industries, skills) is computed by grouping all the same
+        items along with their mid-range salaries and computing the average of their mid-range salaries.</p>
+
+    <br/>
+
+    <h2><span id="todos"></span>TODOs</h2>
+    <p>Tasks to complete in the short to medium term:
+    <ul>
+        <li>Display jobs data summary directly on each map and graph</li>
+        <li>Integrate more jobs data from Stack Overflow</li>
+        <li>Generate map plots with plot.ly graphing library so the dots can be clicked on and be shown information such
+        as the number of job posts and the min and max salaries for a particular job location</li>
+        <li>Generate bar charts as subplots to group them in the same figure</li>
+        <li>Enable interactive graphs for mobile devices; right now they don't show correctly at all on mobile devices</li>
+        <li>Use a translating service to translate non-english countries (the most common case being German)</li>
+    </ul>
+    </p>
+
+    <br/>
+
+    <h2><span id="roadmap"></span>Roadmap</h2>
+    <p>Tasks to complete in the long-term:
+    <ul>
+        <li>Fully automate the whole pipeline of generating the graphs, maps, and reports</li>
+        <li>Integrate more jobs data from other jobs sites</li>
+        <li>Package the pipeline (except the Web scraper component) as a Docker container</li>
+        <li>Use the whole pipeline for analyzing other kind of sites such as news and social network sites</li>
+    </ul>
+    </p>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</main>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script
+        src="/assets/js/vendor/jquery-3.3.1.min.js"
+        type="text/javascript">
+</script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-3.3.1.min.js" type="text/javascript"><\/script>')</script>
+<script src="/assets/js/vendor/popper.min.js" type="text/javascript"></script>
+<script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/assets/js/custom/header.js" type="text/javascript"></script>
+<script src="/assets/js/custom/utility.js" type="text/javascript"></script>
+<script src="/assets/js/custom/back_to_top.js" type="text/javascript"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>

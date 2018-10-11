@@ -17,9 +17,15 @@
     </url>
     <url>
         <loc>https://raul23.github.io/p/projects/dev-jobs-insights.html</loc>
-        <lastmod>2018-10-07</lastmod>
+        <lastmod>2018-10-10</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://raul23.github.io/p/projects/dev-jobs-insights/maps_and_graphs.html</loc>
+        <lastmod>2018-10-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
     </url>
     <url>
         <loc>https://raul23.github.io/p/projects/automated_visual_surveillance_system.html</loc>
@@ -31,12 +37,12 @@
         <loc>https://raul23.github.io/p/projects/python_reverse_dict.html</loc>
         <lastmod>2018-09-17</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.8</priority>
     </url>
     <url>
         <loc>https://raul23.github.io/p/resources_for_developers.html</loc>
         <lastmod>2018-09-10</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.8</priority>
     </url>
 </urlset>

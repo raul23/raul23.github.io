@@ -43,13 +43,19 @@ setTimeout(function(){
         $('#home_link').addClass('active');
     else {
         var elem = $('a[href="' + this.location.pathname + '"]');
-        if (elem[0].className.search("dropdown-item") === 0) {
+        if (this.location.pathname === "/p/projects/dev-jobs-insights.html"){
+            elem = $('#item-submenu');
+            $('#li_dropdown').addClass('active');
+            elem.addClass('active');
+        }
+        else if (elem[0].className.search("dropdown-item") === 0) {
             $('#li_dropdown').addClass('active');
             elem.addClass('active');
         }
         else
             elem.parent().addClass('active');
+
     }
-}, 100);
+}, 200);
 
 includeHTML();
