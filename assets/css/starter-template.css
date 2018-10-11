@@ -105,12 +105,6 @@ u.dotted{
     text-decoration: none;
 }
 
-@media (max-width: 410px) {
-    .hide {
-        display: none;
-    }
-}
-
 /* CSS for Mobile: navbar icons */
 @media (max-width: 576px)
 {
@@ -143,6 +137,11 @@ u.dotted{
       width: 100%;
   }
 */
+
+    /* Hide plotly for small screens */
+    .hide {
+        display: none;
+    }
 
     img {
         width: 30px;
