@@ -34,6 +34,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://raul23.github.io/p/projects/turn-off-autoplay.html</loc>
+        <lastmod>2018-10-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://raul23.github.io/p/projects/python_reverse_dict.html</loc>
         <lastmod>2018-09-17</lastmod>
         <changefreq>monthly</changefreq>
