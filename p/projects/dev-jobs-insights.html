@@ -335,7 +335,8 @@
         <ol>
         <li>
         A job post has two locations with the same country but one location only
-        has the country as the component. The location with only the country is ignored.
+        consists of the country while the other location consists of the country and another component (city and/or
+            region). In this case, the location with only the country is ignored.
             Example, if a job post has the locations "<b>Germany</b>" and "<b>Fulda, Germany</b>", only
         the latter location is kept in order to avoid inflating the job location
         "Germany".
