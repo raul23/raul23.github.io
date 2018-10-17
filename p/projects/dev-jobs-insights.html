@@ -310,7 +310,7 @@
     <h3><span id="web_scraper"></span>Web scraper</h3>
     <p>The second stage in the pipeline is the <b>web scraper</b> which takes initially as input the SQLite database with
         the parsed RSS feed from the previous stage. Each entry's <code>url</code> is used for getting the job post's
-        webpage which is parsed by the python module <a href="https://www.crummy.com/software/BeautifulSoup/">
+        webpage which is parsed using the python module <a href="https://www.crummy.com/software/BeautifulSoup/">
             <code>BeautifulSoup4</code></a>. The webpage is parsed in order by extracting relevant attributes from the
         top to the bottom. Along the way, relevant attributes are extracted only if they were not already extracted from
         the RSS feed. See <a href="#table02">Table 2</a> for a list of some of the attributes extracted from each job
