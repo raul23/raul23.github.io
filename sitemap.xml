@@ -28,6 +28,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://raul23.github.io/p/projects/dev-jobs-insights/scatter_plots.html</loc>
+        <lastmod>2018-10-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://raul23.github.io/p/projects/automated-visual-system.html</loc>
         <lastmod>2018-10-14</lastmod>
         <changefreq>monthly</changefreq>
