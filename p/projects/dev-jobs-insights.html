@@ -23,7 +23,7 @@
         <a class="btn btn-primary" target="_blank" href="https://github.com/raul23/dev-jobs-insights" role="button">View on GitHub</a>
     </div>
 
-    <p class="lead">The <b>main goal</b> of this project is to extract interesting insights from developer
+    <p class="lead"><span id="scroll-here"></span>The <b>main goal</b> of this project is to extract interesting insights from developer
         job posts <b>@ Stack Overflow</b>.</p>
 
     <p><a href="https://github.com/raul23/dev-jobs-insights">dev-jobs-insights</a> is a data mining project written in
@@ -272,7 +272,7 @@
                 <li><b>output:</b> SQLite database with all the relevant extracted data from the RSS feed</li>
             </ul>
         </li>
-        <li><a href="#web_scraper">Web scraper</a></li>
+        <li><a href="#web_scraper">Web scraper</a>
             <ul>
                 <li><b>inputs:</b>
                     <ul>
@@ -282,17 +282,20 @@
                 </li>
                 <li><b>output:</b> Scraped data from the job posts' webpages</li>
             </ul>
-        <li><a href="#data_cleaner_and_loader">Data cleaner and loader</a></li>
-        <ul>
-            <li><b>input:</b> Scraped data from the job posts' webpages</li>
-            <li><b>output:</b> SQLite database with all the job posts' scraped data</li>
-        </ul>
-        <li><a href="#data_analyzers">Data analyzers</a></li>
+        </li>
+        <li><a href="#data_cleaner_and_loader">Data cleaner and loader</a>
+            <ul>
+                <li><b>input:</b> Scraped data from the job posts' webpages</li>
+                <li><b>output:</b> SQLite database with all the job posts' scraped data</li>
+            </ul>
+        </li>
+        <li><a href="#data_analyzers">Data analyzers</a>
             <ul>
                 <li><b>input:</b> SQLite database with the web scraped data</li>
                 </li>
                 <li><b>output:</b> maps, graphs, and reports</li>
             </ul>
+        </li>
     </ol>
 
     <h3><span id="rss_jobs_reader"></span>RSS jobs reader</h3>
