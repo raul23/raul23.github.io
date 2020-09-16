@@ -11,31 +11,43 @@
     </url>
     <url>
         <loc>https://raul23.github.io/p/projects/projects.html</loc>
-        <lastmod>2018-10-11</lastmod>
+        <lastmod>2020-09-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://raul23.github.io/p/projects/simulrpi.html</loc>
+        <lastmod>2020-09-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://raul23.github.io/p/projects/darth-vader-rpi.html</loc>
+        <lastmod>2020-09-16</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://raul23.github.io/p/projects/dev-jobs-insights.html</loc>
-        <lastmod>2018-10-14</lastmod>
+        <lastmod>2020-09-16</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://raul23.github.io/p/projects/dev-jobs-insights/maps_and_graphs.html</loc>
-        <lastmod>2018-10-11</lastmod>
+        <lastmod>2020-09-16</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://raul23.github.io/p/projects/dev-jobs-insights/scatter_plots.html</loc>
-        <lastmod>2018-10-11</lastmod>
+        <lastmod>2020-09-16</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://raul23.github.io/p/projects/automated-visual-system.html</loc>
-        <lastmod>2018-10-14</lastmod>
+        <lastmod>2020-09-16</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -53,7 +65,7 @@
     </url>
     <url>
         <loc>https://raul23.github.io/p/resources_for_developers.html</loc>
-        <lastmod>2018-09-10</lastmod>
+        <lastmod>2020-09-16</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
