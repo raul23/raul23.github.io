@@ -34,7 +34,8 @@
 
     <div align="center">
         <a href="https://www.youtube.com/embed/P631S1k1h_0">
-        <img class="rwd_img" src="https://raw.githubusercontent.com/raul23/images/master/Darth-Vader-RPi/darth_vader_lightsaber_2x_speed_smaller_version.gif"/>
+        <img class="rwd_img"
+             src="https://raw.githubusercontent.com/raul23/images/master/Darth-Vader-RPi/darth_vader_lightsaber_2x_speed_smaller_version.gif"/>
         </a>
         <p><b>Turning on/off the lightsaber</b>
         </p>
@@ -54,7 +55,12 @@
         <li><a href="#connection-diagram">Connection diagram</a></li>
         <li><a href="#dependencies">Dependencies</a></li>
         <li><a href="#installation-instructions">Installation instructions</a></li>
-        <li><a href="#usage">Usage</a></li>
+        <li><a href="#usage">Usage</a>
+            <ol class="toc">
+                <li><a href="#script-start-dv">Script <code><b>start_dv</b></code></a></li>
+                <li><a href="#simulating-on-your-computer">Simulating on your computer</a></li>
+            </ol>
+        </li>
         <li><a href="#credits">Credits</a></li>
         <li><a href="#resources">Resources</a></li>
         <li><a href="#references">References</a></li>
@@ -62,7 +68,7 @@
 
     <br/>
 
-    <h2><span id="introduction"></span>Introduction</h2>
+    <h2><span id="introduction"></span>1. Introduction</h2>
     <p>The Darth Vader action figure is 11.5 inches tall (which is <a href="https://amzn.to/3hIw0ou">this one from Hasbro</a>) and was modified to make it more
         lifelike by illuminating the lightsaber, chest control box, and belt. 3 push buttons control the following sounds and LEDs:
     </p>
@@ -82,13 +88,14 @@
     <div align="center">
         <a href="https://www.youtube.com/embed/P631S1k1h_0">
             <img class="rwd_img" src="https://img.youtube.com/vi/P631S1k1h_0/0.jpg" alt="Darth Vader action figure activated"></a>
-        <p><b>Click on the above image for the full video to see the LEDs turning on and hear the different sounds produced by pressing the push buttons</b>
+        <p><b>Click on the above image for the full video to see the LEDs turning on and hear the different sounds produced by pressing the push
+            buttons</b>
         </p>
     </div>
 
     <br/>
 
-    <h2><span id="connection-diagram"></span>Connection diagram</h2>
+    <h2><span id="connection-diagram"></span>2. Connection diagram</h2>
     <p>Here’s how the various LEDs and push buttons are connected to the Raspberry Pi:
     </p>
     <div align="center">
@@ -130,7 +137,7 @@
 
     <br/>
 
-    <h2><span id="dependencies"></span>Dependencies</h2>
+    <h2><span id="dependencies"></span>3. Dependencies</h2>
     <ul>
         <li><p><strong>Platforms:</strong> macOS, Linux
             </p></li>
@@ -160,7 +167,7 @@
 
     <br/>
 
-    <h2><span id="installation-instructions"></span>Installation instructions</h2>
+    <h2><span id="installation-instructions"></span>4. Installation instructions</h2>
     <ol>
         <li><p>Make sure to update pip:<!-- HTML generated using hilite.me -->
                 <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
@@ -181,8 +188,8 @@
 
     <br/>
 
-    <h2><span id="usage"></span>Usage</h2>
-    <h3><span id="script-start-dv"></span>Script <code><b>start_dv</b></code></h3>
+    <h2><span id="usage"></span>5. Usage</h2>
+    <h3><span id="script-start-dv"></span>5.1 Script <code><b>start_dv</b></code></h3>
     <p>Once the <code><b>darth_vader_rpi</b></code> package is <a href="#installation-instructions">installed</a>, you should have access to the
         <code><b>start_dv</b></code> script which turns on LEDs and plays sound effects on a Raspberry Pi (RPi).
     </p>
@@ -208,7 +215,7 @@
 
     <br/>
 
-    <h3><span id="simulating-on-your-computer"></span>Simulating on your computer</h3>
+    <h3><span id="simulating-on-your-computer"></span>5.2 Simulating on your computer</h3>
     <p>If you don’t have access to a Raspberry Pi (RPi) and want to try out the <code><b>start_dv</b></code> script, you can run it with the <strong>-s</strong>
         flag. It will make use of the <a class="reference external" href="https://pypi.org/project/SimulRPi/">SimulRPi</a> library to simulate LEDs and push
         buttons connected to an RPi by blinking red dots in the terminal and monitoring pressed keyboard keys:
@@ -235,14 +242,15 @@
     </p>
     <div align="center">
         <a href="https://youtu.be/NwVQlh5eu1g">
-            <img class="rwd_img" src="https://img.youtube.com/vi/NwVQlh5eu1g/0.jpg" alt="LEDs and buttons simulation in a terminal [Darth-Vader-RPi project]"></a>
+            <img class="rwd_img" src="https://img.youtube.com/vi/NwVQlh5eu1g/0.jpg"
+                 alt="LEDs and buttons simulation in a terminal [Darth-Vader-RPi project]"></a>
         <p><b>Click on the above image for the full video</b>
         </p>
     </div>
 
     <br/>
 
-    <h2><span id="credits"></span>Credits</h2>
+    <h2><span id="credits"></span>6. Credits</h2>
     <ul>
         <li><p><strong>Darth Vader quotes:</strong></p>
             <ul>
@@ -275,7 +283,7 @@
 
     <br/>
 
-    <h2><span id="resources"></span>Resources</h2>
+    <h2><span id="resources"></span>7. Resources</h2>
     <ul>
         <li><p><a href="http://darth-vader-rpi.rtfd.io/">Darth-Vader-RPi documentation</a></p></li>
         <li><p><a href="https://github.com/raul23/Darth-Vader-RPi">Darth-Vader-RPi GitHub</a>: source code</p></li>
@@ -284,7 +292,7 @@
 
     <br/>
 
-    <h2><span id="references"></span>References</h2>
+    <h2><span id="references"></span>8. References</h2>
     <ul>
         <li><p><a href="https://github.com/raul23/DV-Sounds">dv_sounds</a>: a package for downloading the various sounds needed for the project, e.g. ligthsaber
             sound effects</p>
