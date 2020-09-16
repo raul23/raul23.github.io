@@ -85,8 +85,20 @@ ol.toc > li {
 }
 
 ol.toc > li:before {
-    content: counters(item, ".") " ";
+    content: counters(item, ".") ". ";
     counter-increment: item
+}
+
+ol.toc {
+   margin-left:-30px;
+}
+
+ol.toc > li > ol.toc {
+   margin-left:-5px;
+}
+
+ul.toc {
+   margin-left:-20px;
 }
 
 /* Dotted underline
