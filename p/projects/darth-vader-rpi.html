@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Personal website">
+    <meta name="author" content="Raul C.">
+    <link rel="shortcut icon" href="/assets/images/site_favicons/favicon_16x16.ico" type="image/x-icon">
+    <title>Title</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/starter-template.css" rel="stylesheet" type="text/css">
+    <title>Darth-Vader-RPi</title>
+
+</head>
+<body>
+<!-- This is where we will place our navigation bar code -->
+<div w3-include-html="/p/header.html"></div>
+
+<main role="main" class="container">
+    <div class="starter-template">
+        <h1>Project: Darth-Vader-RPi</h1>
+
+        <a class="github-button" href="https://github.com/raul23/darth-vader-rpi/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork raul23/darth-vader-rpi on GitHub">Fork</a>
+        <a class="github-button" href="https://github.com/raul23/darth-vader-rpi/master.zip" data-icon="octicon-cloud-download" data-size="large" aria-label="Download raul23/darth-vader-rpi on GitHub">Download</a>
+        <br>
+        <a class="btn btn-primary" target="_blank" href="https://github.com/raul23/darth-vader-rpi" role="button">View on GitHub</a>
+    </div>
+    <p class="lead"><strong>Darth-Vader-RPi</strong> (v0.1.0a0) is a Python-based Raspberry Pi (RPi) project about
+            activating a Darth Vader action figure by turning on LEDs on his suit and lightsaber, and by playing sounds
+            such as some of his famous quotes.
+    </p>
+
+    <div align="center">
+        <a href="https://www.youtube.com/embed/P631S1k1h_0">
+        <img class="rwd_img" src="https://raw.githubusercontent.com/raul23/images/master/Darth-Vader-RPi/darth_vader_lightsaber_2x_speed_smaller_version.gif"/>
+        </a>
+        <p><b>Turning on/off the lightsaber</b>
+        </p>
+    </div>
+
+    <div class="alert alert-danger" role="alert">
+        <p>If you don’t have an RPi, don’t worry. You can still <a href="#simulating-on-your-computer">test the script on your own computer</a>
+            because the <b><code>darth_vader_rpi</code></b> package uses the <a href="https://pypi.org/project/SimulRPi/">SimulRPi</a> library to simulate I/O
+            devices connected to an RPi such as LEDs and push buttons by blinking red dots in the terminal and playing sounds when a keyboard key is pressed.
+            Almost like testing with a real RPi!
+        </p>
+    </div>
+
+    <h2><span id="scroll-here"></span>Contents</h2>
+    <ol class="toc">
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#connection-diagram">Connection diagram</a></li>
+        <li><a href="#dependencies">Dependencies</a></li>
+        <li><a href="#installation-instructions">Installation instructions</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#credits">Credits</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#references">References</a></li>
+    </ol>
+
+    <br/>
+
+    <h2><span id="introduction"></span>Introduction</h2>
+    <p>The Darth Vader action figure is 11.5 inches tall (which is <a href="https://amzn.to/3hIw0ou">this one from Hasbro</a>) and was modified to make it more
+        lifelike by illuminating the lightsaber, chest control box, and belt. 3 push buttons control the following sounds and LEDs:
+    </p>
+    <ol>
+        <li><p>Some of his famous quotes
+            </p></li>
+        <li><p>The <em>Imperial march</em> theme song
+            </p></li>
+        <li><p>The lightsaber drawing, hum and retraction sounds
+            </p></li>
+        <li><p>The lightbsaber illumination (3 LEDs)
+            </p></li>
+    </ol>
+    <p>His iconic breathing sound plays in the background indefinitely almost as soon
+    as the RPi is run with the <a href="#script-start-dv">start_dv</a> script.
+    </p>
+    <div align="center">
+        <a href="https://www.youtube.com/embed/P631S1k1h_0">
+            <img class="rwd_img" src="https://img.youtube.com/vi/P631S1k1h_0/0.jpg" alt="Darth Vader action figure activated"></a>
+        <p><b>Click on the above image for the full video to see the LEDs turning on and hear the different sounds produced by pressing the push buttons</b>
+        </p>
+    </div>
+
+    <br/>
+
+    <h2><span id="connection-diagram"></span>Connection diagram</h2>
+    <p>Here’s how the various LEDs and push buttons are connected to the Raspberry Pi:
+    </p>
+    <div align="center">
+        <img class="rwd_img" src="https://raw.githubusercontent.com/raul23/images/master/Darth-Vader-RPi/schematics.png"/>
+    </div>
+    <ul>
+        <li><p>The lightsaber is illuminated by 3 LEDs connected in parallel
+            </p></li>
+        <li><p>The <em>Top</em>, <em>Middle</em>, and <em>Bottom</em> LEDs illuminate the slots in Darth Vader’s
+                chest control box. They blink in a specific sequence
+                <a href="https://github.com/raul23/archive/blob/master/SimulRPi/v0.1.0a0/default_main_cfg.json#L51">as specified in the configuration file</a>.
+            </p>
+        </li>
+        <li><p>When the <em>Lightsaber button</em> is first pressed, it produces the drawing sound, illuminates the sword, and a hum sound persists until the
+                <em>Lightsaber button</em> is turned off. If the button is pressed again, it produces the sound of retracting the lightsaber and turns it off.
+            </p>
+            <p><strong>NOTE:</strong> the <em>Lightsaber button</em> can be pressed while the <em>Song button</em> or the <em>Quotes button</em> is playing audio
+                since they use different audio channels.
+            </p>
+        </li>
+        <li><p>The <em>Song button</em> plays the <a href="https://soundcloud.com/jacobtownsend1/imperial-march">Imperial March song by Jacob Townsend</a>
+            </p></li>
+        <li><p>The <em>Quotes button</em> plays famous Darth Vader quotes when pressed. For testing purposes, the
+                <b><code>darth_vader_rpi</code></b> package comes with two movie lines:
+            </p>
+            <ul><li><p><a href="https://www.youtube.com/watch?v=xuJEYdOFEP4">“I am your father”</a>
+                    </p></li>
+                <li><p><a href="https://www.youtube.com/watch?v=ZscVhFvD6iE">“Nooooo”</a>: it is also used for the
+                    <a href="https://darth-vader-rpi.readthedocs.io/en/v0.1.0a0/change_default_settings.html#change-closing-sound-label">closing sound</a> when the
+                    <a href="#script-start-dv">start_dv</a> script exits
+                    </p>
+                </li>
+            </ul>
+            <p>However, you could <a href="https://darth-vader-rpi.readthedocs.io/en/v0.1.0a0/change_default_settings.html#add-darth-vader-quotes-label">
+                add more quotes</a> if you want.
+            </p>
+        </li>
+    </ul>
+
+    <br/>
+
+    <h2><span id="dependencies"></span>Dependencies</h2>
+    <ul>
+        <li><p><strong>Platforms:</strong> macOS, Linux
+            </p></li>
+        <li><p><strong>Python</strong>: 3.5, 3.6, 3.7, 3.8
+            </p></li>
+        <li><p><strong>Packages</strong>
+            </p>
+            <ul>
+                <li><p><a href="https://github.com/raul23/DV-Sounds">dv_sounds</a>&gt;=0.1.0a0: for retrieving the sound files (quotes,
+                    songs, and sound effects).
+                    </p>
+                </li>
+                <li><p><a href="https://www.pygame.org/">pygame</a>&gt;=1.9.3: for playing sounds.
+                    </p>
+                </li>
+                <li><p><a href="https://pynput.readthedocs.io">pynput</a>&gt;=1.6.8: needed by <code><b>SimulRPi</b></code> for monitoring the keyboard when
+                    simulating push buttons with keyboard keys, i.e. when running the <a href="#script-start-dv">start_dv</a> script in simulation mode.
+                    </p>
+                </li>
+                <li><p><a href="https://pypi.org/project/SimulRPi/">SimulRPi</a>&gt;=0.1.0a0: for partly faking <code><b>RPI.GPIO</b></code> and simulating I/O
+                    devices connected to an RPi such as LEDs and push buttons in case that you don’t have access to an RPi.
+                    </p>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <br/>
+
+    <h2><span id="installation-instructions"></span>Installation instructions</h2>
+    <ol>
+        <li><p>Make sure to update pip:<!-- HTML generated using hilite.me -->
+                <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
+                    <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>pip install --upgrade pip</pre>
+                </div>
+            </p>
+        </li>
+        <li><p>Install the package <code><b>darth_vader_rpi</b></code> (released version <strong>0.1.0a0</strong>) with <em>pip</em>:
+                <!-- HTML generated using hilite.me -->
+                <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
+                    <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>pip install git+https://github.com/raul23/Darth-Vader-RPi@v0.1.0a0#egg<span style="color: #333333">=</span>Darth-Vader-RPi</pre>
+                </div>
+            </p>
+            <p>It will install the dependencies if they are not already found in your system.
+            </p>
+        </li>
+    </ol>
+
+    <br/>
+
+    <h2><span id="usage"></span>Usage</h2>
+    <h3><span id="script-start-dv"></span>Script <code><b>start_dv</b></code></h3>
+    <p>Once the <code><b>darth_vader_rpi</b></code> package is <a href="#installation-instructions">installed</a>, you should have access to the
+        <code><b>start_dv</b></code> script which turns on LEDs and plays sound effects on a Raspberry Pi (RPi).
+    </p>
+    <p>Run the script on your <strong>RPi</strong> with <a href="https://github.com/raul23/archive/blob/master/SimulRPi/v0.1.0a0/default_main_cfg.json#L1">default
+        values</a> for the GPIO channels and other settings:
+        <!-- HTML generated using hilite.me -->
+        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
+            <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>start_dv</pre>
+        </div>
+    </p>
+    <p>If you want to test the script on your <strong>computer</strong> (use the <strong>-s</strong> flag):
+        <!-- HTML generated using hilite.me -->
+        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
+            <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>start_dv -s</pre>
+        </div>
+    </p>
+    <p>To display the script’s list of options and their descriptions:
+        <!-- HTML generated using hilite.me -->
+        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
+            <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>start_dv -h</pre>
+        </div>
+    </p>
+
+    <br/>
+
+    <h3><span id="simulating-on-your-computer"></span>Simulating on your computer</h3>
+    <p>If you don’t have access to a Raspberry Pi (RPi) and want to try out the <code><b>start_dv</b></code> script, you can run it with the <strong>-s</strong>
+        flag. It will make use of the <a class="reference external" href="https://pypi.org/project/SimulRPi/">SimulRPi</a> library to simulate LEDs and push
+        buttons connected to an RPi by blinking red dots in the terminal and monitoring pressed keyboard keys:
+        <!-- HTML generated using hilite.me -->
+        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
+            <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>start_dv -s</pre>
+        </div>
+    </p>
+    <p><strong>NOTE:</strong> the last command makes use of default values. See
+        <a href="https://darth-vader-rpi.readthedocs.io/en/v0.1.0a0/change_default_settings.html">Change default settings</a> on how to change these values.
+    </p>
+    <p>Here’s how the keyboard keys are related <strong>by default</strong> to push buttons connected to an RPi:
+    </p>
+    <ul>
+        <li><p><code><b>cmd_l</b></code>   —–&gt; lightsaber button</p></li>
+        <li><p><code><b>alt_l</b></code>   —–&gt; song button</p></li>
+        <li><p><code><b>alt_r</b></code>  —–&gt; quotes button</p></li>
+    </ul>
+    <p>Check <a href="https://darth-vader-rpi.readthedocs.io/en/v0.1.0a0/change_default_settings.html#change-keymap-label">Change keymap</a> if you want to
+        change this default key-to-channel mapping.
+    </p>
+    <p>Here is a video of what it looks like in a terminal when running the <code><b>start_dv</b></code> script on a computer instead of an
+        RPi:
+    </p>
+    <div align="center">
+        <a href="https://youtu.be/NwVQlh5eu1g">
+            <img class="rwd_img" src="https://img.youtube.com/vi/NwVQlh5eu1g/0.jpg" alt="LEDs and buttons simulation in a terminal [Darth-Vader-RPi project]"></a>
+        <p><b>Click on the above image for the full video</b>
+        </p>
+    </div>
+
+    <br/>
+
+    <h2><span id="credits"></span>Credits</h2>
+    <ul>
+        <li><p><strong>Darth Vader quotes:</strong></p>
+            <ul>
+                <li><p><a href="https://www.youtube.com/watch?v=xuJEYdOFEP4">“I am your father”</a></p></li>
+                <li><p><a href="https://www.youtube.com/watch?v=ZscVhFvD6iE">“Nooooo”</a></p></li>
+            </ul>
+        </li>
+        <li><p><strong>Music:</strong></p>
+            <ul>
+                <li><p><a href="https://soundcloud.com/jacobtownsend1/imperial-march">Imperial March song by Jacob Townsend</a> is licensed under a
+                    <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons (CC BY-NC-SA 3.0) License</a></p>
+                    <p><strong>NOTE:</strong> The original song file was reduced under 1 MB by removing the
+                    first 7 seconds (no sound) and the last 2 minutes and 24 seconds.</p>
+                </li>
+            </ul>
+        </li>
+        <li><p><strong>Sound effects:</strong></p>
+            <ul>
+                <li><p><a href="https://www.youtube.com/watch?v=d28NrjMPERs">Darth Vader breathing sound</a></p></li>
+                <li><p><a href="https://www.youtube.com/watch?v=bord-573NWY">Darth Vader’s lightsaber sound effect</a></p></li>
+                <li><p><a href="https://www.youtube.com/watch?v=m6buyGJF46k">Darth Vader’s lightsaber retraction sound effect</a></p></li>
+            </ul>
+        </li>
+        <li><p><strong>Slot LEDs sequences:</strong></p>
+            <ul>
+            <li><p><a href="https://youtu.be/E2J_xl2MbGU?t=333">Empire Strikes Back chest box light sequence</a></p></li>
+            </ul>
+        </li>
+    </ul>
+
+    <br/>
+
+    <h2><span id="resources"></span>Resources</h2>
+    <ul>
+        <li><p><a href="http://darth-vader-rpi.rtfd.io/">Darth-Vader-RPi documentation</a></p></li>
+        <li><p><a href="https://github.com/raul23/Darth-Vader-RPi">Darth-Vader-RPi GitHub</a>: source code</p></li>
+        <li><p><a href="https://darth-vader-rpi.readthedocs.io/en/v0.1.0a0/changelog.html">Darth-Vader-RPi Changelog</a></p></li>
+    </ul>
+
+    <br/>
+
+    <h2><span id="references"></span>References</h2>
+    <ul>
+        <li><p><a href="https://github.com/raul23/DV-Sounds">dv_sounds</a>: a package for downloading the various sounds needed for the project, e.g. ligthsaber
+            sound effects</p>
+        </li>
+        <li><p><a href="https://www.pygame.org/">pygame</a>: a package used for playing sounds</p></li>
+        <li><p><a href="https://pypi.org/project/RPi.GPIO/">RPI.GPIO</a>: a module to control RPi GPIO channels</p></li>
+        <li><p><a href="https://pypi.org/project/SimulRPi/">SimulRPi</a>: a package that partly fakes <code><b>RPi.GPIO</b></code> and simulates some I/O
+            devices on a Raspberry Pi. It makes use of the <a href="https://pynput.readthedocs.io">pynput</a> library for monitoring the keyboard for any
+            pressed key.</p>
+        </li>
+    </ul>
+    <br/>
+    <br/>
+</main><!-- /.container -->
+
+<!-- This is where we will place our scripts -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"
+        type="text/javascript">
+</script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-3.3.1.min.js" type="text/javascript"><\/script>')</script>
+<script src="/assets/js/vendor/popper.min.js" type="text/javascript"></script>
+<script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/assets/js/custom/header.js" type="text/javascript"></script>
+<script src="/assets/js/custom/back_to_top.js" type="text/javascript"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>

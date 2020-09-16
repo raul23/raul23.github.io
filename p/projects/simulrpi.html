@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Personal website">
+    <meta name="author" content="Raul C.">
+    <link rel="shortcut icon" href="/assets/images/site_favicons/favicon_16x16.ico" type="image/x-icon">
+    <title>Title</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/starter-template.css" rel="stylesheet" type="text/css">
+    <title>SimulRPi</title>
+</head>
+<body>
+<!-- This is where we will place our navigation bar code -->
+<div w3-include-html="/p/header.html"></div>
+
+<main role="main" class="container">
+    <span id="scroll-here"></span>
+    <div class="starter-template">
+        <h1>Project: SimulRPi</h1>
+
+        <a class="github-button" href="https://github.com/raul23/SimulRPi/fork" data-icon="octicon-repo-forked" data-size="large"
+           aria-label="Fork raul23/SimulRPi on GitHub">Fork</a>
+        <a class="github-button" href="https://github.com/raul23/SimulRPi/master.zip" data-icon="octicon-cloud-download" data-size="large"
+           aria-label="Download raul23/SimulRPi on GitHub">Download</a>
+        <br>
+        <a class="btn btn-primary" target="_blank" href="https://github.com/raul23/SimulRPi" role="button">View on GitHub</a>
+    </div>
+    <!-- TODO: Add your lead's text -->
+    <p class="lead"><strong>SimulRPi</strong> (0.1.0a0) is a Python library that partly fakes
+        <a href="https://pypi.org/project/RPi.GPIO/">RPi.GPIO</a> and simulates some I/O devices on a Raspberry Pi (RPi).
+    </p>
+
+    <div align="center">
+        <img class="rwd_img"
+             src="https://raw.githubusercontent.com/raul23/images/master/Darth-Vader-RPi/simulation_terminal_channel_number_430x60.gif"/>
+        <p><b>Simulating LEDs on an RPi via a terminal</b></p>
+    </div>
+
+    <h2>Contents</h2>
+    <ul class="toc">
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#dependencies">Dependencies</a></li>
+        <li><a href="#installation-instructions">Installation instructions</a></li>
+        <li><a href="#usage">Usage</a>
+            <ul>
+                <li><a href="#use-library">Use the library in your own code</a>
+                    <ul>
+                        <li><a href="#case-1">Case 1: with a <code><b>try</b></code> and <code><b>except</b></code> blocks</a>
+                        <li><a href="#case-2">Case 2: with a simulation flag</a>
+                    </ul>
+                <li><a href="#script-run-examples">Script <code><b>run_examples</b></code></a>
+            </ul>
+
+        </li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#references">References</a></li>
+    </ul>
+
+    <h2><span id="introduction"></span>Introduction</h2>
+    <p>In addition to partly faking <a href="https://pypi.org/project/RPi.GPIO/">RPi.GPIO</a>, <strong>SimulRPi</strong> also simulates these I/O devices connected
+        to an RPi:
+    </p>
+    <ul>
+        <li><p>push buttons by listening to pressed keyboard keys and</p></li>
+        <li><p>LEDs by blinking dots in the terminal along with their GPIO pin numbers.</p>
+        </li>
+    </ul>
+    <p>When a LED is turned on, it is shown as a red dot in the terminal. The
+    <a href="https://pynput.readthedocs.io/">pynput</a> package is used to monitor the keyboard for any pressed key.</p>
+    <p><strong>Example: terminal output</strong></p>
+    <div align="center">
+        <img class="rwd_img"
+             src="https://raw.githubusercontent.com/raul23/images/master/Darth-Vader-RPi/simulation_terminal_channel_number_430x60.gif"/>
+        <p><b>Simulating LEDs on an RPi via a terminal</b></p>
+    </div>
+    <p>Each dot represents a blinking LED connected to an RPi and the number between brackets is the associated GPIO channel number. Here the LED on channel 22
+        toggles between on and off when a key is pressed.</p>
+    <p>Also, the color of the LEDs can be customized as you can see here where the LED on channel 22 is colored differently from the others.</p>
+    <div class="alert alert-danger" role="alert">
+        <p>This library is not a Raspberry Pi emulator nor a complete mock-up of
+        <a href="https://pypi.org/project/RPi.GPIO/">RPi.GPIO</a>, only the most important functions that I needed for my
+        <a href="https://github.com/raul23/Darth-Vader-RPi">Darth-Vader-RPi</a> project were added.</p>
+        <p>If there is enough interest in this library, I will eventually mock more functions from <a href="https://pypi.org/project/RPi.GPIO/">RPi.GPIO</a>.</p>
+    </div>
+    <br/>
+
+    <h2><span id="dependencies"></span>Dependencies</h2>
+    <ul>
+        <li><p><strong>Platforms:</strong> macOS, Linux</p></li>
+        <li><p><strong>Python</strong>: 3.5, 3.6, 3.7, 3.8</p></li>
+        <li><p><a href="https://pynput.readthedocs.io">pynput</a>&gt;=1.6.8: for monitoring the keyboard for any pressed key</p></li>
+    </ul>
+
+    <br/>
+
+    <h2><span id="installation-instructions"></span>Installation instructions</h2>
+    <ol>
+        <li><p>Make sure to update pip:<!-- HTML generated using hilite.me -->
+                <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
+                    <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>pip install --upgrade pip</pre>
+                </div>
+            </p>
+        </li>
+        <li><p>Install the package <code><b>SimulRPi</b></code> with <em>pip</em>:
+                <!-- HTML generated using hilite.me -->
+                <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
+                    <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>pip install SimulRPi<span style="color: #333333"></span></pre>
+                </div>
+            </p>
+            <p>It will install the dependency <code><b>pynput</b></code> if it is not already found in your system.</p>
+        </li>
+    </ol>
+
+    <br/>
+
+    <h2><span id="usage"></span>Usage</h2>
+    <h3><span id="use-library"></span>Use the library in your own code</h3>
+    <h4><span id="case-1"></span>Case 1: with a <code><b>try</b></code> and <code><b>except</b></code> blocks</h4>
+    You can try importing RPi.GPIO first and if it is not found, then fallback on the <code><b>SimulRPi.GPIO</b></code> module.
+    <br/>
+    <br/>
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
+        <pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">try</span>:
+    <span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">RPi.GPIO</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">GPIO</span>
+<span style="color: #008800; font-weight: bold">except</span> <span style="color: #FF0000; font-weight: bold">ImportError</span>:
+    <span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">SimulRPi.GPIO</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">GPIO</span>
+
+<span style="color: #888888"># Rest of your code</span>
+        </pre>
+    </div>
+    <br/>
+    The code from the previous example would be put at the beginning of your file with the other imports.
+    <br/>
+    <br/>
+
+    <h4><span id="case-2"></span>Case 2: with a simulation flag</h4>
+    Or maybe you have a flag to tell whether you want to work with the simulation module or the real one.
+    <br/>
+    <br/>
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
+        <pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">if</span> simulation:
+    <span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">SimulRPi.GPIO</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">GPIO</span>
+<span style="color: #008800; font-weight: bold">else</span>:
+    <span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">RPi.GPIO</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">GPIO</span>
+
+<span style="color: #888888"># Rest of your code</span>
+        </pre>
+    </div>
+    <br/>
+
+    <h3><span id="script-run-examples"></span>Script <code><b>run_examples</b></code></h3>
+    <p>The <a href="https://simulrpi.readthedocs.io/en/0.1.0a0/api_reference.html#module-SimulRPi.run_examples"><code><b>run_examples</b></code></a> script which
+        you have access to once you <a href="#installation-instructions">install</a> the <code><b>SimulRPi</b></code> package allows you to run different code
+        examples on your RPi or computer. If it is run on your computer, it will make use of the <code><b>SimulRPi.GPIO</b></code> module which partly fakes
+        <code><b>RPi.GPIO</b></code>.</p>
+    <p>To display the script’s list of options and their descriptions:
+        <!-- HTML generated using hilite.me -->
+        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
+            <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>run_examples -h</pre>
+        </div>
+    </p>
+    <p>Let's run the code example 5 which blinks a LED if a specified key is pressed:
+        <!-- HTML generated using hilite.me -->
+        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
+            <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>-s -e 5 -l 22 -t 5 -k ctrl_r</pre>
+        </div>
+    </p>
+    <p>Explanation of the previous command-line:
+        <ul>
+            <li><code>-s<b></b></code>: we run the code example as a <b>simulation</b>, i.e. on our computer instead of an RPi</li>
+            <li><code>-e 5<b></b></code>we run code example <b>5</b> which blinks a LED if a key is pressed</li>
+            <li><code>-l 22<b></b></code>we blink a LED on channel <b>22</b></li>
+            <li><code><b>- t 5</b></code>we blink a LED for a total of <b>5</b> seconds</li>
+            <li><code><b>-k ctrl_r</b></code>: a LED is blinked if the key <code><b>ctrl_r</b></code> is pressed</li>
+        </ul>
+    </p>
+    <p><strong>Output:</strong></p>
+    <a href="https://raw.githubusercontent.com/raul23/images/master/SimulRPi/v0.1.0a0/run_examples_05_terminal_output.gif">
+        <img class="rwd_img" alt="Example 05: terminal output"
+             src="https://raw.githubusercontent.com/raul23/images/master/SimulRPi/v0.1.0a0/run_examples_05_terminal_output.gif" />
+    </a>
+
+    <br/>
+    <br/>
+
+    <h2><span id="resources"></span>Resources</h2>
+    <ul>
+        <li><p><a href="https://simulrpi.readthedocs.io/">SimulRPi documentation</a></p></li>
+        <li><p><a href="https://github.com/raul23/SimulRPi">SimulRPi GitHub</a>: source code</p></li>
+        <li><p><a href="https://pypi.org/project/SimulRPi/">SimulRPi PyPI</a></p></li>
+        <li><p><a href="https://simulrpi.readthedocs.io/en/0.1.0a0/changelog.html">SimulRPi Changelog</a></p></li>
+        <li><p><a href="https://github.com/raul23/Darth-Vader-RPi">Darth-Vader-RPi</a>: personal project using <code><b>RPi.GPIO</b></code> for activating a Darth
+            Vader action figure with light and sounds and <code><b>SimulRPi.GPIO</b></code> as fallback if testing on a computer when no RPi is available</p></li>
+    </ul>
+
+    <br/>
+
+    <h2><span id="references"></span>References</h2>
+    <ul>
+        <li><p><a href="https://pynput.readthedocs.io/">pynput</a>: package used for monitoring the keyboard for any pressed key as to simulate push buttons
+            connected to an RPi</p></li>
+        <li><p><a href="https://pypi.org/project/RPi.GPIO/">RPI.GPIO</a>: a module to control RPi GPIO channels</p></li>
+    </ul>
+    <br/>
+    <br/>
+</main><!-- /.container -->
+
+<!-- This is where we will place our scripts -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"
+        type="text/javascript">
+</script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-3.3.1.min.js" type="text/javascript"><\/script>')</script>
+<script src="/assets/js/vendor/popper.min.js" type="text/javascript"></script>
+<script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/assets/js/custom/header.js" type="text/javascript"></script>
+<script src="/assets/js/custom/back_to_top.js" type="text/javascript"></script>
+<! -- GitHub buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>
