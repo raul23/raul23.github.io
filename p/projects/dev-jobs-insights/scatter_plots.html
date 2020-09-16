@@ -21,34 +21,31 @@
 <div w3-include-html="/p/header.html"></div>
 
 <main role="main" class="container">
+    <span id="scroll-here"></span>
     <div class="starter-template">
         <h1>Interactive scatter plots</h1>
     </div>
 
     <p class="lead">Here you will find the interactive scatter plots generated for the
-        <a href="https://raul23.github.io/p/projects/dev-jobs-insights.html">dev-jobs-insights</a> project. Each figures
+        <a href="../dev-jobs-insights.html">dev-jobs-insights</a> project. Each figures
     are accompanied by a small table that presents some stats (e.g. published dates) about the data used
         for generating the corresponding figure.</p>
 
     <h2>Contents</h2>
     <ol class="toc">
-        <li><a href="#interactive_graphs">Interactive graphs</a>
-            <ol class="toc">
-                <li><a href="#scatter_europe">Scatter plot of salaries in Europe</a></li>
-                <li><a href="#scatter_usa">Scatter plot of salaries in the USA</a></li>
-                <li><a href="#scatter_world">Scatter plot of salaries around the World</a></li>
-                <li><a href="#scatter_industries">Scatter plot of salaries among industries</a></li>
-                <li><a href="#scatter_technologies">Scatter plot of salaries among technologies</a></li>
-            </ol>
-        </li>
+        <li><a href="#scatter_europe">Scatter plot of salaries in Europe</a></li>
+        <li><a href="#scatter_usa">Scatter plot of salaries in the USA</a></li>
+        <li><a href="#scatter_world">Scatter plot of salaries around the World</a></li>
+        <li><a href="#scatter_industries">Scatter plot of salaries among industries</a></li>
+        <li><a href="#scatter_technologies">Scatter plot of salaries among technologies</a></li>
     </ol>
 
-    <h2><span id="interactive_graphs"></span>Interactive graphs</h2>
     <div class="alert alert-danger" role="alert">
         <a target="_blank" href="/p/projects/dev-jobs-insights.html#mid_range_salaries">What is meant by mid-range salaries?</a>
         <br/>
         <a target="_blank" href="/p/projects/dev-jobs-insights.html#average_mid_range_salaries">How the average mid-range salaries are computed?</a>
     </div>
+
     <h3><span id="scatter_europe"></span>Scatter plot of salaries in Europe</h3>
     <div id="f8eb6e6a-c821-4561-a88d-d6215ac09508" class="plotly-graph-div"></div>
     <script type="text/javascript">window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("f8eb6e6a-c821-4561-a88d-d6215ac09508", [{"mode": "markers", "text": ["Switzerland", "Norway", "Malta", "Sweden", "Germany", "Netherlands", "United Kingdom", "Finland", "Austria", "Italy", "France", "Spain", "Poland", "Ireland"], "x": [101680.0, 87045.0, 87045.0, 80085.0, 70301.64705882352, 68189.9, 67684.63888888889, 62890.0625, 59567.75, 58030.0, 56869.4375, 48358.333333333336, 38646.25, 37719.5], "y": [2, 1, 1, 4, 34, 10, 18, 8, 8, 3, 8, 3, 2, 1], "type": "scatter", "uid": "36066564-c9eb-11e8-b7e9-685b35bf8740"}], {"hovermode": "closest", "title": "Average mid-range salaries in Europe @ stackoverflow.com/jobs", "xaxis": {"showline": false, "tickformat": "$0.0f", "title": "Average mid-range salaries (USD)", "titlefont": {"color": "#7f7f7f", "family": "Courier New, monospace", "size": 18}}, "yaxis": {"showline": true, "title": "Number of job posts", "titlefont": {"color": "#7f7f7f", "family": "Courier New, monospace", "size": 18}}}, {"showLink": true, "linkText": "Export to plot.ly"})</script>
