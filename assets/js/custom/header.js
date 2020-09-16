@@ -54,8 +54,7 @@ setTimeout(function(){
         }
         else
             elem.parent().addClass('active');
-
     }
-}, 200);
+}, 300);
 
 includeHTML();
