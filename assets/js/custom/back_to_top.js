@@ -3,7 +3,7 @@ ref.: https://bit.ly/2oThj8Y (How To Add Back To Top Button In Blogger)
 ref.: https://www.scrolltotop.com/ (Icon)
 */
 jQuery(window).ready(function () {
-    var offset = 800;
+    var offset = 220;
     var duration = 500;
     jQuery(window).scroll(function () {
         if (jQuery(this).scrollTop() > offset) {
