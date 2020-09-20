@@ -71,9 +71,6 @@
             </ol>
         </li>
         <li><a href="#mid_range_salaries">Mid-range salaries</a>
-            <ol class="toc">
-                <li><a href="#average_mid_range_salaries">Average mid-range salaries</a></li>
-            </ol>
         </li>
         <li><a href="#todos">TODOs</a></li>
         <li><a href="#roadmap">Roadmap</a></li>
@@ -81,8 +78,8 @@
 
     <br/>
 
-    <h2><span id="sources_of_jobs_data"></span>Sources of jobs data</h2>
-    <h3><span id="rss_jobs_feed"></span>Stack Overflow's RSS jobs feed</h3>
+    <h2><span id="sources_of_jobs_data"></span>1. Sources of jobs data</h2>
+    <h3><span id="rss_jobs_feed"></span>1.1 Stack Overflow's RSS jobs feed</h3>
     <p>The first source of jobs data is the <a href="https://stackoverflow.com/jobs/feed">Stack Overflow's RSS jobs
     feed</a> which provides a total of 1000 entries (i.e. job posts). Almost every day, the feed gets updated with new
     job posts. The Python <a href="https://github.com/kurtmckee/feedparser"><code>feedparser</code></a> module is used
@@ -144,9 +141,8 @@
     </table>
 
     <br/>
-    <br/>
 
-    <h3><span id="developer_jobs_website"></span>Stack Overflow's developer jobs website</h3>
+    <h3><span id="developer_jobs_website"></span>1.2 Stack Overflow's developer jobs website</h3>
     <p>The second source of jobs data comes from <a href="https://stackoverflow.com/jobs">Stack Overflow's developer jobs</a>.
     The entry's <code>link</code> from the RSS feed is used to get the corresponding job post's webpage. From the
     webpage, we can get a lot more data about the job post that we couldn't get <b>directly</b> from the RSS feed such
@@ -163,7 +159,7 @@
 
     <p><span id="table02"></span>These are some of the relevant attributes extracted from each job post's webpage into
         an SQLite database:</p>
-    <table class="style_table"></span>
+    <table class="style_table">
         <caption><b>Table 2</b> Relevant attributes extracted from each job post's webpage
         </caption>
         <tbody class="style_table">
@@ -262,7 +258,7 @@
 
     <br/>
 
-    <h2><span id="pipeline_for_maps_and_graphs"></span>Pipeline for generating the maps and graphs</h2>
+    <h2><span id="pipeline_for_maps_and_graphs"></span>2. Pipeline for generating the maps and graphs</h2>
     The pipeline for ultimately generating the maps and graphs consists in a series of components that are run in this
     order:
     <ol>
@@ -292,13 +288,14 @@
         <li><a href="#data_analyzers">Data analyzers</a>
             <ul>
                 <li><b>input:</b> SQLite database with the web scraped data</li>
-                </li>
                 <li><b>output:</b> maps, graphs, and reports</li>
             </ul>
         </li>
     </ol>
 
-    <h3><span id="rss_jobs_reader"></span>RSS jobs reader</h3>
+    <br/>
+
+    <h3><span id="rss_jobs_reader"></span>2.1 RSS jobs reader</h3>
     <p>The first stage in the pipeline is the RSS jobs reader which takes as input the Stack Overflow's RSS jobs feed. It is
     built based on the Python module <code>feedparser</code> which does the parsing of the feed. The entries (one entry
         = one job post) in the feed are extracted and loaded into an SQLite database, see <a href="#table01">Table 1</a>
@@ -310,7 +307,7 @@
 
     <br/>
 
-    <h3><span id="web_scraper"></span>Web scraper</h3>
+    <h3><span id="web_scraper"></span>2.2 Web scraper</h3>
     <p>The second stage in the pipeline is the <b>web scraper</b> which takes initially as input the SQLite database with
         the parsed RSS feed from the previous stage. Each entry's <code>url</code> is used for getting the job post's
         webpage which is parsed using the python module <a href="https://www.crummy.com/software/BeautifulSoup/">
@@ -322,19 +319,22 @@
 
     <br/>
 
-    <h3><span id="data_cleaner_and_loader"></span>Data cleaner and loader</h3>
+    <h3><span id="data_cleaner_and_loader"></span>2.3 Data cleaner and loader</h3>
     <p>The third stage in the pipeline is the <b>data cleaner and loader</b> which takes as input the scraped data from
         the web scraper in the previous step. Before the scraped data is loaded into the database, the data is cleaned
         up by <a href="#remove_non_informative_job_locations">removing any non-informative job locations</a> and
         <a href="#renaming_industries">renaming industries to standardized names.</a></p>
 
-    <h4><span id="remove_non_informative_job_locations"></span>Removing non-informative job locations</h4>
+    <br/>
+
+    <h4><span id="remove_non_informative_job_locations"></span>2.3.1 Removing non-informative job locations</h4>
     <p>
         Some job posts have job locations that don't provide more information
         compared to their other job locations that they are already associated with.
         Thus, these non-informative locations are ignored to avoid artificially
         increasing the count of a particular job location. Here are the cases that are
         treated:
+    </p>
         <ol>
         <li>
         A job post has two locations with the same country but one location only
@@ -356,9 +356,11 @@
         "<b>Toronto, ON, CA"</b>, only the latter location is kept.
         </li>
         </ol>
-    </p>
-    <h4><span id="renaming_industries"></span>Renaming industries</h4>
-    <p>Some names of industries were almost identical that they were renamed to a standardized name:
+
+    <br/>
+
+    <h4><span id="renaming_industries"></span>2.3.2 Renaming industries</h4>
+    <p>Some names of industries were almost identical that they were renamed to a standardized name:</p>
 
     <table class="style_table">
         <caption><b>Table 3</b> Standard names used for industries
@@ -387,9 +389,8 @@
         </tr>
         </tbody>
     </table>
-    </p>
 
-    <h3><span id="data_analyzers"></span>Data analyzers</h3>
+    <h3><span id="data_analyzers"></span>2.4 Data analyzers</h3>
     <p>The fourth and last stage of the pipeline is the production of the different maps, graphs, and reports based on
     the cleaned scraped jobs data. Next is the list of the maps and graphs generated along with a sample figure (low-res)
         for each type of plot (see <a href="/p/projects/dev-jobs-insights/maps_and_graphs.html">Insights: Maps and
@@ -467,7 +468,7 @@
 
     <br/>
 
-    <h2><span id="mid_range_salaries"></span>Mid-range salaries</h2>
+    <h2><span id="mid_range_salaries"></span>3. Mid-range salaries</h2>
     <p>
         The job salaries provided by the companies consist in a minimum and maximum values, e.g. €50k - 65k. Thus, in
         order to have one salary number per job post, I converted the range of salaries into a <b>mid-range salary</b>,
@@ -479,6 +480,7 @@
         (e.g. San Francisco or New York City) have high living costs than others so you
         will expect that these places will offer higher paying wages.
     </p>
+    <span id="average_mid_range_salaries"></span>
     <p>
         I used thresholds for ignoring suspicious values: everything outside the range
         [8000, 400000] (USD) was ignored. Some reasons might explain why these
@@ -488,14 +490,15 @@
         each suspicious salary range falls into but I will do it eventually. For the
         moment there are very few ranges that get thrown away.
     </p>
-    <h3><span id="average_mid_range_salaries"></span>Average mid-range salaries</h3>
+
+    <b>Average mid-range salaries</b>
     <p>The <b>average mid-range salary</b> of an item (e.g. industries, skills) is computed by grouping all the same
         items along with their mid-range salaries and computing the average of their mid-range salaries.</p>
 
     <br/>
 
-    <h2><span id="todos"></span>TODOs</h2>
-    <p>Tasks to complete in the short to medium term:
+    <h2><span id="todos"></span>4. TODOs</h2>
+    <p>Tasks to complete in the short to medium term:</p>
     <ul>
         <li>Display jobs data summary directly on each map and graph</li>
         <li>Integrate more jobs data from Stack Overflow</li>
@@ -505,20 +508,18 @@
         <li>Enable interactive graphs for mobile devices; right now they don't show correctly at all on mobile devices</li>
         <li>Use a translating service to translate non-english countries (the most common case being German)</li>
     </ul>
-    </p>
 
     <br/>
 
-    <h2><span id="roadmap"></span>Roadmap</h2>
-    <p>Tasks to complete in the long-term:
+    <h2><span id="roadmap"></span>5. Roadmap</h2>
+    <p>Tasks to complete in the long-term:</p>
     <ul>
         <li>Fully automate the whole pipeline of generating the graphs, maps, and reports</li>
         <li>Integrate more jobs data from other jobs sites</li>
         <li>Package the pipeline (except the Web scraper component) as a Docker container</li>
         <li>Use the whole pipeline for analyzing other kind of sites such as news and social network sites</li>
     </ul>
-    </p>
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br/><br/>
 </main>
 
 <!-- Bootstrap core JavaScript
