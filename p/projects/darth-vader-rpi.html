@@ -169,20 +169,22 @@
 
     <h2><span id="installation-instructions"></span>4. Installation instructions</h2>
     <ol>
-        <li><p>Make sure to update pip:<!-- HTML generated using hilite.me -->
+        <li><p>Make sure to update pip:</p>
+            <!-- HTML generated using hilite.me -->
                 <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
                     <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>pip install --upgrade pip</pre>
                 </div>
-            </p>
         </li>
-        <li><p>Install the package <code><b>darth_vader_rpi</b></code> (released version <strong>0.1.0a0</strong>) with <em>pip</em>:
+
+        <br/>
+
+        <li><p>Install the package <code><b>darth_vader_rpi</b></code> (released version <strong>0.1.0a0</strong>) with <em>pip</em>:</p>
                 <!-- HTML generated using hilite.me -->
                 <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
                     <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>pip install git+https://github.com/raul23/Darth-Vader-RPi@v0.1.0a0#egg<span style="color: #333333">=</span>Darth-Vader-RPi</pre>
                 </div>
-            </p>
-            <p>It will install the dependencies if they are not already found in your system.
-            </p>
+            <br/>
+            <p>It will install the dependencies if they are not already found in your system.</p>
         </li>
     </ol>
 
@@ -194,36 +196,35 @@
         <code><b>start_dv</b></code> script which turns on LEDs and plays sound effects on a Raspberry Pi (RPi).
     </p>
     <p>Run the script on your <strong>RPi</strong> with <a href="https://github.com/raul23/archive/blob/master/SimulRPi/v0.1.0a0/default_main_cfg.json#L1">default
-        values</a> for the GPIO channels and other settings:
+        values</a> for the GPIO channels and other settings: </p>
         <!-- HTML generated using hilite.me -->
         <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
             <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>start_dv</pre>
         </div>
-    </p>
-    <p>If you want to test the script on your <strong>computer</strong> (use the <strong>-s</strong> flag):
+    <br/>
+    <p>If you want to test the script on your <strong>computer</strong> (use the <strong>-s</strong> flag):</p>
         <!-- HTML generated using hilite.me -->
         <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
             <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>start_dv -s</pre>
         </div>
-    </p>
-    <p>To display the script’s list of options and their descriptions:
+    <br/>
+    <p>To display the script’s list of options and their descriptions:</p>
         <!-- HTML generated using hilite.me -->
         <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
             <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>start_dv -h</pre>
         </div>
-    </p>
 
     <br/>
 
     <h3><span id="simulating-on-your-computer"></span>5.2 Simulating on your computer</h3>
     <p>If you don’t have access to a Raspberry Pi (RPi) and want to try out the <code><b>start_dv</b></code> script, you can run it with the <strong>-s</strong>
         flag. It will make use of the <a class="reference external" href="https://pypi.org/project/SimulRPi/">SimulRPi</a> library to simulate LEDs and push
-        buttons connected to an RPi by blinking red dots in the terminal and monitoring pressed keyboard keys:
+        buttons connected to an RPi by blinking red dots in the terminal and monitoring pressed keyboard keys:</p>
         <!-- HTML generated using hilite.me -->
         <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
             <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>start_dv -s</pre>
         </div>
-    </p>
+    <br/>
     <p><strong>NOTE:</strong> the last command makes use of default values. See
         <a href="https://darth-vader-rpi.readthedocs.io/en/v0.1.0a0/change_default_settings.html">Change default settings</a> on how to change these values.
     </p>
