@@ -56,9 +56,12 @@
             </ul>
 
         </li>
+        <li><a href="#example">Example: display 3 LEDs</a></li>
         <li><a href="#resources">Resources</a></li>
         <li><a href="#references">References</a></li>
     </ul>
+
+    <br/>
 
     <h2><span id="introduction"></span>Introduction</h2>
     <p>In addition to partly faking <a href="https://pypi.org/project/RPi.GPIO/">RPi.GPIO</a>, <strong>SimulRPi</strong> also simulates these I/O devices connected
@@ -99,13 +102,16 @@
 
     <h2><span id="installation-instructions"></span>Installation instructions</h2>
     <ol>
-        <li><p>Make sure to update pip:<!-- HTML generated using hilite.me -->
+        <li><p>Make sure to update pip:</p>
+            <p>
+                <!-- HTML generated using hilite.me -->
                 <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
                     <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>pip install --upgrade pip</pre>
                 </div>
             </p>
         </li>
-        <li><p>Install the package <code><b>SimulRPi</b></code> with <em>pip</em>:
+        <li><p>Install the package <code><b>SimulRPi</b></code> with <em>pip</em>:</p>
+            <p>
                 <!-- HTML generated using hilite.me -->
                 <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
                     <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>pip install SimulRPi<span style="color: #333333"></span></pre>
@@ -120,9 +126,8 @@
     <h2><span id="usage"></span>Usage</h2>
     <h3><span id="use-library"></span>Use the library in your own code</h3>
     <h4><span id="case-1"></span>Case 1: with a <code><b>try</b></code> and <code><b>except</b></code> blocks</h4>
-    You can try importing RPi.GPIO first and if it is not found, then fallback on the <code><b>SimulRPi.GPIO</b></code> module.
-    <br/>
-    <br/>
+    <p>You can try importing RPi.GPIO first and if it is not found, then fallback on the <code><b>SimulRPi.GPIO</b></code> module.</p>
+    <p>
     <!-- HTML generated using hilite.me -->
     <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
         <pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">try</span>:
@@ -133,15 +138,14 @@
 <span style="color: #888888"># Rest of your code</span>
         </pre>
     </div>
-    <br/>
-    The code from the previous example would be put at the beginning of your file with the other imports.
-    <br/>
+    </p>
+    <p>The code from the previous example would be put at the beginning of your file with the other imports.</p>
+
     <br/>
 
     <h4><span id="case-2"></span>Case 2: with a simulation flag</h4>
-    Or maybe you have a flag to tell whether you want to work with the simulation module or the real one.
-    <br/>
-    <br/>
+    <p>Or maybe you have a flag to tell whether you want to work with the simulation module or the real one.</p>
+    <p>
     <!-- HTML generated using hilite.me -->
     <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
         <pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">if</span> simulation:
@@ -152,6 +156,7 @@
 <span style="color: #888888"># Rest of your code</span>
         </pre>
     </div>
+    </p>
     <br/>
 
     <h3><span id="script-run-examples"></span>Script <code><b>run_examples</b></code></h3>
@@ -159,19 +164,19 @@
         you have access to once you <a href="#installation-instructions">install</a> the <code><b>SimulRPi</b></code> package allows you to run different code
         examples on your RPi or computer. If it is run on your computer, it will make use of the <code><b>SimulRPi.GPIO</b></code> module which partly fakes
         <code><b>RPi.GPIO</b></code>.</p>
-    <p>To display the script’s list of options and their descriptions:
+    <p>To display the script’s list of options and their descriptions:</p>
         <!-- HTML generated using hilite.me -->
         <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
             <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>run_examples -h</pre>
         </div>
-    </p>
-    <p>Let's run the code example 5 which blinks a LED if a specified key is pressed:
+    <br/>
+    <p>Let's run the code example 5 which blinks a LED if a specified key is pressed:</p>
         <!-- HTML generated using hilite.me -->
         <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
             <pre style="margin: 0; line-height: 125%"><span style="color: #996633">$ </span>-s -e 5 -l 22 -t 5 -k ctrl_r</pre>
         </div>
-    </p>
-    <p>Explanation of the previous command-line:
+    <br/>
+    <p>Explanation of the previous command-line:</p>
         <ul>
             <li><code><b>-s</b></code>: we run the code example as a <b>simulation</b>, i.e. on our computer instead of an RPi</li>
             <li><code><b>-e 5</b></code>: we run code example <b>5</b> which blinks a LED if a key is pressed</li>
@@ -179,7 +184,6 @@
             <li><code><b>- t 5</b></code>: we blink a LED for a total of <b>5</b> seconds</li>
             <li><code><b>-k ctrl_r</b></code>: a LED is blinked if the key <code><b>ctrl_r</b></code> is pressed</li>
         </ul>
-    </p>
     <p><strong>Output:</strong></p>
     <a href="https://raw.githubusercontent.com/raul23/images/master/SimulRPi/v0.1.0a0/run_examples_05_terminal_output.gif">
         <img class="rwd_img" alt="Example 05: terminal output"
@@ -188,6 +192,25 @@
 
     <br/>
     <br/>
+     <br/>
+
+    <h2><span id="example"></span>Example: display 3 LEDs</h2>
+    <p>This example consists in displaying three LEDs on channels 9, 10, and 11, respectively. Here is the code along with the output from
+        the terminal:</p>
+
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em;">
+        <pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">SimulRPi.GPIO</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">GPIO</span>
+
+led_channels <span style="color: #333333">=</span> [<span style="color: #0000DD; font-weight: bold">9</span>, <span style="color: #0000DD; font-weight: bold">10</span>, <span style="color: #0000DD; font-weight: bold">11</span>]
+GPIO<span style="color: #333333">.</span>setmode(GPIO<span style="color: #333333">.</span>BCM)
+GPIO<span style="color: #333333">.</span>setup(led_channels, GPIO<span style="color: #333333">.</span>OUT)
+GPIO<span style="color: #333333">.</span>output(led_channels, GPIO<span style="color: #333333">.</span>HIGH)
+GPIO<span style="color: #333333">.</span>cleanup()
+        </pre></div>
+
+    <br/>
+     <br/>
 
     <h2><span id="resources"></span>Resources</h2>
     <ul>
